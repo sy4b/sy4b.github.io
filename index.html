@@ -159,14 +159,36 @@
 
         
         <a href="/2022/02/10/%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2022-02-10T09:17:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
+  	<time datetime="2022-02-10T09:23:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h3>
+        <h3 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h3><ul>
+<li>树的基本概念</li>
+</ul>
+<h3 id="树的基本概念"><a href="#树的基本概念" class="headerlink" title="树的基本概念"></a>树的基本概念</h3><p>树是n个节点的有限集合，是一种递归的数据结构</p>
+<p>树的根节点没有前驱，此外，所有节点有且仅有一个前驱</p>
+<h4 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h4><ul>
+<li>祖先节点：除自身外，根节点到该节点路径上的节点均为自身的祖先节点</li>
+<li>节点的度：节点的孩子数</li>
+<li>树的度：树中节点度数最大值</li>
+<li>分支节点：节点度&gt;0</li>
+<li>叶子节点：节点度=0</li>
+<li>节点的深度：根节点为1，依次往下</li>
+<li>节点的高度：和深度相反，从下往上数</li>
+<li>路径长度：两节点之间边的数量</li>
+<li>森林：m(m&gt;0)棵互不相交树的集合。森林和树可以转换</li>
+</ul>
+<h4 id="树的一些性质"><a href="#树的一些性质" class="headerlink" title="树的一些性质"></a>树的一些性质</h4><ol>
+<li>树中的节点数 = 所有节点度数之和 + 1（根节点）</li>
+<li>度数为m的树中，第i层上至多有m^(i-1)个节点</li>
+<li>高度h的m叉树最多有(m^h-1)/(m-1)个节点</li>
+<li>具有n个节点的m叉树最小高度为「log(m, n(m-1)+1) (向上取整)</li>
+</ol>
+
       
 
       
@@ -780,14 +802,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">高等数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">考研</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
              
@@ -797,6 +811,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">高等数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">考研</a>
               </li>
             
             <div class="clearfix"></div>
