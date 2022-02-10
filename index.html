@@ -189,6 +189,21 @@
 
 <h4 id="KMP算法–index从1开始"><a href="#KMP算法–index从1开始" class="headerlink" title="KMP算法–index从1开始"></a>KMP算法–index从1开始</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">KMP</span><span class="params">(<span class="type">const</span> String&amp; S, <span class="type">const</span> String&amp; T, <span class="type">const</span> <span class="type">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="comment">// i扫描文本串S，j扫描模式串T</span></span><br><span class="line">    <span class="type">int</span> i=<span class="number">1</span>, j=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= S.length &amp;&amp; j &lt;= T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">0</span> || S.ch[i] == T.ch[j])&#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果j扫描完T，说明匹配成功</span></span><br><span class="line">    <span class="keyword">if</span>(j &gt; T.length)    <span class="keyword">return</span> i-T.length;</span><br><span class="line">    <span class="comment">// 失败返回0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h4 id="nextval数组–KMP算法优化"><a href="#nextval数组–KMP算法优化" class="headerlink" title="nextval数组–KMP算法优化"></a>nextval数组–KMP算法优化</h4><p>可以减少不必要的比较</p>
+<ul>
+<li>手动计算：</li>
+</ul>
+<ol>
+<li>nextval[1] = 0 定义</li>
+<li>从左往右推。求出next[j]， 如果S[j] = S[next[j]]，则nextval[j] = nextval[nextval[j]]；反之nextval[j] = next[j]</li>
+</ol>
+<ul>
+<li>算法实现</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_nextval</span><span class="params">(<span class="type">const</span> String&amp; T, <span class="type">int</span> nextval[])</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">1</span>, j=<span class="number">0</span>;</span><br><span class="line">    nextval[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">0</span> || T.ch[i] == T.ch[j])&#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            <span class="keyword">if</span>(T.ch[i] != T.ch[j])  nextval[i] = j;</span><br><span class="line">            <span class="keyword">else</span>    nextval[i] = nextval[j];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            j = nextval[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>KMP匹配过程则和原本一样</p>
+
       
 
       
@@ -688,15 +703,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">每日一题</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -708,7 +715,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">每日一题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
             
             <div class="clearfix"></div>
