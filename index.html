@@ -175,6 +175,19 @@
 <h3 id="BF算法"><a href="#BF算法" class="headerlink" title="BF算法"></a>BF算法</h3><p>O(n^2)暴力扫描，思路简单</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">BF</span><span class="params">(<span class="type">const</span> string&amp; S, <span class="type">const</span> string&amp; T)</span></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> m = S.<span class="built_in">length</span>(), n = T.<span class="built_in">length</span>();           <span class="comment">// 长度</span></span><br><span class="line">    <span class="keyword">auto</span> index1 = <span class="number">0</span>, index2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(index1 &lt; m &amp;&amp; index2 &lt; n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(S[index1] == T[index2])&#123;</span><br><span class="line">            ++index1;</span><br><span class="line">            ++index2;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;                                                              <span class="comment">// 比较失败，从S上次起始的下一个字母开始匹配，T回到第一个</span></span><br><span class="line">            index1 = index1-index2+<span class="number">1</span>;</span><br><span class="line">            index2 = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(index2 == n)  <span class="keyword">return</span> index1 - n;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h3 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h3><p>思想：当两个字符失配时，可以得到信息：前面的所有字符都匹配成功。KMP算法就是利用这部分信息，让i不回溯，提高匹配效率</p>
+<p>KMP算法具体解释，可以移步我的BiliBili视频  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1E44y177RW/">手撕KMP！｜理论+cpp实现</a></p>
+<p>下面给出王道考研书的实现：字符串从数组的下标1处开始</p>
+<h4 id="求next数组–手动"><a href="#求next数组–手动" class="headerlink" title="求next数组–手动"></a>求next数组–手动</h4><ol>
+<li>next[1] = 0</li>
+<li>字符i的前缀：区间[1, i-1)范围内，必定包含[1]位置处字符的子串</li>
+<li>字符i的后缀：区间(1, i-1]范围内，必定包含[i-1]位置处字符的子串</li>
+<li>next[i] = 字符i处，最大相等前后缀长度+1</li>
+</ol>
+<h4 id="求next数组–计算机"><a href="#求next数组–计算机" class="headerlink" title="求next数组–计算机"></a>求next数组–计算机</h4><p>相当于模式串和自己KMP</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_next</span><span class="params">(<span class="type">const</span> String&amp; T, <span class="type">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>, j = <span class="number">0</span>;</span><br><span class="line">    next[<span class="number">1</span>] = <span class="number">0</span>;    <span class="comment">// 根据定义</span></span><br><span class="line">    <span class="keyword">while</span>(i &lt; T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j ==<span class="number">0</span> || T.ch[i] == T.ch[j])&#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="KMP算法–index从1开始"><a href="#KMP算法–index从1开始" class="headerlink" title="KMP算法–index从1开始"></a>KMP算法–index从1开始</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">KMP</span><span class="params">(<span class="type">const</span> String&amp; S, <span class="type">const</span> String&amp; T, <span class="type">const</span> <span class="type">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="comment">// i扫描文本串S，j扫描模式串T</span></span><br><span class="line">    <span class="type">int</span> i=<span class="number">1</span>, j=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= S.length &amp;&amp; j &lt;= T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">0</span> || S.ch[i] == T.ch[j])&#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果j扫描完T，说明匹配成功</span></span><br><span class="line">    <span class="keyword">if</span>(j &gt; T.length)    <span class="keyword">return</span> i-T.length;</span><br><span class="line">    <span class="comment">// 失败返回0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -687,15 +700,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">高等数学</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">考研</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
               </li>
             
             <div class="clearfix"></div>
