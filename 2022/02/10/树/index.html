@@ -16,7 +16,7 @@
 <meta property="og:description" content="Content 树的基本概念  树的基本概念树是n个节点的有限集合，是一种递归的数据结构 树的根节点没有前驱，此外，所有节点有且仅有一个前驱 基本术语 祖先节点：除自身外，根节点到该节点路径上的节点均为自身的祖先节点 节点的度：节点的孩子数 树的度：树中节点度数最大值 分支节点：节点度&gt;0 叶子节点：节点度&#x3D;0 节点的深度：根节点为1，依次往下 节点的高度：和深度相反，从下往上数 路径长度：">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-02-10T09:23:47.000Z">
-<meta property="article:modified_time" content="2022-02-10T09:33:37.813Z">
+<meta property="article:modified_time" content="2022-02-10T09:46:53.742Z">
 <meta property="article:author" content="Valerie">
 <meta property="article:tag" content="考研数据结构">
 <meta name="twitter:card" content="summary">
@@ -191,6 +191,8 @@
 <li>高度h的m叉树最多有(m^h-1)/(m-1)个节点</li>
 <li>具有n个节点的m叉树最小高度为「log(m, n(m-1)+1) (向上取整)</li>
 </ol>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一棵度为<span class="number">4</span>的树中，有<span class="number">20</span>个节点度为<span class="number">4</span>，<span class="number">10</span>个度为<span class="number">3</span>，<span class="number">1</span>个度为<span class="number">2</span>，<span class="number">10</span>个度为<span class="number">1</span>，问叶子节点个数</span><br><span class="line"></span><br><span class="line">解答：利用性质<span class="number">1</span></span><br><span class="line">n = n0+n1+n2+n3+n4 = <span class="number">0</span>*n0+<span class="number">1</span>*n1+<span class="number">2</span>*n2+<span class="number">3</span>*n3+<span class="number">4</span>*n4</span><br><span class="line">解得 n0 = <span class="number">82</span></span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -433,7 +435,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color5">高等数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">考研</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -449,11 +455,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">高等数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">考研</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
               </li>
             
             <div class="clearfix"></div>
