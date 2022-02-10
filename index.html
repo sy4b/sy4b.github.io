@@ -168,6 +168,7 @@
       
         <h3 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h3><ul>
 <li>树的基本概念</li>
+<li>二叉树</li>
 </ul>
 <h3 id="树的基本概念"><a href="#树的基本概念" class="headerlink" title="树的基本概念"></a>树的基本概念</h3><p>树是n个节点的有限集合，是一种递归的数据结构</p>
 <p>树的根节点没有前驱，此外，所有节点有且仅有一个前驱</p>
@@ -182,15 +183,19 @@
 <li>路径长度：两节点之间边的数量</li>
 <li>森林：m(m&gt;0)棵互不相交树的集合。森林和树可以转换</li>
 </ul>
+<p>区分 度为n的树 和 n叉树</p>
+<p>两者都满足所有节点的度&lt;=n</p>
+<p>前者必须至少有一个节点度为n，后者可以不必有</p>
+<p>前者不可以为空树，后者可以是空树</p>
 <h4 id="树的一些性质"><a href="#树的一些性质" class="headerlink" title="树的一些性质"></a>树的一些性质</h4><ol>
 <li>树中的节点数 = 所有节点度数之和 + 1（根节点）</li>
 <li>度数为m的树中，第i层上至多有m^(i-1)个节点</li>
-<li>高度h的m叉树最多有(m^h-1)/(m-1)个节点</li>
-<li>具有n个节点的m叉树最小高度为「log(m, n(m-1)+1) (向上取整)</li>
+<li>高度h的m叉树最多有(m^h-1)/(m-1)个节点<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">证明：</span><br><span class="line"></span><br><span class="line">让所有非叶子节点度都为m，可以得到节点数最多的情况。进行一个等比数列求和</span><br><span class="line"></span><br><span class="line">1+m+m^2+...+m^(h-1) = 1*(1-m^h)/(1-m)</span><br><span class="line"></span><br><span class="line">证毕</span><br></pre></td></tr></table></figure></li>
+<li>具有n个节点的m叉树最小高度为「log(m, n(m-1)+1) (向上取整)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">证明：</span><br><span class="line"></span><br><span class="line">让所有非叶子节点的度都尽量为m，可以让树高度最小</span><br><span class="line"></span><br><span class="line">假设结果有h层，那么n&gt;(h-1)层m叉树最大节点数，n&lt;=h层m叉树最大节点数，即</span><br><span class="line"></span><br><span class="line">(m^(h-1)-1)/(m-1) &lt; n &lt; (m^h-1)/(m-1)</span><br><span class="line"></span><br><span class="line">同 *(m-1), 对m取log 即证得 h</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一棵度为<span class="number">4</span>的树中，有<span class="number">20</span>个节点度为<span class="number">4</span>，<span class="number">10</span>个度为<span class="number">3</span>，<span class="number">1</span>个度为<span class="number">2</span>，<span class="number">10</span>个度为<span class="number">1</span>，问叶子节点个数</span><br><span class="line"></span><br><span class="line">解答：利用性质<span class="number">1</span></span><br><span class="line">n = n0+n1+n2+n3+n4 = <span class="number">0</span>*n0+<span class="number">1</span>*n1+<span class="number">2</span>*n2+<span class="number">3</span>*n3+<span class="number">4</span>*n4</span><br><span class="line">解得 n0 = <span class="number">82</span></span><br></pre></td></tr></table></figure>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">一棵度为4的树中，有20个节点度为4，10个度为3，1个度为2，10个度为1，问叶子节点个数</span><br><span class="line"></span><br><span class="line">解答：利用性质1</span><br><span class="line">n = n0+n1+n2+n3+n4 = 0*n0+1*n1+2*n2+3*n3+4*n4</span><br><span class="line">解得 n0 = 82</span><br></pre></td></tr></table></figure>
 
-
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3>
       
 
       
