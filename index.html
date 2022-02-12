@@ -200,6 +200,28 @@
 <p>空间复杂度：O(1)</p>
 <p>不稳定</p>
 <p>适用性：仅适用于线性表为顺序存储的情况</p>
+<h1 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h1><p>包括冒泡排序和快速排序</p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>基本思想：从后往前（或者从前往后）两两比较相邻元素的值，若为逆序，则交换他们，知道序列比较完，称为一次冒泡，结果是最小的元素交换到待排序序列的第一个位置</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Bubble_Sort</span><span class="params">(<span class="type">int</span> nums[], <span class="type">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;len<span class="number">-1</span>;++i)&#123;</span><br><span class="line">        <span class="type">bool</span> flag = <span class="literal">false</span>;      <span class="comment">// 记录是否发生过交换</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=len<span class="number">-1</span>;j&gt;i;--j)&#123;</span><br><span class="line">            <span class="comment">// 冒泡</span></span><br><span class="line">            <span class="keyword">if</span>(nums[j]&lt;nums[j<span class="number">-1</span>])&#123;</span><br><span class="line">                std::<span class="built_in">swap</span>(nums[j<span class="number">-1</span>], nums[j]);</span><br><span class="line">                <span class="keyword">if</span>(!flag)   flag = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 没有发生过swap，说明已经有序</span></span><br><span class="line">        <span class="keyword">if</span>(!flag)    <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度：O(n^2)</p>
+<p>空间复杂度：O(1)</p>
+<p>稳定</p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>思想：基于分治。</p>
+<ol>
+<li>在待排序表中任意选取一个元素pivot，通过一趟排序，将待排序表分为独立的两部分L和R，L中所有元素小于pivot，R中所有元素大于pivot，</li>
+<li>此时pivot位于有序数组的最终位置上</li>
+<li>递归处理L和R。直到每部分内都只有一个元素</li>
+</ol>
+<h3 id="Partition过程"><a href="#Partition过程" class="headerlink" title="Partition过程"></a>Partition过程</h3><p>Partition将待排序表划分。快速排序的性能主要取决于此。</p>
+<p>此处以《数据结构》王蔚敏版本的做法，以表中第一个元素作为枢轴pivot，进行划分</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">partition</span><span class="params">(<span class="type">int</span> nums[], <span class="type">int</span> left, <span class="type">int</span> right)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> pivot = nums[left];</span><br><span class="line">    <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">        <span class="comment">// 将小于pivot的元素移到左边</span></span><br><span class="line">        <span class="keyword">while</span>(left&lt;right &amp;&amp; nums[right]&gt;=pivot)&#123;</span><br><span class="line">            --right;</span><br><span class="line">        &#125;</span><br><span class="line">        nums[left] = nums[right];</span><br><span class="line">        <span class="comment">// 将大于pivot的元素移到右边</span></span><br><span class="line">        <span class="keyword">while</span>(left&lt;right &amp;&amp; nums[left]&lt;=pivot)&#123;</span><br><span class="line">            ++left;</span><br><span class="line">        &#125;</span><br><span class="line">        nums[right] = nums[left];</span><br><span class="line">    &#125;</span><br><span class="line">    nums[left] = pivot;</span><br><span class="line">    <span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="递归处理部分"><a href="#递归处理部分" class="headerlink" title="递归处理部分"></a>递归处理部分</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">QuickSort</span><span class="params">(<span class="type">int</span> nums[], <span class="type">int</span> left, <span class="type">int</span> right)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 表长大于1时才需要快排</span></span><br><span class="line">    <span class="keyword">if</span>(left &lt; right)&#123;</span><br><span class="line">        <span class="type">int</span> pivotPos = <span class="built_in">partition</span>(nums, left, right);</span><br><span class="line">        <span class="comment">// 递归处理左右子表</span></span><br><span class="line">        <span class="built_in">QuickSort</span>(nums, left, pivotPos<span class="number">-1</span>);</span><br><span class="line">        <span class="built_in">QuickSort</span>(nums, pivotPos+<span class="number">1</span>, right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>空间复杂度：O(log(2, n)) 递归需要用栈</p>
+<p>时间复杂度：O(log(2, n))</p>
+<p>稳定性：不稳定</p>
 
       
 
@@ -1165,10 +1187,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数学</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
               </li>
              
@@ -1178,6 +1196,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">考研</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
             
             <div class="clearfix"></div>
