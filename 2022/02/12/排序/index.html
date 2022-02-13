@@ -16,7 +16,7 @@
 <meta property="og:description" content="基本概念定义重新排列表中的元素，使其满足元素按照关键字有序的过程 排序算法稳定性：假设待排序表中，两个元素R1和R2，对应关键字Key1&#x3D;&#x3D;Key2，在使用某种排序算法后，仍保持原先的相对顺序，则该排序算法稳定；否则不稳定。（算法是否稳定并不衡量排序算法的优劣，只是描述性质 根据数据元素是否完全在内存中，可以将排序算法分为内部排序和外部排序 并非所有排序都要基于元素之间的比较，例如基数排序 例题对">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-02-12T09:20:00.000Z">
-<meta property="article:modified_time" content="2022-02-13T07:53:22.230Z">
+<meta property="article:modified_time" content="2022-02-13T09:09:53.197Z">
 <meta property="article:author" content="Valerie">
 <meta property="article:tag" content="考研数据结构">
 <meta name="twitter:card" content="summary">
@@ -276,7 +276,35 @@
 <p>时间复杂度：O(n^2)</p>
 <p>空间复杂度：O(1)</p>
 <p>稳定性：不稳定</p>
-<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><h3 id="堆的定义"><a href="#堆的定义" class="headerlink" title="堆的定义"></a>堆的定义</h3><p>n个关键字序列L[1…n]满足以下条件可以成为堆</p>
+<ol>
+<li>L(i)&gt;=L(2i) &amp;&amp; L(i)&gt;=L(2i+1) 或者</li>
+<li>L(i)&lt;=L(2i) &amp;&amp; L(i)&lt;=L(2i+1)</li>
+</ol>
+<p>满足条件1称为大根（顶）堆，满足条件2称为小根（顶）堆</p>
+<p>堆可以视为一棵完全二叉树</p>
+<p>以大顶堆实现为例，排序结果为从小到大。区别于王道考研书，这里数组下标从0开始计算</p>
+<h3 id="堆化"><a href="#堆化" class="headerlink" title="堆化"></a>堆化</h3><p>堆化是自上而下的</p>
+<p>对于每一个节点，比较自己和孩子中较大的那个，不断下沉</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">heapify</span><span class="params">(<span class="type">int</span> nums[], <span class="type">int</span> len, <span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>*k+<span class="number">1</span>;i&lt;len;i=i*<span class="number">2</span>+<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">// 右孩子存在并且比左孩子大，则选取左孩子</span></span><br><span class="line">        <span class="keyword">if</span>(i+<span class="number">1</span> &lt; len &amp;&amp; nums[i+<span class="number">1</span>] &gt; nums[i])&#123;</span><br><span class="line">            i = i+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(nums[k] &gt; nums[i])   <span class="keyword">break</span>;  <span class="comment">//</span></span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            std::<span class="built_in">swap</span>(nums[k], nums[i]);</span><br><span class="line">            k = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="建立堆"><a href="#建立堆" class="headerlink" title="建立堆"></a>建立堆</h3><p>建立堆是自下而上的</p>
+<p>对于每一个节点，比较自己和父节点，不满足堆的性质则进行交换</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">BuildHeap</span><span class="params">(<span class="type">int</span> nums[], <span class="type">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=(len<span class="number">-2</span>)/<span class="number">2</span>;i&gt;=<span class="number">0</span>;--i)&#123;</span><br><span class="line">        <span class="built_in">heapify</span>(nums, len, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="堆排序-1"><a href="#堆排序-1" class="headerlink" title="堆排序"></a>堆排序</h3><p>堆排序则是：</p>
+<ol>
+<li>建立堆</li>
+<li>每次取出堆顶元素（待排序序列中的最大值），与后面排序完成的序列前一位进行交换。然后对新的堆顶元素堆化</li>
+<li>当堆只有一个元素时，堆排序完成</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Heap_Sort</span><span class="params">(<span class="type">int</span> nums[], <span class="type">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="built_in">BuildHeap</span>(nums, len);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=len<span class="number">-1</span>;i&gt;<span class="number">0</span>;--i)&#123;</span><br><span class="line">        std::<span class="built_in">swap</span>(nums[<span class="number">0</span>], nums[i]);</span><br><span class="line">        <span class="built_in">heapify</span>(nums, i, <span class="number">0</span>);    <span class="comment">// 调整新的堆顶</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度：O(n*log(2, n))</p>
+<p>空间复杂度：O(1)</p>
+<p>稳定性：不稳定</p>
+<p>堆排序适用于关键字较多的情况，例如10000个数据中取最小的100个，可以用大小为100的堆实现</p>
+
       
 
       
@@ -539,15 +567,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">高等数学</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">考研</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
               </li>
             
             <div class="clearfix"></div>
