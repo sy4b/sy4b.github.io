@@ -146,6 +146,96 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-leetcode-688-骑士在棋盘上的概率" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/17/leetcode-688-%E9%AA%91%E5%A3%AB%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87/">leetcode 688. 骑士在棋盘上的概率</a>
+    </h1>
+  
+
+        
+        <a href="/2022/02/17/leetcode-688-%E9%AA%91%E5%A3%AB%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87/" class="archive-article-date">
+  	<time datetime="2022-02-17T02:00:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/knight-probability-in-chessboard/">来做题</a></p>
+<p><img src="/2022/02/17/leetcode-688-%E9%AA%91%E5%A3%AB%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87/688.png"></p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>动态规划：考虑到每走一步，结果与上一步的结果有关</p>
+<p>定义dp[step][i][j] 表示骑士从i j出发，走了step步后还在棋盘上的概率</p>
+<p>那么base case：dp[0][i][j] = 1。 走了0步必定停留在棋盘上</p>
+<p>状态转移方程呢？由于八个方向都相同概率会走，因此</p>
+<p>dp[step][i][j] = 1/8 * SIGMA(dp[step-1][newi][newj])</p>
+<p>SIGMA表示求和。转移方程指出：走step步后还在棋盘的概率等于走出一步后，在新位置走step-1步后仍在棋盘的概率</p>
+<p>那么代码就简单明了了</p>
+<ul>
+<li>技能点：动态规划</li>
+</ul>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">int</span> dx[<span class="number">8</span>] = &#123;<span class="number">-2</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-1</span>&#125;;</span><br><span class="line">    <span class="type">int</span> dy[<span class="number">8</span>] = &#123;<span class="number">-1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-2</span>&#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">knightProbability</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k, <span class="type">int</span> row, <span class="type">int</span> column)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// dp[step][i][j] 表示从ij出发，走了step步后仍在棋盘上的概率</span></span><br><span class="line">        vector&lt;vector&lt;vector&lt;<span class="type">double</span>&gt;&gt;&gt; <span class="built_in">dp</span>(k+<span class="number">1</span>, vector&lt;vector&lt;<span class="type">double</span>&gt;&gt;(n, <span class="built_in">vector</span>&lt;<span class="type">double</span>&gt;(n)));</span><br><span class="line">        <span class="comment">// 规划！</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> step=<span class="number">0</span>;step&lt;=k;++step)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;n;++j)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(step == <span class="number">0</span>)   dp[step][i][j] = <span class="number">1</span>; <span class="comment">// 走了0步，停留在棋盘上概率为1</span></span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;<span class="number">8</span>;++k)&#123;           <span class="comment">// 尝试八个方向</span></span><br><span class="line">                            <span class="type">int</span> nx = i+dx[k], ny = j+dy[k];</span><br><span class="line">                            <span class="keyword">if</span>(nx&gt;=<span class="number">0</span> &amp;&amp; nx&lt;n &amp;&amp; ny&gt;=<span class="number">0</span> &amp;&amp; ny&lt;n)&#123;</span><br><span class="line">                                dp[step][i][j] += dp[step<span class="number">-1</span>][nx][ny]/<span class="number">8</span>; <span class="comment">// 状态转移</span></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[k][row][column];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/17/leetcode-688-%E9%AA%91%E5%A3%AB%E5%9C%A8%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode-1380-矩阵中的幸运数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1149,14 +1239,14 @@
 
 <p>非递归算法</p>
 <ul>
-<li>用两个栈</li>
+<li>用两个栈（左神的做法，有点投机取巧了</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">PostOrder2</span><span class="params">(<span class="type">const</span> BiTree&amp; T)</span></span>&#123;</span><br><span class="line">    std::stack&lt;BiTree&gt; stk1, stk2;</span><br><span class="line">    stk1.<span class="built_in">push</span>(T);</span><br><span class="line">    <span class="keyword">while</span>(!stk1.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="keyword">auto</span> top = stk1.<span class="built_in">top</span>();</span><br><span class="line">        stk1.<span class="built_in">pop</span>();</span><br><span class="line">        stk2.<span class="built_in">push</span>(top);</span><br><span class="line">        <span class="keyword">if</span>(top-&gt;lchild) stk1.<span class="built_in">push</span>(top-&gt;lchild);</span><br><span class="line">        <span class="keyword">if</span>(top-&gt;rchild) stk1.<span class="built_in">push</span>(top-&gt;rchild);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(!stk2.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="keyword">auto</span> top = stk2.<span class="built_in">top</span>();</span><br><span class="line">        stk2.<span class="built_in">pop</span>();</span><br><span class="line">        std::cout&lt;&lt;top-&gt;data&lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>用一个栈</li>
+<li>用一个栈（这种比较正统 要认真理解</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">PostOrder</span><span class="params">(<span class="type">const</span> BiTree&amp; T)</span></span>&#123;</span><br><span class="line">    std::stack&lt;BiTree&gt; stk;</span><br><span class="line">    BiTree pre = <span class="literal">nullptr</span>;   <span class="comment">// 用来保存上次遍历的节点</span></span><br><span class="line">    <span class="keyword">while</span>(T || !stk.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="comment">// 先向左走到底</span></span><br><span class="line">        <span class="keyword">while</span>(T)&#123;</span><br><span class="line">            stk.<span class="built_in">push</span>(T);</span><br><span class="line">            T = T-&gt;lchild;</span><br><span class="line">        &#125;</span><br><span class="line">        T = stk.<span class="built_in">top</span>();  <span class="comment">// 取出栈顶进行处理</span></span><br><span class="line">        stk.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span>(T-&gt;rchild == <span class="literal">nullptr</span> || T-&gt;rchild == pre)&#123;   <span class="comment">// 右子树为空或者已经遍历完，就该遍历当前节点，也就是根节点</span></span><br><span class="line">            std::cout&lt;&lt;T-&gt;data&lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            pre = T;    <span class="comment">// 记录上一个节点</span></span><br><span class="line">            T = <span class="literal">nullptr</span>;    <span class="comment">// 跳过左走的代码，往上边回溯</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            stk.<span class="built_in">push</span>(T);    <span class="comment">// 右子树还没处理，根节点入栈，遍历完右子树再进行处理</span></span><br><span class="line">            T = T-&gt;rchild;  <span class="comment">// 去遍历右子树</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h5 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h5><p>从上到下一层一层遍历，每层都是从左到右。需要借助队列实现</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">LevelOrder</span><span class="params">(BiTree T)</span></span>&#123;</span><br><span class="line">    <span class="built_in">InitQueue</span>(Q);</span><br><span class="line">    BiTree p;</span><br><span class="line">    <span class="built_in">EnQueue</span>(Q, T);</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">IsEmpty</span>(Q))&#123;</span><br><span class="line">        <span class="built_in">DeQueue</span>(Q, p);</span><br><span class="line">        <span class="built_in">visit</span>(p);</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;lchild)&#123;</span><br><span class="line">            <span class="built_in">EnQueue</span>(Q, p-&gt;lchild);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;rchild)&#123;</span><br><span class="line">            <span class="built_in">EnQueue</span>(Q, p-&gt;rchild);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1203,116 +1293,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/02/10/%E6%A0%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-串模式匹配" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/10/%E4%B8%B2%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/">串模式匹配</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/10/%E4%B8%B2%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/" class="archive-article-date">
-  	<time datetime="2022-02-10T07:37:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h3><ul>
-<li>串的模式匹配</li>
-<li>BF算法</li>
-<li>KMP算法</li>
-</ul>
-<h3 id="串的模式匹配"><a href="#串的模式匹配" class="headerlink" title="串的模式匹配"></a>串的模式匹配</h3><p>概念：在主串中找到与模式串相同的子串，返回其所在位置</p>
-<h3 id="BF算法"><a href="#BF算法" class="headerlink" title="BF算法"></a>BF算法</h3><p>O(n^2)暴力扫描，思路简单</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">BF</span><span class="params">(<span class="type">const</span> string&amp; S, <span class="type">const</span> string&amp; T)</span></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> m = S.<span class="built_in">length</span>(), n = T.<span class="built_in">length</span>();           <span class="comment">// 长度</span></span><br><span class="line">    <span class="keyword">auto</span> index1 = <span class="number">0</span>, index2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(index1 &lt; m &amp;&amp; index2 &lt; n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(S[index1] == T[index2])&#123;</span><br><span class="line">            ++index1;</span><br><span class="line">            ++index2;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;                                                              <span class="comment">// 比较失败，从S上次起始的下一个字母开始匹配，T回到第一个</span></span><br><span class="line">            index1 = index1-index2+<span class="number">1</span>;</span><br><span class="line">            index2 = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(index2 == n)  <span class="keyword">return</span> index1 - n;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h3><p>思想：当两个字符失配时，可以得到信息：前面的所有字符都匹配成功。KMP算法就是利用这部分信息，让i不回溯，提高匹配效率</p>
-<p>KMP算法具体解释，可以移步我的BiliBili视频  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1E44y177RW/">手撕KMP！｜理论+cpp实现</a></p>
-<p>下面给出王道考研书的实现：字符串从数组的下标1处开始</p>
-<h4 id="求next数组–手动"><a href="#求next数组–手动" class="headerlink" title="求next数组–手动"></a>求next数组–手动</h4><ol>
-<li>next[1] = 0</li>
-<li>字符i的前缀：区间[1, i-1)范围内，必定包含[1]位置处字符的子串</li>
-<li>字符i的后缀：区间(1, i-1]范围内，必定包含[i-1]位置处字符的子串</li>
-<li>next[i] = 字符i处，最大相等前后缀长度+1</li>
-</ol>
-<h4 id="求next数组–计算机"><a href="#求next数组–计算机" class="headerlink" title="求next数组–计算机"></a>求next数组–计算机</h4><p>相当于模式串和自己KMP</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_next</span><span class="params">(<span class="type">const</span> String&amp; T, <span class="type">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>, j = <span class="number">0</span>;</span><br><span class="line">    next[<span class="number">1</span>] = <span class="number">0</span>;    <span class="comment">// 根据定义</span></span><br><span class="line">    <span class="keyword">while</span>(i &lt; T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j ==<span class="number">0</span> || T.ch[i] == T.ch[j])&#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="KMP算法–index从1开始"><a href="#KMP算法–index从1开始" class="headerlink" title="KMP算法–index从1开始"></a>KMP算法–index从1开始</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">KMP</span><span class="params">(<span class="type">const</span> String&amp; S, <span class="type">const</span> String&amp; T, <span class="type">const</span> <span class="type">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="comment">// i扫描文本串S，j扫描模式串T</span></span><br><span class="line">    <span class="type">int</span> i=<span class="number">1</span>, j=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= S.length &amp;&amp; j &lt;= T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">0</span> || S.ch[i] == T.ch[j])&#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果j扫描完T，说明匹配成功</span></span><br><span class="line">    <span class="keyword">if</span>(j &gt; T.length)    <span class="keyword">return</span> i-T.length;</span><br><span class="line">    <span class="comment">// 失败返回0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="nextval数组–KMP算法优化"><a href="#nextval数组–KMP算法优化" class="headerlink" title="nextval数组–KMP算法优化"></a>nextval数组–KMP算法优化</h4><p>可以减少不必要的比较</p>
-<ul>
-<li>手动计算：</li>
-</ul>
-<ol>
-<li>nextval[1] = 0 定义</li>
-<li>从左往右推。求出next[j]， 如果S[j] = S[next[j]]，则nextval[j] = nextval[nextval[j]]；反之nextval[j] = next[j]</li>
-</ol>
-<ul>
-<li>算法实现</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_nextval</span><span class="params">(<span class="type">const</span> String&amp; T, <span class="type">int</span> nextval[])</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i=<span class="number">1</span>, j=<span class="number">0</span>;</span><br><span class="line">    nextval[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">0</span> || T.ch[i] == T.ch[j])&#123;</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            <span class="keyword">if</span>(T.ch[i] != T.ch[j])  nextval[i] = j;</span><br><span class="line">            <span class="keyword">else</span>    nextval[i] = nextval[j];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            j = nextval[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>KMP匹配过程则和原本一样</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/10/%E4%B8%B2%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D/">展开全文 >></a>
         </p>
       
 
