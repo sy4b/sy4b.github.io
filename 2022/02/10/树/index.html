@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://example.com/2022/02/10/%E6%A0%91/2.JPG">
 <meta property="og:image" content="http://example.com/2022/02/10/%E6%A0%91/7.png">
 <meta property="article:published_time" content="2022-02-10T09:23:47.000Z">
-<meta property="article:modified_time" content="2022-02-17T09:14:54.632Z">
+<meta property="article:modified_time" content="2022-02-18T04:25:35.017Z">
 <meta property="article:author" content="Valerie">
 <meta property="article:tag" content="考研数据结构">
 <meta name="twitter:card" content="summary">
@@ -398,8 +398,15 @@
 <li>树的带权路径长度WPL：树中所有 叶子节点的权*根节点到叶子节点的路径长度 之和</li>
 <li>哈夫曼树：使WPL最小的二叉树。又称最优二叉树</li>
 </ul>
+<p>哈夫曼树的特点：</p>
+<ul>
+<li>每个初始节点都成为叶子节点</li>
+<li>构造过程中生成了n-1个新节点，因此哈夫曼树的节点总数为2n-1</li>
+<li>哈夫曼树中不存在度为1的节点</li>
+</ul>
 <h2 id="构造哈夫曼树"><a href="#构造哈夫曼树" class="headerlink" title="构造哈夫曼树"></a>构造哈夫曼树</h2><p><img src="/2022/02/10/%E6%A0%91/7.png"></p>
 <p>考点：哈夫曼编码 其实就是构造哈夫曼树，然后左0右1</p>
+<p>用哈夫曼树可以设计出总长度最短的二进制前缀编码</p>
 
       
 
