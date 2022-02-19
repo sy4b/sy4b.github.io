@@ -6,21 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>leetcode 540. 有序数组中的单一元素 | Hexo</title>
+  <title>数制和计算 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目给你一个仅由整数组成的有序数组，其中每个元素都会出现两次，唯有一个数只会出现一次。 请你找出并返回只出现一次的那个数。 你设计的解决方案必须满足 O(log n) 时间复杂度和 O(1) 空间复杂度。 点这里做题 1234567示例一：nums &#x3D; [1,1,2,3,3,4,4,8,8]输出：2示例二：nums &#x3D; [3,3,7,7,10,11,11]输出：10   难度：Medium  思路">
+  <meta name="description" content="2.1.1 进位计数制十进制计数法： Kn,Kn-1,Kn-2,…,K0,K-1,K-2,…,K-m &#x3D; SIGMA (i&#x3D;-m ~ n) [Ki * 10^(i-1)] 二进制： 0 1 八进制： 0 1 2 3 4 5 6 7 十六进制 0 1 2 3 4 5 6 7 8 9 A B C D E F 真值 机器数 进制转换 r进制转换为十进制：所有数值乘以各自位权之和  二进制转八进制：三位为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode 540. 有序数组中的单一元素">
-<meta property="og:url" content="http://example.com/2022/02/14/leetcode-540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/index.html">
+<meta property="og:title" content="数制和计算">
+<meta property="og:url" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="题目给你一个仅由整数组成的有序数组，其中每个元素都会出现两次，唯有一个数只会出现一次。 请你找出并返回只出现一次的那个数。 你设计的解决方案必须满足 O(log n) 时间复杂度和 O(1) 空间复杂度。 点这里做题 1234567示例一：nums &#x3D; [1,1,2,3,3,4,4,8,8]输出：2示例二：nums &#x3D; [3,3,7,7,10,11,11]输出：10   难度：Medium  思路">
+<meta property="og:description" content="2.1.1 进位计数制十进制计数法： Kn,Kn-1,Kn-2,…,K0,K-1,K-2,…,K-m &#x3D; SIGMA (i&#x3D;-m ~ n) [Ki * 10^(i-1)] 二进制： 0 1 八进制： 0 1 2 3 4 5 6 7 十六进制 0 1 2 3 4 5 6 7 8 9 A B C D E F 真值 机器数 进制转换 r进制转换为十进制：所有数值乘以各自位权之和  二进制转八进制：三位为">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-02-14T01:36:16.000Z">
-<meta property="article:modified_time" content="2022-02-14T01:45:57.119Z">
+<meta property="og:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/1.png">
+<meta property="og:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/2.png">
+<meta property="og:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/3.png">
+<meta property="og:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/4.png">
+<meta property="og:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/5.png">
+<meta property="article:published_time" content="2022-02-19T03:43:34.000Z">
+<meta property="article:modified_time" content="2022-02-19T07:56:43.149Z">
 <meta property="article:author" content="Valerie">
-<meta property="article:tag" content="leetcode">
-<meta property="article:tag" content="每日一题">
+<meta property="article:tag" content="考研计算机组成原理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,42 +155,100 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-leetcode-540-有序数组中的单一元素" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-数制和计算" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      leetcode 540. 有序数组中的单一元素
+      数制和计算
     </h1>
   
 
         
-        <a href="/2022/02/14/leetcode-540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/" class="archive-article-date">
-  	<time datetime="2022-02-14T01:36:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-14</time>
+        <a href="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/" class="archive-article-date">
+  	<time datetime="2022-02-19T03:43:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你一个仅由整数组成的有序数组，其中每个元素都会出现两次，唯有一个数只会出现一次。</p>
-<p>请你找出并返回只出现一次的那个数。</p>
-<p>你设计的解决方案必须满足 O(log n) 时间复杂度和 O(1) 空间复杂度。</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array/">点这里做题</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">示例一：</span><br><span class="line">nums = [1,1,2,3,3,4,4,8,8]</span><br><span class="line">输出：2</span><br><span class="line"></span><br><span class="line">示例二：</span><br><span class="line">nums = [3,3,7,7,10,11,11]</span><br><span class="line">输出：10</span><br></pre></td></tr></table></figure>
-
+        <h1 id="2-1-1-进位计数制"><a href="#2-1-1-进位计数制" class="headerlink" title="2.1.1 进位计数制"></a>2.1.1 进位计数制</h1><p>十进制计数法：</p>
+<p>Kn,Kn-1,Kn-2,…,K0,K-1,K-2,…,K-m = SIGMA (i=-m ~ n) [Ki * 10^(i-1)]</p>
+<p>二进制： 0 1</p>
+<p>八进制： 0 1 2 3 4 5 6 7</p>
+<p>十六进制 0 1 2 3 4 5 6 7 8 9 A B C D E F</p>
+<p>真值 机器数</p>
+<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><ul>
+<li><p>r进制转换为十进制：所有数值乘以各自位权之和</p>
+</li>
+<li><p>二进制转八进制：三位为一组</p>
+</li>
+<li><p>二进制转十六进制：四位为一组</p>
+</li>
+<li><p>十进制转r进制</p>
 <ul>
-<li>难度：Medium</li>
+<li>整数部分：除以r取余数，逆序</li>
+<li>小数部分：乘以r取整，正序 可能会有精度损失</li>
 </ul>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>观察可以发现，在单一元素的前半段，偶数下标index和index+1、奇数下标index和index-1位置的元素相等，而在后半段则不然，可以根据此进行二分</p>
-<p>这里对奇偶下标的处理，可以根据index^1得到，对于偶数就是+1，对于奇数就是-1</p>
-<ul>
-<li>技能点：二分</li>
+</li>
 </ul>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">singleNonDuplicate</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            <span class="type">int</span> mid = left+((right-left)&gt;&gt;<span class="number">1</span>);</span><br><span class="line">            <span class="comment">// mid为偶数时，判断nums[mid] nums[mid+1]</span></span><br><span class="line">            <span class="comment">// mid为奇数时，判断nums[mid] nums[mid-1]</span></span><br><span class="line">            <span class="comment">// 利用异或的性质 mid^1即为需要比较的</span></span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == nums[mid^<span class="number">1</span>])&#123;</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[left];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/1.png"></p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/2.png"></p>
+<h1 id="2-1-2-BCD码"><a href="#2-1-2-BCD码" class="headerlink" title="2.1.2 BCD码"></a>2.1.2 BCD码</h1><p>4个bit表示1个十进制字符</p>
+<h2 id="8421码"><a href="#8421码" class="headerlink" title="8421码"></a>8421码</h2><p>就是二进制 8421分别为位权。有6种冗余</p>
+<p>985 = 1001,1000,0101</p>
+<p>为了避免冗余状态的出现，进行加法可能需要+6进一位，进行减法可能需要-6</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例如</span><br><span class="line">  5  +   8   = 13</span><br><span class="line">0101 + 1000  = 1101 + 0110 = 1 0011 </span><br></pre></td></tr></table></figure>
 
+<h2 id="余3码"><a href="#余3码" class="headerlink" title="余3码"></a>余3码</h2><p>8421基础上+3 </p>
+<p>每一位数没有固定的权值，属于是<strong>无权码</strong></p>
+<h2 id="2421码"><a href="#2421码" class="headerlink" title="2421码"></a>2421码</h2><p>权值分别是 2 4 2 1</p>
+<p>为了不发生歧义，规定0-4的2421码第一位为0，5-9的第一位为1</p>
+<h1 id="字符和字符串"><a href="#字符和字符串" class="headerlink" title="字符和字符串"></a>字符和字符串</h1><h2 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h2><p>32～126 可印刷字符 其余为控制、通信字符</p>
+<p>0~9 48（0011 0000）～ 57（0011 1001）：高4位相同，低四位为8421码</p>
+<p>A~Z 65～90</p>
+<p>a~z 97～122</p>
+<h2 id="汉字的表示和编码"><a href="#汉字的表示和编码" class="headerlink" title="汉字的表示和编码"></a>汉字的表示和编码</h2><p>GB 2312-80</p>
+<p>包含区位码和位 数据传输可能出现问题（可能理解为ASCII的0-31</p>
+<p>因此，区位码和位码都加上20H，得到<strong>国标码</strong>，可以避免和控制/通信字符冲突</p>
+<p>汉字内码 = 国标码+80H</p>
+<h2 id="大小端"><a href="#大小端" class="headerlink" title="大小端"></a>大小端</h2><p>大端：多字节数据的高字节放在低地址</p>
+<p>小端：多字节数据的低字节放在低地址</p>
+<h1 id="2-1-4-奇偶校验码"><a href="#2-1-4-奇偶校验码" class="headerlink" title="2.1.4 奇偶校验码"></a>2.1.4 奇偶校验码</h1><h2 id="校验原理"><a href="#校验原理" class="headerlink" title="校验原理"></a>校验原理</h2><ul>
+<li>码字：若干位代码组成的一个字称为码字</li>
+<li>两个码字间的距离：两个码字逐位进行对比，不同的位的个数</li>
+<li>一种编码方案可能有若干个<strong>合法</strong>码字，各合法码字之间的最小距离称为<strong>码距</strong></li>
+</ul>
+<p>例如编码：00 01 10 11 都是合法码字（码距为1），那么发生位错误时，就会被认为是另一个合法码字</p>
+<p>如果增加一位校验位，编码：100 001 010 111，3bit映射到4个合法状态（码距位2），发生1bit错误时，就可以检验出来</p>
+<h2 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h2><p>奇校验码：整个校验码中，“1”的个数为奇数</p>
+<p>偶校验码：整个校验码中，“1”的个数位偶数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">假定最高位设置校验位</span><br><span class="line"></span><br><span class="line">1001101 奇校验码：1,1001101 偶校验码：0,1001101</span><br><span class="line">1010111 奇校验码：0,1010111 偶校验码：1,1010111</span><br></pre></td></tr></table></figure>
+
+<p>检错：用一种校验方案，发送方和接收方检验1的个数奇偶性</p>
+<h3 id="偶校验的硬件实现"><a href="#偶校验的硬件实现" class="headerlink" title="偶校验的硬件实现"></a>偶校验的硬件实现</h3><p>各个信息位进行模2加运算，得到的结果就是偶校验位</p>
+<blockquote>
+<p>模2加<br>0^0 = 0<br>1^1 = 0<br>1^0 = 1<br>0^1 = 1</p>
+</blockquote>
+<p>偶数个1异或会变成0，若干个0异或还是0，而偶校验位也应该是0，</p>
+<p>校验：所有位进行异或运算，结果为1说明出错</p>
+<h1 id="2-1-5-海明校验码"><a href="#2-1-5-海明校验码" class="headerlink" title="2.1.5 海明校验码"></a>2.1.5 海明校验码</h1><p>思想：多位校验位，可以携带对错信息，以及错误位置。实现检查、纠正错误</p>
+<blockquote>
+<p>假设有n位信息位，k位校验位，k需要多少才行呢？<br>n+k位码，每一位都可能出错，k位可以携带2^k信息，所以<br>2^k &gt;= n+k+1 才可以 1代表正确的</p>
+</blockquote>
+<p><strong>2^k &gt;= n+k+1</strong></p>
+<p><strong>校验位的分布：校验位Pi放在海明码中2^(i-1)的位置</strong>，下标从1开始</p>
+<h2 id="海明码求解步骤"><a href="#海明码求解步骤" class="headerlink" title="海明码求解步骤"></a>海明码求解步骤</h2><p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/3.png"></p>
+<h2 id="海明码纠错"><a href="#海明码纠错" class="headerlink" title="海明码纠错"></a>海明码纠错</h2><p>校验位和分组内的信息位进行异或</p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/4.png"></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>海明码具有1位纠错能力，2位检错能力</p>
+<h1 id="2-1-6-循环冗余校验码-CRC"><a href="#2-1-6-循环冗余校验码-CRC" class="headerlink" title="2.1.6 循环冗余校验码 CRC"></a>2.1.6 循环冗余校验码 CRC</h1><p>思想：数据的发送方和接受方约定一个“除数”</p>
+<p>K个信息位+R个校验位作为“被除数”，添加校验位后需要保证除法的余数为0</p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/5.png"></p>
+<h1 id="2-2-1-定点数的表示"><a href="#2-2-1-定点数的表示" class="headerlink" title="2.2.1 定点数的表示"></a>2.2.1 定点数的表示</h1><h2 id="无符号数"><a href="#无符号数" class="headerlink" title="无符号数"></a>无符号数</h2>
       
 
       
@@ -229,11 +292,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">考研计算机组成原理</a>
         		</li>
       		
 		</ul>
@@ -289,7 +348,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/02/14/leetcode-540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -303,18 +362,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/02/14/leetcode-204-%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          leetcode 204. 计数质数
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/02/13/%E6%9F%A5%E6%89%BE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">查找</div>
+    <a href="/2022/02/19/leetcode-969-%E7%85%8E%E9%A5%BC%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">leetcode 969. 煎饼排序</div>
       <i class="icon-circle-right"></i>
     </a>
   
