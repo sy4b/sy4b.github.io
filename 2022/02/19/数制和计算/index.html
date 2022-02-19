@@ -20,8 +20,10 @@
 <meta property="og:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/3.png">
 <meta property="og:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/4.png">
 <meta property="og:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/5.png">
+<meta property="og:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/6.png">
+<meta property="og:image" content="http://example.com/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/7.png">
 <meta property="article:published_time" content="2022-02-19T03:43:34.000Z">
-<meta property="article:modified_time" content="2022-02-19T07:56:43.149Z">
+<meta property="article:modified_time" content="2022-02-19T13:21:13.602Z">
 <meta property="article:author" content="Valerie">
 <meta property="article:tag" content="考研计算机组成原理">
 <meta name="twitter:card" content="summary">
@@ -248,7 +250,43 @@
 <h1 id="2-1-6-循环冗余校验码-CRC"><a href="#2-1-6-循环冗余校验码-CRC" class="headerlink" title="2.1.6 循环冗余校验码 CRC"></a>2.1.6 循环冗余校验码 CRC</h1><p>思想：数据的发送方和接受方约定一个“除数”</p>
 <p>K个信息位+R个校验位作为“被除数”，添加校验位后需要保证除法的余数为0</p>
 <p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/5.png"></p>
-<h1 id="2-2-1-定点数的表示"><a href="#2-2-1-定点数的表示" class="headerlink" title="2.2.1 定点数的表示"></a>2.2.1 定点数的表示</h1><h2 id="无符号数"><a href="#无符号数" class="headerlink" title="无符号数"></a>无符号数</h2>
+<h1 id="2-2-1-定点数的表示"><a href="#2-2-1-定点数的表示" class="headerlink" title="2.2.1 定点数的表示"></a>2.2.1 定点数的表示</h1><h2 id="无符号数"><a href="#无符号数" class="headerlink" title="无符号数"></a>无符号数</h2><p>通常只讨论无符号整数而不考虑无符号小数</p>
+<p>整个机器字长的全部二进制位都是数值位，没有符号位，相当于绝对值</p>
+<p>表示范围：0 ~ 2^n-1</p>
+<h2 id="有符号数的定点表示"><a href="#有符号数的定点表示" class="headerlink" title="有符号数的定点表示"></a>有符号数的定点表示</h2><p>定点整数：小数点位置隐含在最后，最高位为符号位</p>
+<p>定点小数：小数点隐含在最高位后面，最高位为符号位</p>
+<h2 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h2><p>尾数表示真值的绝对值，符号位 0/1 对应 正/负</p>
+<p>机器字长n+1位的原码整数可以表示的范围是： -(2^n-1) ~ (2^n-1)</p>
+<p>机器字长n+1位的原码小数可以表示的范围是： -(1-2^(-n)) ~ (1-2^(-n))</p>
+<p>真值0有+0和-0两种形式</p>
+<h2 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h2><p>正数的反码：和原码相同</p>
+<p>负数的反码：符号位不变，数值位全部取反</p>
+<p>由于和原码一一对应，所以他俩的表示范围也相同</p>
+<h2 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h2><p>可以用加法替代减法，符号位参与运算，减少硬件开销</p>
+<p>正数的补码：和原码相同</p>
+<p>负数的补码：反码末位+1 考虑进位</p>
+<p>注意：补码的真值0只有一种表示形式</p>
+<p>[x]补 = 1,0000000 表示 x = -2^7</p>
+<p>[x]补 = 1.0000000 表示 x = -1</p>
+<p>小技巧：已知[x]补，求[-x]补：符号和数值位都取反，末位+1</p>
+<h2 id="移码"><a href="#移码" class="headerlink" title="移码"></a>移码</h2><p>在补码的基础上将符号位取反</p>
+<p>注意：移码只能用于表示整数</p>
+<p>移码可以方便地比较大小</p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/6.png"></p>
+<h1 id="2-2-3-移位运算"><a href="#2-2-3-移位运算" class="headerlink" title="2.2.3 移位运算"></a>2.2.3 移位运算</h1><h2 id="算数移位"><a href="#算数移位" class="headerlink" title="算数移位"></a>算数移位</h2><p>可以用于替代乘法和除法</p>
+<h3 id="原码的算数移位"><a href="#原码的算数移位" class="headerlink" title="原码的算数移位"></a>原码的算数移位</h3><p>符号位不变，仅对数值位进行移位</p>
+<p>算数右移：高位补0，低位舍弃。如果舍弃位为0，则相当于除以2，否则会丢失精度</p>
+<p>算数左移：低位补0，高位舍弃。舍弃0相当于乘以2，否则会丢失</p>
+<h3 id="反码的算数移位"><a href="#反码的算数移位" class="headerlink" title="反码的算数移位"></a>反码的算数移位</h3><p>正数的反码：右移补0，左移补0</p>
+<p>负数的反码：右移补1，左移补1</p>
+<h3 id="补码的算数移位"><a href="#补码的算数移位" class="headerlink" title="补码的算数移位"></a>补码的算数移位</h3><p>正数的补码：右移补0，左移补0</p>
+<p>负数的补码：右移，高位补1；左移低位补0、</p>
+<h2 id="逻辑移位"><a href="#逻辑移位" class="headerlink" title="逻辑移位"></a>逻辑移位</h2><p>逻辑右移：高位补0，低位舍弃</p>
+<p>逻辑左移：低位补0，高位舍弃</p>
+<h2 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h2><p>循环左移：最高位移动到最低位</p>
+<p>带进位位的循环左移：数值位最高位进入CF，CF进入最低位</p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/7.png"></p>
+<h1 id="2-2-4-加减运算和溢出判断"><a href="#2-2-4-加减运算和溢出判断" class="headerlink" title="2.2.4 加减运算和溢出判断"></a>2.2.4 加减运算和溢出判断</h1>
       
 
       
