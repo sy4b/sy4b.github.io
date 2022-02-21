@@ -146,6 +146,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-leetcode-838-推多米诺" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/21/leetcode-838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/">leetcode 838. 推多米诺</a>
+    </h1>
+  
+
+        
+        <a href="/2022/02/21/leetcode-838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/" class="archive-article-date">
+  	<time datetime="2022-02-21T08:32:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/push-dominoes/">这里做题</a></p>
+<p>一图流</p>
+<p><img src="/2022/02/21/leetcode-838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/1.png"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/21/leetcode-838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数制和计算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -257,7 +337,9 @@
 <p>注意：补码的真值0只有一种表示形式</p>
 <p>[x]补 = 1,0000000 表示 x = -2^7</p>
 <p>[x]补 = 1.0000000 表示 x = -1</p>
+<blockquote>
 <p>小技巧：已知[x]补，求[-x]补：符号和数值位都取反，末位+1</p>
+</blockquote>
 <h2 id="移码"><a href="#移码" class="headerlink" title="移码"></a>移码</h2><p>在补码的基础上将符号位取反</p>
 <p>注意：移码只能用于表示整数</p>
 <p>移码可以方便地比较大小</p>
@@ -275,7 +357,69 @@
 <h2 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h2><p>循环左移：最高位移动到最低位</p>
 <p>带进位位的循环左移：数值位最高位进入CF，CF进入最低位</p>
 <p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/7.png"></p>
-<h1 id="2-2-4-加减运算和溢出判断"><a href="#2-2-4-加减运算和溢出判断" class="headerlink" title="2.2.4 加减运算和溢出判断"></a>2.2.4 加减运算和溢出判断</h1>
+<h1 id="2-2-4-加减运算和溢出判断"><a href="#2-2-4-加减运算和溢出判断" class="headerlink" title="2.2.4 加减运算和溢出判断"></a>2.2.4 加减运算和溢出判断</h1><h2 id="补码加减运算"><a href="#补码加减运算" class="headerlink" title="补码加减运算"></a>补码加减运算</h2><p>符号位参与运算</p>
+<p>[A+B]补 = [A]补 + [B]补</p>
+<p>[A-B]补 = [A]补 + [-B]补</p>
+<blockquote>
+<p>小技巧：已知[x]补，求[-x]补：符号和数值位都取反，末位+1</p>
+</blockquote>
+<p>当位数不够时，可能会发生溢出：上溢 / 下溢</p>
+<h2 id="溢出判断"><a href="#溢出判断" class="headerlink" title="溢出判断"></a>溢出判断</h2><p>只有 正数 + 正数 才可能上溢；负数 + 负数 才可能下溢</p>
+<h3 id="法一：采用一位符号位，通过符号位的情况"><a href="#法一：采用一位符号位，通过符号位的情况" class="headerlink" title="法一：采用一位符号位，通过符号位的情况"></a>法一：采用一位符号位，通过符号位的情况</h3><p>S = A + B，符号分别为 Sa, Sb, Ss</p>
+<p>溢出的情况只有 (0, 0, 1) 和 (1, 1, 0)两种情况</p>
+<p>真值表可以解出（数电知识）</p>
+<p>V = SaSb(Ss)’ + (Sa)’(Sb)’Ss</p>
+<p>V = 1 时溢出，V = 0 没有溢出</p>
+<h3 id="法二：采用一位符号位，通过进位情况判断"><a href="#法二：采用一位符号位，通过进位情况判断" class="headerlink" title="法二：采用一位符号位，通过进位情况判断"></a>法二：采用一位符号位，通过进位情况判断</h3><p>Cs表示符号位进位，C1表示最高数值位的进位</p>
+<p>上溢：Cs = 0， C1 = 1</p>
+<p>下溢：Cs = 1， C1 = 0</p>
+<p>V = Cs ^ C1 （异或</p>
+<p>V = 1 时溢出，V = 0 没有溢出</p>
+<h3 id="法三：双符号位"><a href="#法三：双符号位" class="headerlink" title="法三：双符号位"></a>法三：双符号位</h3><p>正数为00，负数为11</p>
+<p>上溢：01</p>
+<p>下溢：10</p>
+<p>记 V = S1 ^ S2</p>
+<p>V = 1 时溢出，V = 0 没有溢出</p>
+<blockquote>
+<p>双符号位补码又称 模4补码；单符号位补码又称：模2补码</p>
+</blockquote>
+<h2 id="符号扩展"><a href="#符号扩展" class="headerlink" title="符号扩展"></a>符号扩展</h2><p>为了避免溢出，可以将短数据扩展为长数据</p>
+<p>正整数：补0即可</p>
+<p>负整数：原码补0，反码和补码补1</p>
+<p>正小数：补0即可</p>
+<p>负小数：原码和补码补0，反码补1</p>
+<h1 id="2-2-5-乘法运算"><a href="#2-2-5-乘法运算" class="headerlink" title="2.2.5 乘法运算"></a>2.2.5 乘法运算</h1><h2 id="原码一位乘法"><a href="#原码一位乘法" class="headerlink" title="原码一位乘法"></a>原码一位乘法</h2><p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/8.png"></p>
+<ul>
+<li>ACC 被乘数以及结果的高位；MQ 结果的低位；X乘数</li>
+<li>符号位可以单独处理：S = Sx ^ Sy 数值位进行乘法</li>
+<li>MQ的最低位就是当前参与运算的位。1的话，ACC+X；0的话ACC+0</li>
+<li>每次处理完一位，ACC和MQ整体逻辑右移（高位补0</li>
+</ul>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/9.png"></p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/10.png"></p>
+<h2 id="补码一位乘法"><a href="#补码一位乘法" class="headerlink" title="补码一位乘法"></a>补码一位乘法</h2><ul>
+<li>符号位参与运算</li>
+<li>右移是算术右移</li>
+<li>最后需要多一次加法</li>
+</ul>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/11.png"></p>
+<blockquote>
+<p>小技巧：已知[x]补，求[-x]补：符号和数值位都取反，末位+1</p>
+</blockquote>
+<h1 id="2-2-6-除法运算"><a href="#2-2-6-除法运算" class="headerlink" title="2.2.6 除法运算"></a>2.2.6 除法运算</h1><h2 id="原码除法"><a href="#原码除法" class="headerlink" title="原码除法"></a>原码除法</h2><h3 id="恢复余数法"><a href="#恢复余数法" class="headerlink" title="恢复余数法"></a>恢复余数法</h3><ul>
+<li>ACC 被除数、余数；MQ 商；X 除数</li>
+<li>符号位单独处理 S = Sx ^ Sy</li>
+<li>默认上商1，如果错了，再上商0，恢复余数</li>
+<li>每次处理完一位，逻辑左移</li>
+</ul>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/12.png"></p>
+<h3 id="加减交替法"><a href="#加减交替法" class="headerlink" title="加减交替法"></a>加减交替法</h3><p>不恢复余数</p>
+<ul>
+<li>余数为负，商0并左移，加上除数 得到新的余数</li>
+<li>余数为正，商1并左移，减去除数 得到新的余数</li>
+</ul>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/13.png"></p>
+
       
 
       
@@ -521,6 +665,31 @@
 <li>有界函数与无穷小之积仍为无穷小</li>
 <li>lim f(x) = A 的<strong>充要条件</strong>为 f(x) = A+𝛼，𝛼为无穷小</li>
 </ul>
+<h1 id="第三节-连续与间断"><a href="#第三节-连续与间断" class="headerlink" title="第三节 连续与间断"></a>第三节 连续与间断</h1><h2 id="基本概念-2"><a href="#基本概念-2" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="函数连续性的概念"><a href="#函数连续性的概念" class="headerlink" title="函数连续性的概念"></a>函数连续性的概念</h3><ul>
+<li>f(x)在点a连续：假设f(x)在x=a的邻域内有定义，如果 lim x-&gt;a f(x) = f(a)，则称f(x)在x=a处连续</li>
+<li>f(x)在[a, b]连续：设函数在[a, b]上有定义，如果满足以下两个条件<ul>
+<li>f(x)在(a, b)内点点连续</li>
+<li>f(a)=f(a+0)，f(b)=f(b-0)</li>
+</ul>
+</li>
+</ul>
+<h3 id="间断点及分类"><a href="#间断点及分类" class="headerlink" title="间断点及分类"></a>间断点及分类</h3><p>假设 lim x-&gt;a f(x) != f(a)，那么称f(x)在x=a处不连续</p>
+<ul>
+<li>如果f(a-0)和f(a+0)都存在，称x=a为f(x)的第一类间断点<ul>
+<li>如果 f(a-0)=f(a+0)，称为可去间断点</li>
+<li>否则称为跳跃间断点</li>
+</ul>
+</li>
+<li>如果f(a+0)和f(a-0)至少一个不存在，称x=a为f(x)的第二类间断点</li>
+</ul>
+<h2 id="闭区间上连续函数的性质"><a href="#闭区间上连续函数的性质" class="headerlink" title="闭区间上连续函数的性质"></a>闭区间上连续函数的性质</h2><p>以下性质都基于f(x)在[a,b]连续</p>
+<ul>
+<li>最值定理：f(x)在[a,b]上一定有最大值和最小值</li>
+<li>有界定理：f(x)在[a,b]上有界</li>
+<li>零点定理：如果f(a)f(b)&lt;0，则存在 𝝽 ∈ (a, b)，使得f(𝝽) = 0</li>
+<li>介值定理：对任意 𝝽 ∈ [m, M]，存在 𝛼 ∈ (a, b)，使得f(𝛼) = 𝝽</li>
+</ul>
+<p>tips：题目中，证明关于闭区间的命题，一般用介值定理；开区间用零点定理</p>
 
       
 
@@ -1123,95 +1292,6 @@
 
 
   
-    <article id="post-1189-气球的最大数量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/13/1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/">leetcode 1189. 气球的最大数量</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/13/1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/" class="archive-article-date">
-  	<time datetime="2022-02-13T01:58:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你一个字符串 text，你需要使用 text 中的字母来拼凑尽可能多的单词 “balloon”（气球）。</p>
-<p>字符串 text 中的每个字母最多只能被使用一次。请你返回最多可以拼凑出多少个单词 “balloon”。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">示例1：</span><br><span class="line">输入：text = &quot;nlaebolko&quot;</span><br><span class="line">输出：1</span><br><span class="line"></span><br><span class="line">示例2:</span><br><span class="line">输入：text = &quot;loonbalxballpoon&quot;</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>难度：EASY</li>
-</ul>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>简单的模拟即可，扫描一遍text，记录b a l o n的数量</p>
-<p>扫描完之后，根据这五个字母的数量，注意组成balloon需要两个l和o，因此需要/2，取最小值即为答案</p>
-<ul>
-<li>技能点：模拟</li>
-</ul>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxNumberOfBalloons</span><span class="params">(string text)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">cnt</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> &amp; ch : text) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">&#x27;b&#x27;</span>) &#123;</span><br><span class="line">                ++cnt[<span class="number">0</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;a&#x27;</span>) &#123;</span><br><span class="line">                ++cnt[<span class="number">1</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;l&#x27;</span>) &#123;</span><br><span class="line">                ++cnt[<span class="number">2</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;o&#x27;</span>) &#123;</span><br><span class="line">                ++cnt[<span class="number">3</span>];</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">&#x27;n&#x27;</span>) &#123;</span><br><span class="line">                ++cnt[<span class="number">4</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cnt[<span class="number">2</span>] /= <span class="number">2</span>;        <span class="comment">// l</span></span><br><span class="line">        cnt[<span class="number">3</span>] /= <span class="number">2</span>;        <span class="comment">// o</span></span><br><span class="line">        <span class="keyword">return</span> *<span class="built_in">min_element</span>(cnt.<span class="built_in">begin</span>(), cnt.<span class="built_in">end</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/13/1189-%E6%B0%94%E7%90%83%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B0%E9%87%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1321,11 +1401,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研高等数学</a>
+                <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研高等数学</a>
               </li>
             
             <div class="clearfix"></div>
