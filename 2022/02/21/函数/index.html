@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>leetcode 540. 有序数组中的单一元素 | Hexo</title>
+  <title>函数与极限 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目给你一个仅由整数组成的有序数组，其中每个元素都会出现两次，唯有一个数只会出现一次。 请你找出并返回只出现一次的那个数。 你设计的解决方案必须满足 O(log n) 时间复杂度和 O(1) 空间复杂度。 点这里做题 1234567示例一：nums &#x3D; [1,1,2,3,3,4,4,8,8]输出：2示例二：nums &#x3D; [3,3,7,7,10,11,11]输出：10   难度：Medium  思路">
+  <meta name="description" content="1.1 函数一些定义概念x，y为两个变量，x ∈ D，如果 x ∈ D，总存在唯一确定的y与x对应，称y为x的函数，记作 y &#x3D; f(x) D 称为定义域  R &#x3D; {y| y &#x3D; f(x), x ∈ D} 称为函数的值域  ∀ 表示任意 ∃ 表示存在  特殊的函数 符号函数  sgn x &#x3D; -1, x &lt; 0;  0,  x &#x3D; 0;  1,  x &gt; 0  迪利克雷函数  D(x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode 540. 有序数组中的单一元素">
-<meta property="og:url" content="http://example.com/2022/02/14/leetcode-540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/index.html">
+<meta property="og:title" content="函数与极限">
+<meta property="og:url" content="http://example.com/2022/02/21/%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="题目给你一个仅由整数组成的有序数组，其中每个元素都会出现两次，唯有一个数只会出现一次。 请你找出并返回只出现一次的那个数。 你设计的解决方案必须满足 O(log n) 时间复杂度和 O(1) 空间复杂度。 点这里做题 1234567示例一：nums &#x3D; [1,1,2,3,3,4,4,8,8]输出：2示例二：nums &#x3D; [3,3,7,7,10,11,11]输出：10   难度：Medium  思路">
+<meta property="og:description" content="1.1 函数一些定义概念x，y为两个变量，x ∈ D，如果 x ∈ D，总存在唯一确定的y与x对应，称y为x的函数，记作 y &#x3D; f(x) D 称为定义域  R &#x3D; {y| y &#x3D; f(x), x ∈ D} 称为函数的值域  ∀ 表示任意 ∃ 表示存在  特殊的函数 符号函数  sgn x &#x3D; -1, x &lt; 0;  0,  x &#x3D; 0;  1,  x &gt; 0  迪利克雷函数  D(x">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-02-14T01:36:16.000Z">
-<meta property="article:modified_time" content="2022-02-14T01:45:57.119Z">
+<meta property="article:published_time" content="2022-02-21T14:27:00.000Z">
+<meta property="article:modified_time" content="2022-02-23T09:51:13.794Z">
 <meta property="article:author" content="Valerie">
-<meta property="article:tag" content="leetcode">
-<meta property="article:tag" content="每日一题">
+<meta property="article:tag" content="考研高等数学">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -150,41 +149,191 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-leetcode-540-有序数组中的单一元素" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-函数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      leetcode 540. 有序数组中的单一元素
+      函数与极限
     </h1>
   
 
         
-        <a href="/2022/02/14/leetcode-540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/" class="archive-article-date">
-  	<time datetime="2022-02-14T01:36:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-14</time>
+        <a href="/2022/02/21/%E5%87%BD%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2022-02-21T14:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给你一个仅由整数组成的有序数组，其中每个元素都会出现两次，唯有一个数只会出现一次。</p>
-<p>请你找出并返回只出现一次的那个数。</p>
-<p>你设计的解决方案必须满足 O(log n) 时间复杂度和 O(1) 空间复杂度。</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/single-element-in-a-sorted-array/">点这里做题</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">示例一：</span><br><span class="line">nums = [1,1,2,3,3,4,4,8,8]</span><br><span class="line">输出：2</span><br><span class="line"></span><br><span class="line">示例二：</span><br><span class="line">nums = [3,3,7,7,10,11,11]</span><br><span class="line">输出：10</span><br></pre></td></tr></table></figure>
+        <h1 id="1-1-函数"><a href="#1-1-函数" class="headerlink" title="1.1 函数"></a>1.1 函数</h1><h2 id="一些定义"><a href="#一些定义" class="headerlink" title="一些定义"></a>一些定义</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>x，y为两个变量，x ∈ D，如果 x ∈ D，总存在<strong>唯一确定</strong>的y与x对应，称y为x的函数，记作 y = f(x)</p>
+<p>D 称为定义域 </p>
+<p>R = {y| y = f(x), x ∈ D} 称为函数的值域</p>
+<ul>
+<li>∀ 表示任意</li>
+<li>∃ 表示存在</li>
+</ul>
+<h3 id="特殊的函数"><a href="#特殊的函数" class="headerlink" title="特殊的函数"></a>特殊的函数</h3><ul>
+<li>符号函数</li>
+</ul>
+<p>sgn x = -1, x &lt; 0;  0,  x = 0;  1,  x &gt; 0</p>
+<ul>
+<li>迪利克雷函数</li>
+</ul>
+<p>D(x) = 1,  x ∈ Q （有理数）; 0,  x ∈ R\Q</p>
+<ul>
+<li>取整函数 向下取整</li>
+</ul>
+<p>y = [x]</p>
+<h3 id="反函数"><a href="#反函数" class="headerlink" title="反函数"></a>反函数</h3><blockquote>
+<p>若函数 y=f(x) 严格单调，记 x=g(y) 为f的反函数</p>
+</blockquote>
+<p>反函数注意<strong>不要对调y和x</strong></p>
+<h3 id="基本初等函数"><a href="#基本初等函数" class="headerlink" title="基本初等函数"></a>基本初等函数</h3><blockquote>
+<p>幂 指 对 三角 反三角</p>
+</blockquote>
+<ul>
+<li>x^a</li>
+<li>a^x (a&gt;0 &amp;&amp; a!=1)</li>
+<li>log(a, x)</li>
+<li>sinx cosx tanx cotx secx cscx</li>
+<li>arcsinx arccosx arctanx arccotx</li>
+</ul>
+<h3 id="初等函数"><a href="#初等函数" class="headerlink" title="初等函数"></a>初等函数</h3><blockquote>
+<p>由<strong>常数</strong>和<strong>基本初等函数</strong>经过<strong>有限次四则运算和复合运算</strong>得到的函数</p>
+</blockquote>
+<h2 id="初等函数的性质"><a href="#初等函数的性质" class="headerlink" title="初等函数的性质"></a>初等函数的性质</h2><h3 id="奇偶性"><a href="#奇偶性" class="headerlink" title="奇偶性"></a>奇偶性</h3><blockquote>
+<p>D 首先必须<strong>关于原点对称</strong>！否则就免谈</p>
+</blockquote>
+<ul>
+<li>f(-x) = f(x)  偶函数</li>
+<li>f(-x) = -f(x) 奇函数</li>
+</ul>
+<h3 id="单调性"><a href="#单调性" class="headerlink" title="单调性"></a>单调性</h3><p>y = f(x) x ∈ D</p>
+<blockquote>
+<p>∀ x1, x2 ∈ D 且 x1 &lt; x2，有 f(x1) &lt; f(x2)，称f(x)在D上严格单调递增<br>∀ x1, x2 ∈ D 且 x1 &lt; x2，有 f(x1) &gt; f(x2)，称f(x)在D上严格单调递减</p>
+</blockquote>
+<h3 id="有界性"><a href="#有界性" class="headerlink" title="有界性"></a>有界性</h3><p>y = f(x) x ∈ D</p>
+<blockquote>
+<p>∃ M&gt;0，对于 ∀ x ∈ D，有 |f(x)| &lt;= M，称f(x)在D上有界<br>∃ M1，对于 ∀ x ∈ D，f(x) &gt;= M1，称函数有下界 M1<br>∃ M2，对于 ∀ x ∈ D，f(x) &lt;= M2，称函数有上界 M2 </p>
+</blockquote>
+<p>函数有界的<strong>充分必要条件</strong>是函数既有上界又有下界</p>
+<h3 id="周期性"><a href="#周期性" class="headerlink" title="周期性"></a>周期性</h3><p>y = f(x) x ∈ D</p>
+<blockquote>
+<p>如果 ∃ T&gt;0，使得 ∀ x ∈ D (x+T ∈ D)，有 f(x+T) = f(x)，称f(x)是具有周期性</p>
+</blockquote>
+<h1 id="1-2-数列极限"><a href="#1-2-数列极限" class="headerlink" title="1.2 数列极限"></a>1.2 数列极限</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>∀ ℇ &lt; 0, ∃ N &gt; 0, 当 n &gt; N 时，|an - A| &lt; ℇ，称 {an} 的极限为 A<br>记作 lim(n-&gt;∞) an = A</p>
+</blockquote>
+<p>考点：用数列极限的定义证明 an 是极限</p>
+<p>做法：根据定义，解出 N 即可</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><blockquote>
+<p>唯一性：数列若有极限，该极限唯一</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">证明数列极限唯一性</span><br><span class="line">取 ℇ = (A - B) / 2</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>难度：Medium</li>
-</ul>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>观察可以发现，在单一元素的前半段，偶数下标index和index+1、奇数下标index和index-1位置的元素相等，而在后半段则不然，可以根据此进行二分</p>
-<p>这里对奇偶下标的处理，可以根据index^1得到，对于偶数就是+1，对于奇数就是-1</p>
-<ul>
-<li>技能点：二分</li>
-</ul>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">singleNonDuplicate</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            <span class="type">int</span> mid = left+((right-left)&gt;&gt;<span class="number">1</span>);</span><br><span class="line">            <span class="comment">// mid为偶数时，判断nums[mid] nums[mid+1]</span></span><br><span class="line">            <span class="comment">// mid为奇数时，判断nums[mid] nums[mid-1]</span></span><br><span class="line">            <span class="comment">// 利用异或的性质 mid^1即为需要比较的</span></span><br><span class="line">            <span class="keyword">if</span>(nums[mid] == nums[mid^<span class="number">1</span>])&#123;</span><br><span class="line">                left = mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[left];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有界性：如果数列有极限，那么数列有界</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">证明数列极限有界性</span><br><span class="line">取 ℇ = 1</span><br><span class="line">lim(n-&gt;∞) an = A, 所以 ∃ N &gt; 0, n &gt; N 时 |an - A| &lt; 1</span><br><span class="line">因为 | |an| - |A| | &lt;= |an - A|</span><br><span class="line">所以 n &gt; N 时，||an| - |A| | &lt; 1</span><br><span class="line"></span><br><span class="line">|an| &lt; 1 + |A|  这个式子仅当 n &gt; N 成立</span><br><span class="line">因此若想对全体数列项成立，取 M = max&#123;|a1|,|a2|....|aN|, 1+|A|&#125;</span><br><span class="line">∀ n，有|an| &lt;= M 证毕</span><br></pre></td></tr></table></figure>
+
+<p>有界的数列不一定有极限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如 an = 1 + (-1)^n</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>保号性：如果 lim(n-&gt;∞) an = A，如果A&gt;0（或A&lt;0），则 ∃ N &gt; 0，n &gt; N 时，an&gt;0（或 an&lt;0）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">证明数列极限保号性</span><br><span class="line">假设 A&gt;0，取 ℇ = A/2</span><br><span class="line">假设 A&lt;0，取 ℇ = -A/2</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-函数极限"><a href="#1-3-函数极限" class="headerlink" title="1.3 函数极限"></a>1.3 函数极限</h2><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>x-&gt;a<br>∀ ℇ&gt;0，∃ 𝞭&gt;0，当 0&lt;|x-a|&lt;𝞭，|f(x)-A|&lt;ℇ，称f(x)当x-&gt;a时的极限为A<br>记作 lim(x-&gt;a) f(x) = A</p>
+</blockquote>
+<ol>
+<li>x-&gt;a的过程中，x不取到a，因此<strong>极限是否存在与f(x)在a点有无定义没有关系</strong></li>
+<li>x-&gt;a包含 x-&gt;a- 和 x-&gt;a+ 包含<strong>左极限</strong>和<strong>右极限</strong></li>
+<li>函数在a点极限存在的<strong>充要条件</strong>是：在a点的左极限右极限存在且相等 f(a+0) = f(a-0)</li>
+</ol>
+<p>考点</p>
+<ol>
+<li>用定义证明函数极限</li>
+<li>给分段函数，根据左右极限求一些系数</li>
+</ol>
+<blockquote>
+<p>x-&gt;+∞<br>∀ ℇ&gt;0, ∃ X&gt;0, x&gt;X时, |f(x)-A| &lt; ℇ 称lim(x-&gt;+∞) f(x) = A<br>x-&gt;-∞<br>∀ ℇ&gt;0, ∃ X&gt;0, x&lt;-X时, |f(x)-A| &lt; ℇ 称lim(x-&gt;-∞) f(x) = A<br>x-&gt;∞<br>∀ ℇ&gt;0, ∃ X&gt;0, |x|&gt;X时, |f(x)-A| &lt; ℇ 称lim(x-&gt;∞) f(x) = A  </p>
+</blockquote>
+<h2 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h2><blockquote>
+<p>唯一性：函数有极限，极限必定唯一</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">证明唯一性：</span><br><span class="line">反证：取 ℇ = (A-B)/2 &gt; 0</span><br><span class="line">可以根据定义，发现矛盾</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>局部有界性：lim(x-&gt;a) f(x) = A, 则 ∃ 𝞭&gt;0，M&gt;0，0&lt;|x-a|&lt;𝞭 时|f(x)|&lt;=M</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">证明唯一性：</span><br><span class="line">反证：取 ℇ = 1</span><br><span class="line">可以根据定义证明出</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>保号性：lim(x-&gt;a) f(x) = A，A&gt;0（或者A&lt;0），则 ∃ 𝞭&gt;0，当 0&lt;|x-a|&lt;𝞭时，f(x)&gt;0（或者f(x)&lt;0）</p>
+</blockquote>
+<h1 id="1-4-无穷小和无穷大"><a href="#1-4-无穷小和无穷大" class="headerlink" title="1.4 无穷小和无穷大"></a>1.4 无穷小和无穷大</h1><h2 id="无穷小"><a href="#无穷小" class="headerlink" title="无穷小"></a>无穷小</h2><blockquote>
+<p>a(x)为x的函数，如果lim(x-&gt;x0) a(x) = 0，则称a(x)当x-&gt;x0时为无穷小</p>
+</blockquote>
+<ol>
+<li>0是无穷小，但无穷小不一定是0</li>
+<li>对于a(x)!=0，<strong>a(x)是否为无穷小与自变量的趋向有关</strong></li>
+</ol>
+<blockquote>
+<p>等价定义：∀ ℇ&gt;0, ∃ 𝞭&gt;0,当 0&lt;|x-x0|&lt;𝞭时，|a(x)-0|&lt;ℇ 即 lim(x-&gt;x0) a(x) = 0</p>
+</blockquote>
+<p>一些性质：</p>
+<ol>
+<li>两个无穷小的和差仍为无穷小</li>
+<li>常数与无穷小之积仍为无穷小</li>
+<li>多个无穷小之积仍为无穷小</li>
+<li>lim(x-&gt;x0) f(x) = A 的充分必要条件是：f(x)=A+a, a-&gt;0 (x-&gt;x0)</li>
+</ol>
+<h2 id="无穷大"><a href="#无穷大" class="headerlink" title="无穷大"></a>无穷大</h2><blockquote>
+<p>∀ M&gt;0, ∃ 𝞭&gt;0, 当0&lt;|x-x0|&lt;𝞭, 有|f(x)|&gt;M, 称f(x)当x-&gt;x0时为无穷大，记作lim(x-&gt;x0) f(x) = ∞<br>∀ M&gt;0, ∃ X&gt;0, 当x&gt;|X|, 有|f(x)|&gt;M, 称f(x)当x-&gt;∞时为无穷大，记作lim(x-&gt;∞) f(x) = ∞  </p>
+</blockquote>
+<h2 id="无穷小和无穷大的关系"><a href="#无穷小和无穷大的关系" class="headerlink" title="无穷小和无穷大的关系"></a>无穷小和无穷大的关系</h2><p>lim(x-&gt;x0) f(x) = 0 ==&gt; lim(x-&gt;x0) 1/f(x) = ∞</p>
+<h1 id="1-5-极限的运算法则"><a href="#1-5-极限的运算法则" class="headerlink" title="1.5 极限的运算法则"></a>1.5 极限的运算法则</h1><p>预备知识：初等函数 无穷小</p>
+<h2 id="四则运算法则"><a href="#四则运算法则" class="headerlink" title="四则运算法则"></a>四则运算法则</h2><p>条件：x-&gt;x0, f(x0)-&gt;A, g(x)-&gt;B</p>
+<blockquote>
+<p>x-&gt;x0时，f(x)+g(x)-&gt;A+B, f(x)-g(x)-&gt;A-B</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(x) = A+a, g(x) = B+b 易证明</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>k为常数，lim(x-&gt;x0) kf(x) = kA</p>
+</blockquote>
+<blockquote>
+<p>lim(x-&gt;x0) f(x)g(x) = AB</p>
+</blockquote>
+<blockquote>
+<p>如果lim(x-&gt;x0) g(x) != 0，则lim(x-&gt;x0) f(x)/g(x) = A/B</p>
+</blockquote>
+<p>多项式除法的极限，同除以最高次项（或最低次项</p>
+<h2 id="复合运算极限法则"><a href="#复合运算极限法则" class="headerlink" title="复合运算极限法则"></a>复合运算极限法则</h2><p>嵌套</p>
+<h1 id="1-6-极限存在准则-包括两个重要极限"><a href="#1-6-极限存在准则-包括两个重要极限" class="headerlink" title="1.6 极限存在准则 包括两个重要极限"></a>1.6 极限存在准则 包括两个重要极限</h1><h2 id="I-夹逼定理"><a href="#I-夹逼定理" class="headerlink" title="I.夹逼定理"></a>I.夹逼定理</h2><h3 id="数列的情形"><a href="#数列的情形" class="headerlink" title="数列的情形"></a>数列的情形</h3><blockquote>
+<p>an &lt;= bn &lt;= cn<br>lim(n-&gt;∞) an = lim(n-&gt;∞) cn = A<br>那么，lim(n-&gt;∞) bn = A</p>
+</blockquote>
+<h3 id="函数的情形"><a href="#函数的情形" class="headerlink" title="函数的情形"></a>函数的情形</h3><blockquote>
+<p>f(x) &lt;= g(x) &lt;= h(x)<br>lim f(x) = lim h(x) = A<br>那么，lim g(x) = A</p>
+</blockquote>
+<p>自变量必须有相同的趋向</p>
+<h2 id="II-单调有界数列必定有极限"><a href="#II-单调有界数列必定有极限" class="headerlink" title="II.单调有界数列必定有极限"></a>II.单调有界数列必定有极限</h2><ol>
+<li>{an} 有界的<strong>充要条件</strong>是 {an} 有上下界</li>
+<li>如果 {an} 单调递增，那么一定有下界。极限是否存在取决于是否有上界</li>
+<li>如果 {an} 单调递减，那么一定有上界。极限是否存在取决于是否有下界</li>
+</ol>
+<h2 id="两个重要极限"><a href="#两个重要极限" class="headerlink" title="两个重要极限"></a>两个重要极限</h2><blockquote>
+<p>lim(x-&gt;0) six/x = 1<br>推广：lim(∆-&gt;0) (sin∆)/∆ = 1  </p>
+</blockquote>
+<blockquote>
+<p>lim(n-&gt;∞) (1+1/n)^n = e</p>
+</blockquote>
 
       
 
@@ -229,11 +378,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研高等数学</a>
         		</li>
       		
 		</ul>
@@ -289,7 +434,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/02/14/leetcode-540-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/02/21/%E5%87%BD%E6%95%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -303,18 +448,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/02/14/leetcode-204-%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/02/23/leetcode-917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          leetcode 204. 计数质数
+          leetcode 917. 仅仅反转字母
         
       </div>
     </a>
   
   
-    <a href="/2022/02/13/%E6%9F%A5%E6%89%BE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">查找</div>
+    <a href="/2022/02/21/leetcode-838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">leetcode 838. 推多米诺</div>
       <i class="icon-circle-right"></i>
     </a>
   
