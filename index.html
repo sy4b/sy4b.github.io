@@ -169,15 +169,17 @@
         <h1 id="2-1-1-进程的概念"><a href="#2-1-1-进程的概念" class="headerlink" title="2.1_1 进程的概念"></a>2.1_1 进程的概念</h1><h2 id="进程的定义"><a href="#进程的定义" class="headerlink" title="进程的定义"></a>进程的定义</h2><p>程序：静态，是存放在磁盘里的可执行文件，就是一系列的指令集合</p>
 <p>进程：动态，是程序的一次执行过程。（同一程序多次执行会对应多个进程</p>
 <p>进程的定义：<strong>进程是进程实体的运行过程</strong>，是系统进行<strong>资源分配和调度</strong>的一个独立单位</p>
-<h2 id="进程的组成"><a href="#进程的组成" class="headerlink" title="进程的组成"></a>进程的组成</h2><p>一个进程实体（进程映像）由PCB、程序段和数据段组成。</p>
+<h2 id="进程的组成"><a href="#进程的组成" class="headerlink" title="进程的组成"></a>进程的组成</h2><p>一个进程实体（进程映像）由<strong>PCB、程序段和数据段</strong>组成。</p>
 <p>进程是动态的，进程实体是静态的，反映了进程在某一时刻的状态</p>
 <p>PCB是给操作系统使用的，程序段和数据段是给进程自己使用的</p>
+<p><strong>PCB是进程存在的唯一标志</strong></p>
 <h3 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h3><p>程序在新建一个进程时，会分配一个唯一的不重复的<strong>进程ID（PID）</strong></p>
 <p>操作系统需要记录<strong>UID（进程所属用户）PID</strong>，分配的资源，进程运行情况。这些都被保存在一个数据结构<strong>进程控制块（PCB）</strong>中</p>
 <p>但凡<strong>管理进程所需要的信息，都会被放在PCB中</strong></p>
 <p><strong>PCB是进程存在的唯一标志，进程被创建时，操作系统会为其创建PCB，进程结束时，回收其PCB</strong></p>
 <p><img src="/2022/02/26/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/1.png" alt></p>
-<h3 id="程序段"><a href="#程序段" class="headerlink" title="程序段"></a>程序段</h3><p>程序的代码（指令序列</p>
+<h3 id="程序段"><a href="#程序段" class="headerlink" title="程序段"></a>程序段</h3><p>程序的代码（指令序列，可被调度到CPU执行</p>
+<p>程序段可被多个进程共享</p>
 <h3 id="数据段"><a href="#数据段" class="headerlink" title="数据段"></a>数据段</h3><p>运行过程中产生的各种数据</p>
 <h2 id="进程的特征"><a href="#进程的特征" class="headerlink" title="进程的特征"></a>进程的特征</h2><ol>
 <li>动态性：<strong>最基本的特征</strong>，进程是程序的一次执行过程，动态产生、变化、消亡</li>
@@ -193,11 +195,180 @@
 <li>阻塞态：进程运行的过程中可能请求某个事件发生（例如请求系统资源分配或者其他进程响应，在这个事件发生之前，进程无法继续执行，此时操作系统会让这个进程下CPU，进入“阻塞态”</li>
 <li>终止态：操作系统让进程下CPU，回收内存空间等资源，回收PCB</li>
 </ol>
+<p>从运行态变为阻塞态是主动行为；从阻塞态变为就绪态是被动行为</p>
 <h2 id="进程状态的转换"><a href="#进程状态的转换" class="headerlink" title="进程状态的转换"></a>进程状态的转换</h2><p><img src="/2022/02/26/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/2.png" alt></p>
-<p>在PCB中，又一个变量state表示进程当前状态</p>
+<p>在PCB中，有一个变量state表示进程当前状态</p>
 <h2 id="进程的组织"><a href="#进程的组织" class="headerlink" title="进程的组织"></a>进程的组织</h2><h3 id="链式"><a href="#链式" class="headerlink" title="链式"></a>链式</h3><p><img src="/2022/02/26/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/3.png" alt></p>
 <h3 id="索引方式"><a href="#索引方式" class="headerlink" title="索引方式"></a>索引方式</h3><p><img src="/2022/02/26/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/4.png" alt></p>
-<h1 id="2-1-3-进程控制"><a href="#2-1-3-进程控制" class="headerlink" title="2.1_3 进程控制"></a>2.1_3 进程控制</h1>
+<h1 id="2-1-3-进程控制"><a href="#2-1-3-进程控制" class="headerlink" title="2.1_3 进程控制"></a>2.1_3 进程控制</h1><p>进程控制的主要功能是对系统中所有进程实施有效管理，包括创建新进程、撤销已有进程、<strong>实现进程状态转换</strong>等功能</p>
+<h2 id="实现进程控制"><a href="#实现进程控制" class="headerlink" title="实现进程控制"></a>实现进程控制</h2><p>进程控制使用<strong>原语</strong>实现</p>
+<blockquote>
+<p>原语的执行具有原子性，执行期间不允许被中断<br>可以用“关中断指令”（不再检查中断信号）和“开中断指令”两个特权指令实现原子性<br>原语运行在核心态</p>
+</blockquote>
+<h2 id="进程控制相关的原语"><a href="#进程控制相关的原语" class="headerlink" title="进程控制相关的原语"></a>进程控制相关的原语</h2><ul>
+<li>进程的创建（创建态-&gt;就绪态</li>
+</ul>
+<ol>
+<li>创建原语<ol>
+<li>申请空白PCB（申请失败则创建失败</li>
+<li>为新进程分配资源</li>
+<li>初始化PCB</li>
+<li>将PCB插入就绪队列</li>
+</ol>
+</li>
+<li>引起进程创建的事件<ol>
+<li>用户登陆：分时系统中，用户登陆成功，系统会为其创建一个新进程</li>
+<li>作业调度：多道批处理系统中，新的作业放入内存，会为其创建一个新进程</li>
+<li>提供服务：用户想操作系统醍粗某些请求</li>
+<li>应用请求：用户进程请求创建资格子进程</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>进程的终止（就绪/阻塞/运行态 -&gt; 终止态 -&gt; 无</li>
+</ul>
+<ol>
+<li>撤销原语<ol>
+<li>从PCB集合中找到PCB</li>
+<li>若进程在运行，立刻剥夺CPU，分配给其他进程</li>
+<li>终止其所有子进程</li>
+<li>归还资源给父进程或os</li>
+<li>删除PCB</li>
+</ol>
+</li>
+<li>引起进程终止的时间<ol>
+<li>正常结束</li>
+<li>异常结束</li>
+<li>外界干预</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>进程的阻塞（运行态 -&gt; 阻塞态</li>
+</ul>
+<ol>
+<li>阻塞原语（Block<ol>
+<li>找到要阻塞的进程对应的PCB</li>
+<li>保护进程运行现场，PCB状态信息设置为阻塞态，暂时停止进程运行</li>
+<li>PCB插入相应事件的等待队列</li>
+</ol>
+</li>
+<li>引起进程阻塞的事件<ol>
+<li>需要等待系统分配资源</li>
+<li>等待其他相互合作的进程完成工作</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>进程的唤醒（阻塞态 -&gt; 就绪态</li>
+</ul>
+<ol>
+<li>唤醒原语（Wakeup）<ol>
+<li>在事件等待队列中找到PCB</li>
+<li>PCB设置为就绪态，移除等待队列</li>
+<li>PCB插入就绪队列，等待被调度</li>
+</ol>
+</li>
+<li>引起进程唤醒的事件<ol>
+<li>等待的事件发生：**进程因为什么事件被阻塞，就应该由什么事件唤醒</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>进程的切换（一个进程 运行态-&gt;就绪态；另一个进程 就绪态-&gt;运行态</li>
+</ul>
+<ol>
+<li>切换原语<ol>
+<li>运行环境存入PCB</li>
+<li>PCB移入相应队列</li>
+<li>选择另一个进程执行，更新PCB</li>
+<li>根据PCB恢复新进程运行环境</li>
+</ol>
+</li>
+<li>引起进程切换的事件<ol>
+<li>当前进程时间片到</li>
+<li>更高优先级的进程到达</li>
+<li>当前进程主动阻塞</li>
+<li>当前进程终止</li>
+</ol>
+</li>
+</ol>
+<h1 id="2-1-4-进程通信"><a href="#2-1-4-进程通信" class="headerlink" title="2.1_4 进程通信"></a>2.1_4 进程通信</h1><p>进程通信是指<strong>进程之间的信息交换</strong></p>
+<p>每个进程拥有各自的内存地址空间。为了保证安全，<strong>一个进程不能直接访问另一个进程的地址空间</strong></p>
+<h2 id="共享存储"><a href="#共享存储" class="headerlink" title="共享存储"></a>共享存储</h2><p>设置一个共享空间，两个进程对共享空间的访问是<strong>互斥</strong>的（互斥访问通过os提供的工具实现</p>
+<ul>
+<li><strong>基于数据结构的共享</strong>：例如共享空间内只放一个长度为10的数组，这种共享方式速度慢，限制多，是<strong>低级通信方式</strong></li>
+<li><strong>基于存储区的共享</strong>：在内存中划出一块共享存储区，由进程控制（而不是os），这种方式速度快，是<strong>高级通信方式</strong></li>
+</ul>
+<h2 id="管道通信"><a href="#管道通信" class="headerlink" title="管道通信"></a>管道通信</h2><p>管道是指用于连接读写进程的一个共享文件（pine文件），实质是在内存中开辟一个固定大小的缓冲区</p>
+<ol>
+<li>管道只能<strong>半双工通信</strong></li>
+<li>各个进程要互斥访问管道</li>
+<li>管道写满时，写进程的系统调用被阻塞；管道空时，读进程的系统调用被阻塞</li>
+<li><strong>管道没写满，不允许读；管道没读空，不允许写</strong></li>
+<li>数据一旦被读出，就离开管道，这意味着<strong>读进程最多只能有一个</strong></li>
+</ol>
+<h2 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h2><p>数据以格式化的消息为单位，进程通过os提供的原语进行数据交换</p>
+<p><img src="/2022/02/26/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/5.png" alt></p>
+<h1 id="2-1-5-线程的概念"><a href="#2-1-5-线程的概念" class="headerlink" title="2.1_5 线程的概念"></a>2.1_5 线程的概念</h1><p>引入线程可以增加并发度。</p>
+<p>一个进程中可以包含多个线程</p>
+<p>引入线程后带来的改变</p>
+<ol>
+<li>资源分配、调度<ol>
+<li>进程成为资源分配的基本单位，线程是调度的基本单位</li>
+</ol>
+</li>
+<li>并发性<ol>
+<li>传统进程机制中只能进程间并发；引入线程后，各个线程之间也能并发，提高了并发度</li>
+</ol>
+</li>
+<li>系统开销<ol>
+<li>传统进程间并发需要切换进程的运行环境，系统开销大</li>
+<li>线程间并发，如果是同一个进程内的线程切换，就不需要奇幻进程环境，系统开销小</li>
+<li>引入线程后，并发带来的系统开销减少</li>
+</ol>
+</li>
+</ol>
+<h2 id="线程的属性"><a href="#线程的属性" class="headerlink" title="线程的属性"></a>线程的属性</h2><ol>
+<li>线程是处理机调度的单位，线程可以并发执行；多CPU计算机中，各个线程可以占有不同CPU</li>
+<li>线程几乎没有系统资源，拥有一个唯一的标识符（线程ID）和一个线程控制块（TCB），TCB记录寄存器等信息</li>
+<li>不同用户调用同一个程序时会创建多个线程</li>
+<li><strong>同一进程内各个线程共享该进程的系统资源</strong>，因此其中线程内通信甚至可以无需系统干预</li>
+<li>同一进程中的线程切换不会引起进程切换，系统开销小；反之反之</li>
+<li>线程同样拥有：<strong>就绪、运行、阻塞</strong>三种状态</li>
+</ol>
+<h1 id="2-1-6-线程的实现和多线程模型"><a href="#2-1-6-线程的实现和多线程模型" class="headerlink" title="2.1_6 线程的实现和多线程模型"></a>2.1_6 线程的实现和多线程模型</h1><h2 id="线程的实现"><a href="#线程的实现" class="headerlink" title="线程的实现"></a>线程的实现</h2><p>分为用户级线程（User-Level Thread, ULT）和内核级线程（Kernel-Level Thread）</p>
+<h3 id="用户级线程-ULT"><a href="#用户级线程-ULT" class="headerlink" title="用户级线程 ULT"></a>用户级线程 ULT</h3><p>ULT中，有关线程管理的所有工作都由应用程序在用户空间中完成，<strong>内核意识不到线程的存在</strong>。</p>
+<p>应用程序可以使用<strong>线程库</strong>设计成多线程程序</p>
+<p><img src="/2022/02/26/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/6.png" alt></p>
+<ol>
+<li>用户级线程管理工作由应用程序通过线程库实现</li>
+<li>用户级线程切换不需要CPU从用户态转变为内核态</li>
+<li>操作系统无法意识到ULT存在</li>
+<li>优缺点<ol>
+<li>线程切换不需要切换CPU状态，开销减少</li>
+<li>线程被阻塞时，同一进程内的所有线程都被阻塞</li>
+<li>内核每次分配给一个进程一个CPU，进程内只有一个线程可以执行，不能发挥多处理机的优势</li>
+</ol>
+</li>
+</ol>
+<h3 id="内核级线程-KLT"><a href="#内核级线程-KLT" class="headerlink" title="内核级线程 KLT"></a>内核级线程 KLT</h3><p><img src="/2022/02/26/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/7.png" alt></p>
+<ol>
+<li>KLT管理工作由操作系统内核完成</li>
+<li>KLT的切换需要在内核态才能完成</li>
+<li>操作系统为每个KLT建立相应的TCB，通过TCB对KLT进行管理，因此时可以看到的</li>
+<li>优缺点：<ol>
+<li>一个线程被阻塞，其他的还可以继续执行，并发能力强</li>
+<li>可以在多核处理机上运行</li>
+<li>线程管理成本高，开销大</li>
+</ol>
+</li>
+</ol>
+<h2 id="多线程模型"><a href="#多线程模型" class="headerlink" title="多线程模型"></a>多线程模型</h2><p>某些系统同时支持ULT和KLT，由链接方式的不同可以分为</p>
+<h3 id="一对一模型"><a href="#一对一模型" class="headerlink" title="一对一模型"></a>一对一模型</h3><p><img src="/2022/02/26/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/8.png" alt></p>
+<h3 id="多对一模型"><a href="#多对一模型" class="headerlink" title="多对一模型"></a>多对一模型</h3><p><img src="/2022/02/26/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/9.png" alt></p>
+<h3 id="多对多模型"><a href="#多对多模型" class="headerlink" title="多对多模型"></a>多对多模型</h3><p><img src="/2022/02/26/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/10.png" alt></p>
+<h1 id="2-2-1-处理机调度的概念、层次"><a href="#2-2-1-处理机调度的概念、层次" class="headerlink" title="2.2_1 处理机调度的概念、层次"></a>2.2_1 处理机调度的概念、层次</h1>
       
 
       
@@ -1886,7 +2057,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研高等数学</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1894,7 +2065,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研高等数学</a>
               </li>
             
             <div class="clearfix"></div>
