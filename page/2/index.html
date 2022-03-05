@@ -146,6 +146,277 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-数制和计算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/">数制和计算</a>
+    </h1>
+  
+
+        
+        <a href="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/" class="archive-article-date">
+  	<time datetime="2022-02-19T03:43:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="2-1-1-进位计数制"><a href="#2-1-1-进位计数制" class="headerlink" title="2.1.1 进位计数制"></a>2.1.1 进位计数制</h1><p>十进制计数法：</p>
+<p>Kn,Kn-1,Kn-2,…,K0,K-1,K-2,…,K-m = SIGMA (i=-m ~ n) [Ki * 10^(i-1)]</p>
+<p>二进制： 0 1</p>
+<p>八进制： 0 1 2 3 4 5 6 7</p>
+<p>十六进制 0 1 2 3 4 5 6 7 8 9 A B C D E F</p>
+<p>真值 机器数</p>
+<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><ul>
+<li><p>r进制转换为十进制：所有数值乘以各自位权之和</p>
+</li>
+<li><p>二进制转八进制：三位为一组</p>
+</li>
+<li><p>二进制转十六进制：四位为一组</p>
+</li>
+<li><p>十进制转r进制</p>
+<ul>
+<li>整数部分：除以r取余数，逆序</li>
+<li>小数部分：乘以r取整，正序 可能会有精度损失</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/1.png" alt></p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/2.png" alt></p>
+<h1 id="2-1-2-BCD码"><a href="#2-1-2-BCD码" class="headerlink" title="2.1.2 BCD码"></a>2.1.2 BCD码</h1><p>4个bit表示1个十进制字符</p>
+<h2 id="8421码"><a href="#8421码" class="headerlink" title="8421码"></a>8421码</h2><p>就是二进制 8421分别为位权。有6种冗余</p>
+<p>985 = 1001,1000,0101</p>
+<p>为了避免冗余状态的出现，进行加法可能需要+6进一位，进行减法可能需要-6</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例如</span><br><span class="line">  5  +   8   = 13</span><br><span class="line">0101 + 1000  = 1101 + 0110 = 1 0011 </span><br></pre></td></tr></table></figure>
+<h2 id="余3码"><a href="#余3码" class="headerlink" title="余3码"></a>余3码</h2><p>8421基础上+3 </p>
+<p>每一位数没有固定的权值，属于是<strong>无权码</strong></p>
+<h2 id="2421码"><a href="#2421码" class="headerlink" title="2421码"></a>2421码</h2><p>权值分别是 2 4 2 1</p>
+<p>为了不发生歧义，规定0-4的2421码第一位为0，5-9的第一位为1</p>
+<h1 id="字符和字符串"><a href="#字符和字符串" class="headerlink" title="字符和字符串"></a>字符和字符串</h1><h2 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h2><p>32～126 可印刷字符 其余为控制、通信字符</p>
+<p>0~9 48（0011 0000）～ 57（0011 1001）：高4位相同，低四位为8421码</p>
+<p>A~Z 65～90</p>
+<p>a~z 97～122</p>
+<h2 id="汉字的表示和编码"><a href="#汉字的表示和编码" class="headerlink" title="汉字的表示和编码"></a>汉字的表示和编码</h2><p>GB 2312-80</p>
+<p>包含区位码和位 数据传输可能出现问题（可能理解为ASCII的0-31</p>
+<p>因此，区位码和位码都加上20H，得到<strong>国标码</strong>，可以避免和控制/通信字符冲突</p>
+<p>汉字内码 = 国标码+80H</p>
+<h2 id="大小端"><a href="#大小端" class="headerlink" title="大小端"></a>大小端</h2><p>大端：多字节数据的高字节放在低地址</p>
+<p>小端：多字节数据的低字节放在低地址</p>
+<h1 id="2-1-4-奇偶校验码"><a href="#2-1-4-奇偶校验码" class="headerlink" title="2.1.4 奇偶校验码"></a>2.1.4 奇偶校验码</h1><h2 id="校验原理"><a href="#校验原理" class="headerlink" title="校验原理"></a>校验原理</h2><ul>
+<li>码字：若干位代码组成的一个字称为码字</li>
+<li>两个码字间的距离：两个码字逐位进行对比，不同的位的个数</li>
+<li>一种编码方案可能有若干个<strong>合法</strong>码字，各合法码字之间的最小距离称为<strong>码距</strong></li>
+</ul>
+<p>例如编码：00 01 10 11 都是合法码字（码距为1），那么发生位错误时，就会被认为是另一个合法码字</p>
+<p>如果增加一位校验位，编码：100 001 010 111，3bit映射到4个合法状态（码距位2），发生1bit错误时，就可以检验出来</p>
+<h2 id="奇偶校验码"><a href="#奇偶校验码" class="headerlink" title="奇偶校验码"></a>奇偶校验码</h2><p>奇校验码：整个校验码中，“1”的个数为奇数</p>
+<p>偶校验码：整个校验码中，“1”的个数位偶数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">假定最高位设置校验位</span><br><span class="line"></span><br><span class="line">1001101 奇校验码：1,1001101 偶校验码：0,1001101</span><br><span class="line">1010111 奇校验码：0,1010111 偶校验码：1,1010111</span><br></pre></td></tr></table></figure>
+<p>检错：用一种校验方案，发送方和接收方检验1的个数奇偶性</p>
+<h3 id="偶校验的硬件实现"><a href="#偶校验的硬件实现" class="headerlink" title="偶校验的硬件实现"></a>偶校验的硬件实现</h3><p>各个信息位进行模2加运算，得到的结果就是偶校验位</p>
+<blockquote>
+<p>模2加<br>0^0 = 0<br>1^1 = 0<br>1^0 = 1<br>0^1 = 1</p>
+</blockquote>
+<p>偶数个1异或会变成0，若干个0异或还是0，而偶校验位也应该是0，</p>
+<p>校验：所有位进行异或运算，结果为1说明出错</p>
+<h1 id="2-1-5-海明校验码"><a href="#2-1-5-海明校验码" class="headerlink" title="2.1.5 海明校验码"></a>2.1.5 海明校验码</h1><p>思想：多位校验位，可以携带对错信息，以及错误位置。实现检查、纠正错误</p>
+<blockquote>
+<p>假设有n位信息位，k位校验位，k需要多少才行呢？<br>n+k位码，每一位都可能出错，k位可以携带2^k信息，所以<br>2^k &gt;= n+k+1 才可以 1代表正确的</p>
+</blockquote>
+<p><strong>2^k &gt;= n+k+1</strong></p>
+<p><strong>校验位的分布：校验位Pi放在海明码中2^(i-1)的位置</strong>，下标从1开始</p>
+<h2 id="海明码求解步骤"><a href="#海明码求解步骤" class="headerlink" title="海明码求解步骤"></a>海明码求解步骤</h2><p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/3.png" alt></p>
+<h2 id="海明码纠错"><a href="#海明码纠错" class="headerlink" title="海明码纠错"></a>海明码纠错</h2><p>校验位和分组内的信息位进行异或</p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/4.png" alt></p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>海明码具有1位纠错能力，2位检错能力</p>
+<h1 id="2-1-6-循环冗余校验码-CRC"><a href="#2-1-6-循环冗余校验码-CRC" class="headerlink" title="2.1.6 循环冗余校验码 CRC"></a>2.1.6 循环冗余校验码 CRC</h1><p>思想：数据的发送方和接受方约定一个“除数”</p>
+<p>K个信息位+R个校验位作为“被除数”，添加校验位后需要保证除法的余数为0</p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/5.png" alt></p>
+<h1 id="2-2-1-定点数的表示"><a href="#2-2-1-定点数的表示" class="headerlink" title="2.2.1 定点数的表示"></a>2.2.1 定点数的表示</h1><h2 id="无符号数"><a href="#无符号数" class="headerlink" title="无符号数"></a>无符号数</h2><p>通常只讨论无符号整数而不考虑无符号小数</p>
+<p>整个机器字长的全部二进制位都是数值位，没有符号位，相当于绝对值</p>
+<p>表示范围：0 ~ 2^n-1</p>
+<h2 id="有符号数的定点表示"><a href="#有符号数的定点表示" class="headerlink" title="有符号数的定点表示"></a>有符号数的定点表示</h2><p>定点整数：小数点位置隐含在最后，最高位为符号位</p>
+<p>定点小数：小数点隐含在最高位后面，最高位为符号位</p>
+<h2 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h2><p>尾数表示真值的绝对值，符号位 0/1 对应 正/负</p>
+<p>机器字长n+1位的原码整数可以表示的范围是： -(2^n-1) ~ (2^n-1)</p>
+<p>机器字长n+1位的原码小数可以表示的范围是： -(1-2^(-n)) ~ (1-2^(-n))</p>
+<p>真值0有+0和-0两种形式</p>
+<h2 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h2><p>正数的反码：和原码相同</p>
+<p>负数的反码：符号位不变，数值位全部取反</p>
+<p>由于和原码一一对应，所以他俩的表示范围也相同</p>
+<h2 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h2><p>可以用加法替代减法，符号位参与运算，减少硬件开销</p>
+<p>正数的补码：和原码相同</p>
+<p>负数的补码：反码末位+1 考虑进位</p>
+<p>注意：补码的真值0只有一种表示形式</p>
+<p>[x]补 = 1,0000000 表示 x = -2^7</p>
+<p>[x]补 = 1.0000000 表示 x = -1</p>
+<blockquote>
+<p>小技巧：已知[x]补，求[-x]补：符号和数值位都取反，末位+1</p>
+</blockquote>
+<h2 id="移码"><a href="#移码" class="headerlink" title="移码"></a>移码</h2><p>在补码的基础上将符号位取反</p>
+<p>注意：移码只能用于表示整数</p>
+<p>移码可以方便地比较大小</p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/6.png" alt></p>
+<h1 id="2-2-3-移位运算"><a href="#2-2-3-移位运算" class="headerlink" title="2.2.3 移位运算"></a>2.2.3 移位运算</h1><h2 id="算数移位"><a href="#算数移位" class="headerlink" title="算数移位"></a>算数移位</h2><p>可以用于替代乘法和除法</p>
+<h3 id="原码的算数移位"><a href="#原码的算数移位" class="headerlink" title="原码的算数移位"></a>原码的算数移位</h3><p>符号位不变，仅对数值位进行移位</p>
+<p>算数右移：高位补0，低位舍弃。如果舍弃位为0，则相当于除以2，否则会丢失精度</p>
+<p>算数左移：低位补0，高位舍弃。舍弃0相当于乘以2，否则会丢失</p>
+<h3 id="反码的算数移位"><a href="#反码的算数移位" class="headerlink" title="反码的算数移位"></a>反码的算数移位</h3><p>正数的反码：右移补0，左移补0</p>
+<p>负数的反码：右移补1，左移补1</p>
+<h3 id="补码的算数移位"><a href="#补码的算数移位" class="headerlink" title="补码的算数移位"></a>补码的算数移位</h3><p>正数的补码：右移补0，左移补0</p>
+<p>负数的补码：右移，高位补1；左移低位补0、</p>
+<h2 id="逻辑移位"><a href="#逻辑移位" class="headerlink" title="逻辑移位"></a>逻辑移位</h2><p>逻辑右移：高位补0，低位舍弃</p>
+<p>逻辑左移：低位补0，高位舍弃</p>
+<h2 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h2><p>循环左移：最高位移动到最低位</p>
+<p>带进位位的循环左移：数值位最高位进入CF，CF进入最低位</p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/7.png" alt></p>
+<h1 id="2-2-4-加减运算和溢出判断"><a href="#2-2-4-加减运算和溢出判断" class="headerlink" title="2.2.4 加减运算和溢出判断"></a>2.2.4 加减运算和溢出判断</h1><h2 id="补码加减运算"><a href="#补码加减运算" class="headerlink" title="补码加减运算"></a>补码加减运算</h2><p>符号位参与运算</p>
+<p>[A+B]补 = [A]补 + [B]补</p>
+<p>[A-B]补 = [A]补 + [-B]补</p>
+<blockquote>
+<p>小技巧：已知[x]补，求[-x]补：符号和数值位都取反，末位+1</p>
+</blockquote>
+<p>当位数不够时，可能会发生溢出：上溢 / 下溢</p>
+<h2 id="溢出判断"><a href="#溢出判断" class="headerlink" title="溢出判断"></a>溢出判断</h2><p>只有 正数 + 正数 才可能上溢；负数 + 负数 才可能下溢</p>
+<h3 id="法一：采用一位符号位，通过符号位的情况"><a href="#法一：采用一位符号位，通过符号位的情况" class="headerlink" title="法一：采用一位符号位，通过符号位的情况"></a>法一：采用一位符号位，通过符号位的情况</h3><p>S = A + B，符号分别为 Sa, Sb, Ss</p>
+<p>溢出的情况只有 (0, 0, 1) 和 (1, 1, 0)两种情况</p>
+<p>真值表可以解出（数电知识）</p>
+<p>V = SaSb(Ss)’ + (Sa)’(Sb)’Ss</p>
+<p>V = 1 时溢出，V = 0 没有溢出</p>
+<h3 id="法二：采用一位符号位，通过进位情况判断"><a href="#法二：采用一位符号位，通过进位情况判断" class="headerlink" title="法二：采用一位符号位，通过进位情况判断"></a>法二：采用一位符号位，通过进位情况判断</h3><p>Cs表示符号位进位，C1表示最高数值位的进位</p>
+<p>上溢：Cs = 0， C1 = 1</p>
+<p>下溢：Cs = 1， C1 = 0</p>
+<p>V = Cs ^ C1 （异或</p>
+<p>V = 1 时溢出，V = 0 没有溢出</p>
+<h3 id="法三：双符号位"><a href="#法三：双符号位" class="headerlink" title="法三：双符号位"></a>法三：双符号位</h3><p>正数为00，负数为11</p>
+<p>上溢：01</p>
+<p>下溢：10</p>
+<p>记 V = S1 ^ S2</p>
+<p>V = 1 时溢出，V = 0 没有溢出</p>
+<blockquote>
+<p>双符号位补码又称 模4补码；单符号位补码又称：模2补码</p>
+</blockquote>
+<h2 id="符号扩展"><a href="#符号扩展" class="headerlink" title="符号扩展"></a>符号扩展</h2><p>为了避免溢出，可以将短数据扩展为长数据</p>
+<p>正整数：补0即可</p>
+<p>负整数：原码补0，反码和补码补1</p>
+<p>正小数：补0即可</p>
+<p>负小数：原码和补码补0，反码补1</p>
+<h1 id="2-2-5-乘法运算"><a href="#2-2-5-乘法运算" class="headerlink" title="2.2.5 乘法运算"></a>2.2.5 乘法运算</h1><h2 id="原码一位乘法"><a href="#原码一位乘法" class="headerlink" title="原码一位乘法"></a>原码一位乘法</h2><p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/8.png" alt></p>
+<ul>
+<li>ACC 结果的高位；MQ 被乘数，结果的低位；X乘数</li>
+<li>符号位可以单独处理：S = Sx ^ Sy 数值位进行乘法</li>
+<li>MQ的最低位就是当前参与运算的位。1的话，ACC+X；0的话ACC+0</li>
+<li>每次处理完一位，ACC和MQ整体逻辑右移（高位补0</li>
+</ul>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/9.png" alt></p>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/10.png" alt></p>
+<h2 id="补码一位乘法"><a href="#补码一位乘法" class="headerlink" title="补码一位乘法"></a>补码一位乘法</h2><ul>
+<li>符号位参与运算</li>
+<li>右移是算术右移</li>
+<li>最后需要多一次加法</li>
+<li>被乘数双符号位，乘数单符号位（+一位辅助），部分积双符号位</li>
+</ul>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/11.png" alt></p>
+<blockquote>
+<p>小技巧：已知[x]补，求[-x]补：符号和数值位都取反，末位+1</p>
+</blockquote>
+<h1 id="2-2-6-除法运算"><a href="#2-2-6-除法运算" class="headerlink" title="2.2.6 除法运算"></a>2.2.6 除法运算</h1><h2 id="原码除法"><a href="#原码除法" class="headerlink" title="原码除法"></a>原码除法</h2><p>均为<strong>逻辑左移</strong></p>
+<h3 id="恢复余数法"><a href="#恢复余数法" class="headerlink" title="恢复余数法"></a>恢复余数法</h3><ul>
+<li>ACC 被除数、余数；MQ 商；X 除数</li>
+<li>符号位单独处理 S = Sx ^ Sy</li>
+<li>默认上商1，如果错了，再上商0，恢复余数</li>
+<li>每次处理完一位，<strong>逻辑左移</strong></li>
+</ul>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/12.png" alt></p>
+<h3 id="加减交替法"><a href="#加减交替法" class="headerlink" title="加减交替法"></a>加减交替法</h3><p>不恢复余数</p>
+<p>第一个操作一定是减去除数的绝对值</p>
+<ul>
+<li>余数为负，商0并左移，加上除数 得到新的余数</li>
+<li>余数为正，商1并左移，减去除数 得到新的余数</li>
+</ul>
+<p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/13.png" alt></p>
+<h2 id="补码除法"><a href="#补码除法" class="headerlink" title="补码除法"></a>补码除法</h2><h3 id="加减交替法-1"><a href="#加减交替法-1" class="headerlink" title="加减交替法"></a>加减交替法</h3><ul>
+<li>符号位参与运算</li>
+<li>双符号位</li>
+</ul>
+<ol>
+<li>第一步：如果被除数和除数同号，则减掉除数；否则加上除数</li>
+<li>余数和除数同号，商1，余数左移一位减掉除数</li>
+<li>余数和除数异号，商0，余数左移一位加上除数</li>
+<li>重复n次</li>
+<li>末尾恒置为1</li>
+</ol>
+<h1 id="2-2-7-强制类型转换"><a href="#2-2-7-强制类型转换" class="headerlink" title="2.2.7 强制类型转换"></a>2.2.7 强制类型转换</h1><p>C语言中定点整数用“补码”存储</p>
+<ol>
+<li>无符号和有符号整数转换，不改变数据内容，改变解释方式</li>
+<li>长整数转短整数，高位截断</li>
+<li>短整数变长整数：符号扩展</li>
+</ol>
+<h1 id="2-2-8-数据的存储和排列"><a href="#2-2-8-数据的存储和排列" class="headerlink" title="2.2.8 数据的存储和排列"></a>2.2.8 数据的存储和排列</h1><h2 id="大小端模式"><a href="#大小端模式" class="headerlink" title="大小端模式"></a>大小端模式</h2><p>多字节数据在内存中一定占据连续的几个字节</p>
+<p>大端模式：高字节放在低地址</p>
+<p>小端模式：低字节放在低地址</p>
+<h2 id="边界对齐"><a href="#边界对齐" class="headerlink" title="边界对齐"></a>边界对齐</h2><p><img src="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/14.png" alt></p>
+<h1 id="2-3-1-浮点数的表示"><a href="#2-3-1-浮点数的表示" class="headerlink" title="2.3.1 浮点数的表示"></a>2.3.1 浮点数的表示</h1><p><strong>阶码E表示浮点数的表示范围以及小数点的实际位置</strong></p>
+<p><strong>尾数M的数值部分位数反映浮点数的精度</strong></p>
+<h2 id="浮点数尾数规格化"><a href="#浮点数尾数规格化" class="headerlink" title="浮点数尾数规格化"></a>浮点数尾数规格化</h2><p>最终：让尾数的最高位是有效位</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">考研计算机组成原理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/19/%E6%95%B0%E5%88%B6%E5%92%8C%E8%AE%A1%E7%AE%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-leetcode-969-煎饼排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1063,121 +1334,6 @@
 
 
   
-    <article id="post-链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/12/%E9%93%BE%E8%A1%A8/">链表</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/12/%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2022-02-12T07:47:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="线性表的链式表示"><a href="#线性表的链式表示" class="headerlink" title="线性表的链式表示"></a>线性表的链式表示</h3><h4 id="单链表的定义"><a href="#单链表的定义" class="headerlink" title="单链表的定义"></a>单链表的定义</h4><p>对于每个链表节点，除了存放元素自身的信息外，还需要存放一个指向其后继的指针</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">LNode</span>&#123;</span><br><span class="line">    ElemType data;  <span class="comment">// 数据域</span></span><br><span class="line">    LNode *next;    <span class="comment">// 指针域</span></span><br><span class="line">&#125;LNode, *LinkList;</span><br></pre></td></tr></table></figure>
-<p>单链表可以解决顺序表需要大量连续存储空间的缺点，但附加的指针域存在浪费空间的缺点，也无法随机存取</p>
-<p>通常用头指针标识一个单链表</p>
-<p>为了操作方便，在单链表前可以增加一个头节点，可以使空表和非空表的操作得到统一，链表第一个节点和其他节点的操作也得到统一</p>
-<h4 id="单链表上基础操作的实现"><a href="#单链表上基础操作的实现" class="headerlink" title="单链表上基础操作的实现"></a>单链表上基础操作的实现</h4><ul>
-<li><p>头插法建立单链表</p>
-<p>  新节点插入链表表头。最后读入数据的顺序和生成的链表的元素的顺序是相反的</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">HeadInsert</span><span class="params">(LinkList &amp;L)</span></span>&#123;</span><br><span class="line">    LNode* node = (LNode*) <span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(LNode));</span><br><span class="line">    <span class="comment">// 关键</span></span><br><span class="line">    node-&gt;next = L-&gt;next;</span><br><span class="line">    L-&gt;next = node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>尾插法建立单链表</p>
-<p>  新节点插入链表表尾，最后读入数据的顺序和生成的链表的元素的顺序相同</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">TailInsert</span><span class="params">(LinkList &amp;L)</span></span>&#123;</span><br><span class="line">    LNode* node = <span class="keyword">new</span> LNode;</span><br><span class="line">    <span class="comment">// tail为尾指针，指向链表L的最后一个元素</span></span><br><span class="line">    node-&gt;data = <span class="comment">/* you want */</span>;</span><br><span class="line">    node-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">    <span class="comment">// 关键</span></span><br><span class="line">    tail-&gt;next = ndoe;</span><br><span class="line">    tail = node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>按序号查找节点</p>
-<p>  不断沿着next域找到第i个节点即可</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LNode* <span class="title">GetElem</span><span class="params">(LinkList&amp; L, <span class="type">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> j = <span class="number">1</span>;</span><br><span class="line">    LNode p = L;</span><br><span class="line">    <span class="keyword">while</span>(j &lt; i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!p)  <span class="keyword">return</span> p;   <span class="comment">// 链表长度小于i，返回nullptr</span></span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>按值查找节点</p>
-<p>  从链表头开始查找，找到满足要求的节点值则返回</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">LNode* <span class="title">LocateElem</span><span class="params">(LinkList&amp; L, ElemType e)</span></span>&#123;</span><br><span class="line">    LNode* p = L-&gt;next; <span class="comment">// 假设带头节点</span></span><br><span class="line">    <span class="keyword">while</span>(p &amp;&amp; p-&gt;data != e)&#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>插入节点</p>
-<p>  假设将节点s插入p之后</p>
-<p>  扩展：O(1)前插？</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现后插的代码</span></span><br><span class="line">s-&gt;next = p-&gt;next;</span><br><span class="line">p-&gt;next = s;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现O(1)前插</span></span><br><span class="line">s-&gt;next = p-&gt;next;</span><br><span class="line">p-&gt;next = s;</span><br><span class="line"><span class="built_in">swap</span>(s-&gt;data, p-&gt;data); <span class="comment">// 交换节点的值</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>删除节点</p>
-<p>  假设欲删除节点p的后继节点</p>
-<p>  扩展：O(1)删除当前节点？</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实现删除后继节点的代码</span></span><br><span class="line"><span class="keyword">auto</span> q = p-&gt;next;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line"><span class="built_in">free</span>(q);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除当前节点的代码</span></span><br><span class="line"><span class="keyword">auto</span> q = p-&gt;next;</span><br><span class="line"><span class="keyword">auto</span> data = q-&gt;data;</span><br><span class="line">p-&gt;next = q-&gt;next;</span><br><span class="line">p-&gt;data = data; <span class="comment">// 交换节点的值</span></span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/12/%E9%93%BE%E8%A1%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1312,11 +1468,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
+                <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
               </li>
             
             <div class="clearfix"></div>
