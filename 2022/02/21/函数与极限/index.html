@@ -8,18 +8,23 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>函数与极限 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.1 函数一些定义概念x，y为两个变量，x ∈ D，如果 x ∈ D，总存在唯一确定的y与x对应，称y为x的函数，记作 y &#x3D; f(x) D 称为定义域  R &#x3D; {y| y &#x3D; f(x), x ∈ D} 称为函数的值域  ∀ 表示任意 ∃ 表示存在  特殊的函数 符号函数  sgn x &#x3D; -1, x &lt; 0;  0,  x &#x3D; 0;  1,  x &gt; 0  迪利克雷函数  D(x">
+  <meta name="description" content="常用基础知识数列 等差数列：$a_1,a_2+d,..,a_n+(n-1)d$ 通项公式：$a_n &#x3D; a_1+(n-1)d$ $S_n&#x3D;\frac{n}{2}(a_1+a_n)$   等比数列：$a_1,a_1r,a_1r^2,…,a_1r^{n-1}$ 通项公式：$a_n&#x3D;a_1r^{n-1}$ $S_n&#x3D;na_1(r&#x3D;1), S_n&#x3D;\frac{a_1(1-r^2)}{1-r}$ 若$|r|">
 <meta property="og:type" content="article">
 <meta property="og:title" content="函数与极限">
 <meta property="og:url" content="http://example.com/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1.1 函数一些定义概念x，y为两个变量，x ∈ D，如果 x ∈ D，总存在唯一确定的y与x对应，称y为x的函数，记作 y &#x3D; f(x) D 称为定义域  R &#x3D; {y| y &#x3D; f(x), x ∈ D} 称为函数的值域  ∀ 表示任意 ∃ 表示存在  特殊的函数 符号函数  sgn x &#x3D; -1, x &lt; 0;  0,  x &#x3D; 0;  1,  x &gt; 0  迪利克雷函数  D(x">
+<meta property="og:description" content="常用基础知识数列 等差数列：$a_1,a_2+d,..,a_n+(n-1)d$ 通项公式：$a_n &#x3D; a_1+(n-1)d$ $S_n&#x3D;\frac{n}{2}(a_1+a_n)$   等比数列：$a_1,a_1r,a_1r^2,…,a_1r^{n-1}$ 通项公式：$a_n&#x3D;a_1r^{n-1}$ $S_n&#x3D;na_1(r&#x3D;1), S_n&#x3D;\frac{a_1(1-r^2)}{1-r}$ 若$|r|">
 <meta property="og:locale">
+<meta property="og:image" content="http://example.com/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/1.png">
+<meta property="og:image" content="http://example.com/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/2.png">
+<meta property="og:image" content="http://example.com/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/a1.png">
+<meta property="og:image" content="http://example.com/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/a2.png">
 <meta property="article:published_time" content="2022-02-21T14:27:00.000Z">
-<meta property="article:modified_time" content="2022-02-24T05:29:08.805Z">
+<meta property="article:modified_time" content="2022-03-13T03:44:40.473Z">
 <meta property="article:author" content="Valerie">
 <meta property="article:tag" content="考研高等数学">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -54,7 +59,7 @@
 		  <h1 class="header-author"><a href="/">Valerie</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">do not go gentle into that good night</p>
+		<p class="header-subtitle">禁：自我感动</p>
 		
 
 		<nav class="header-menu">
@@ -110,7 +115,7 @@
 			  <h1 class="header-author js-header-author">Valerie</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>do not go gentle into that good night<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>禁：自我感动<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -169,7 +174,204 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-1-函数"><a href="#1-1-函数" class="headerlink" title="1.1 函数"></a>1.1 函数</h1><h2 id="一些定义"><a href="#一些定义" class="headerlink" title="一些定义"></a>一些定义</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>x，y为两个变量，x ∈ D，如果 x ∈ D，总存在<strong>唯一确定</strong>的y与x对应，称y为x的函数，记作 y = f(x)</p>
+        <h1 id="常用基础知识"><a href="#常用基础知识" class="headerlink" title="常用基础知识"></a>常用基础知识</h1><h2 id="数列"><a href="#数列" class="headerlink" title="数列"></a>数列</h2><ol>
+<li>等差数列：$a_1,a_2+d,..,a_n+(n-1)d$<ol>
+<li>通项公式：$a_n = a_1+(n-1)d$</li>
+<li>$S_n=\frac{n}{2}(a_1+a_n)$</li>
+</ol>
+</li>
+<li>等比数列：$a_1,a_1r,a_1r^2,…,a_1r^{n-1}$<ol>
+<li>通项公式：$a_n=a_1r^{n-1}$</li>
+<li>$S_n=na_1(r=1), S_n=\frac{a_1(1-r^2)}{1-r}$</li>
+<li>若$|r|&lt;1$,则$\sum_{n=1}^{\infty}r^{n-1}=lim_{x\rightarrow{\infty}}\frac{1-r^n}{1-r}=\frac{1}{1-r}$</li>
+</ol>
+</li>
+<li>常见数列前n项和<ol>
+<li>$\sum_{k=1}^{n}k=1+2+3…+n=\frac{n(n+1)}{2}$</li>
+<li>$\sum_{k=1}^{n}k^2=\frac{n(n+1)(2n+1)}{6}$</li>
+<li>$\sum_{k=1}^{n}\frac{1}{k(k+1)}=\frac{1}{1<em>2}+\frac{1}{2</em>3}+…+\frac{1}{n(n+1)}=1-\frac{1}{2}+\frac{1}{2}-\frac{1}{3}+…+\frac{1}{n}-\frac{1}{n+1}=\frac{n}{n+1}$</li>
+</ol>
+</li>
+</ol>
+<h2 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h2><p>三角函数基本关系</p>
+<ul>
+<li>$\csc{x}=\frac{1}{\sin{x}}$, $\sec{x}=\frac{1}{\cos{x}}$</li>
+<li>$\cot{x}=\frac{1}{\tan{x}}$, $\tan{x}=\frac{\sin{x}}{\cos{x}}$, $\cot{x}=\frac{\cos{x}}{\sin{x}}$</li>
+<li>$\sin^2{x}+\cos^2{x}=1$, $1+\tan^2{x}=\sec^2{x}$, $1+\cot^2{x}=\csc^2{x}$</li>
+</ul>
+<p>诱导公式：奇变偶不变，符号看象限(原函数)</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>角度</th>
+<th>$\frac{\pi}{2}-\alpha$</th>
+<th>$\frac{\pi}{2}+\alpha$</th>
+<th>$\pi-\alpha$</th>
+<th>$\pi+\alpha$</th>
+<th>$\frac{3\pi}{2}-\alpha$</th>
+<th>$\frac{3\pi}{2}+\alpha$</th>
+<th>$2\pi-\alpha$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\sin{\theta}$</td>
+<td>$\cos{a}$</td>
+<td>$\cos{a}$</td>
+<td>$\sin{a}$</td>
+<td>$-\sin{a}$</td>
+<td>$-\cos{a}$</td>
+<td>$-\cos{a}$</td>
+<td>$-\sin{a}$</td>
+</tr>
+<tr>
+<td>$\cos{\theta}$</td>
+<td>$\sin{a}$</td>
+<td>$-\sin{a}$</td>
+<td>$-\cos{a}$</td>
+<td>$-\cos{a}$</td>
+<td>$-\sin{a}$</td>
+<td>$\sin{a}$</td>
+<td>$\cos{a}$</td>
+</tr>
+<tr>
+<td>$\tan{\theta}$</td>
+<td>$\cot{a}$</td>
+<td>$-\cot{a}$</td>
+<td>$-\tan{a}$</td>
+<td>$\tan{a}$</td>
+<td>$\cot{a}$</td>
+<td>$-\cot{a}$</td>
+<td>$-\tan{a}$</td>
+</tr>
+<tr>
+<td>$\cot{\theta}$</td>
+<td>$\tan{a}$</td>
+<td>$-\tan{a}$</td>
+<td>$-\cot{a}$</td>
+<td>$\cot{a}$</td>
+<td>$\tan{a}$</td>
+<td>$-\tan{a}$</td>
+<td>$-\cot{a}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>倍角公式</p>
+<ul>
+<li>$\sin{2a}=2\sin{a}\cos{a}$</li>
+<li>$\cos{2a}=\cos^2{a}-\sin^2{a}=2\cos^2{a}-1=1-2\sin^2{a}$</li>
+<li>$\tan{2a}=\frac{2\tan{a}}{1-\tan^2{a}}$</li>
+<li>$\cot{2a}=\frac{\cot^2{a}-1}{2\cot{a}}$</li>
+<li>$\sin{3a}=-4\sin^3{a}+3\sin{a}$</li>
+<li>$\cos{3a}=4\cos^3{a}-3\cos{a}$</li>
+</ul>
+<p>半角公式</p>
+<ul>
+<li>$\sin^2{\frac{a}{2}}=\frac{1}{2}(1-\cos{a})$</li>
+<li>$\cos^2{\frac{a}{2}}=\frac{1}{2}(1+\cos{a}$)</li>
+</ul>
+<p>和差公式</p>
+<ul>
+<li>$\sin(a\pm{b})=\sin{a}\cos{b}\pm \cos{a}\sin{b}$</li>
+<li>$\cos({a\pm b})=\cos{a}\cos{b}\mp \sin{a}\sin{b}$</li>
+<li>$\tan({a\pm b})=\frac{\tan{a}\pm \tan{b}}{1 \mp \tan{a}\tan{b}}$, $\tan{(\frac{\pi}{4}-x)}=\frac{1-\tan{x}}{1+\tan{x}}$</li>
+</ul>
+<p>和差化积</p>
+<ul>
+<li>$\sin{a}+\sin{b}=2\sin{\frac{a+b}{2}}\cos{\frac{a-b}{2}}$</li>
+<li>$\sin{a}-\sin{b}=2\sin{\frac{a-b}{2}}\cos{\frac{a+b}{2}}$</li>
+<li>$\cos{a}+\cos{b}=2\cos{\frac{a+b}{2}}\cos{\frac{a-b}{2}}$</li>
+<li>$\cos{a}-\cos{b}=-2\sin{\frac{a+b}{2}}\sin{\frac{a-b}{2}}$</li>
+</ul>
+<p>积化和差</p>
+<ul>
+<li>$\sin{a}\cos{a}=\frac{1}{2}[\sin{(a+b)}+\sin{(a-b)}]$</li>
+<li>$\cos{a}\sin{a}=\frac{1}{2}[\sin{(a+b)}-\sin{(a-b)}]$</li>
+<li>$\cos{a}\cos{a}=\frac{1}{2}[\cos{(a+b)}+\cos{(a-b)}]$</li>
+<li>$\sin{a}\sin{a}=\frac{1}{2}[\cos{(a-b)}-\cos{(a+b)}]$</li>
+</ul>
+<h2 id="指数运算"><a href="#指数运算" class="headerlink" title="指数运算"></a>指数运算</h2><ul>
+<li>$a^\alpha ·a^\beta=a^{\alpha+\beta}$</li>
+<li>$\frac{a^\alpha}{a^\beta}=a^{\alpha-\beta}$</li>
+<li>$(a^\alpha)^{\beta}=a^{\alpha\beta}$</li>
+<li>$(ab)^\alpha=a^{\alpha}·b^{\alpha}$</li>
+<li>$(\frac{a}{b})^\alpha=\frac{a^\alpha}{b^\alpha}$</li>
+</ul>
+<h2 id="对数运算法则"><a href="#对数运算法则" class="headerlink" title="对数运算法则"></a>对数运算法则</h2><ul>
+<li>$log_a(MN)=log_aM+log_aN$</li>
+<li>$log_a(\frac{M}{N})=log_aM-log_aN$</li>
+<li>$log_aM^N=Nlog_aM$</li>
+</ul>
+<p>方便求导</p>
+<ul>
+<li>$\ln{\sqrt{x}}=\frac{1}{2}\ln{x}$</li>
+<li>$\ln{\frac{1}{x}}=-\ln{x}$</li>
+<li>$\ln{(1+\frac{1}{x})}=\ln{\frac{x+1}{x}}=\ln{(x+1)}-\ln{x}$</li>
+</ul>
+<h2 id="一元二次方程基础"><a href="#一元二次方程基础" class="headerlink" title="一元二次方程基础"></a>一元二次方程基础</h2><ol>
+<li>形式：$ax^2+bx+c=0,(a\neq0)$</li>
+<li>根的公式：$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$</li>
+<li>韦达定理：$x_1+x_2=-\frac{b}{a}$, $x_1x_2=\frac{c}{a}$</li>
+<li>判别式：$\Delta=b^2-4ac$：$\Delta&gt;0$两个不等实根；$\Delta=0$一个实根；$\Delta&lt;0$两个共轭复根</li>
+<li>抛物线$y=ax^2+bx+c$的顶点为$(-\frac{b}{2a},c-\frac{b^2}{4a})$</li>
+</ol>
+<h2 id="因式分解"><a href="#因式分解" class="headerlink" title="因式分解"></a>因式分解</h2><ul>
+<li>$(a+b)^2=a^b+2ab+b^2$, $(a-b)^2=a^2-2ab+b^2$</li>
+<li>$(a+b)^3=a^3+3a^2b+3ab^2+b^3$, $(a-b)^3=a^3-3a^2b+3ab^2-b^3$</li>
+<li>$a^2-b^2=(a+b)(a-b)$</li>
+<li>$a^3-b^3=(a-b)(a^2+ab+b^2)$, $a^3+b^3=(a+b)(a^2-ab+b^2)$</li>
+<li><strong>二项式定理</strong>：$(a+b)^n=\sum_{k=0}^nC_n^ka^{n-k}b^k$<ul>
+<li>$C_n^k=\frac{n!}{k!(n-k)!}$，就是杨辉三角</li>
+</ul>
+</li>
+</ul>
+<h2 id="阶乘与双阶乘"><a href="#阶乘与双阶乘" class="headerlink" title="阶乘与双阶乘"></a>阶乘与双阶乘</h2><ul>
+<li>$n!=1·2·3·…·n$<ul>
+<li>规定$0!=1$</li>
+</ul>
+</li>
+<li>$(2n)!!=2·4·6·…·(2n)=2^n·n!$</li>
+<li>$(2n-1)!!=1·3·5·…·(2n-1)$</li>
+<li>华里士公式（其中就包含双阶乘<ul>
+<li>$\int_0^{\frac{\pi}{2}}\sin^n{x}dx=\frac{n}{n-1}\frac{n-2}{n-3}…1,(n为奇数)$</li>
+<li>$\int_0^{\frac{\pi}{2}}\sin^n{x}dx=\frac{n}{n-1}\frac{n-2}{n-3}…\frac{1}{2}\frac{\pi}{2},(n为偶数)$</li>
+<li>$\int_0^{\frac{\pi}{2}}\cos^n{x}dx=\frac{n}{n-1}\frac{n-2}{n-3}…1,(n为奇数)$</li>
+<li>$\int_0^{\frac{\pi}{2}}\cos^n{x}dx=\frac{n}{n-1}\frac{n-2}{n-3}…\frac{1}{2}\frac{\pi}{2},(n为偶数)$</li>
+</ul>
+</li>
+</ul>
+<h2 id="常用不等式"><a href="#常用不等式" class="headerlink" title="常用不等式"></a>常用不等式</h2><ul>
+<li>$|a\pm b|\le |a|+|b|$<ul>
+<li>$|a_1\pm a_2\pm a_3 \pm …\pm a_n|\le |a_1|+|a_2|+…|a_n|$</li>
+<li>$|\int_a^bf(x)dx|\le \int_a^b|f(x)|dx$</li>
+</ul>
+</li>
+<li>$|a|-|b|\le |a-b|$</li>
+<li>$||a|-|b||\le{|a-b|}$</li>
+<li>$\sqrt{ab}\le{\frac{a+b}{2}\le{\sqrt{\frac{a^2+b^2}{2}}}}$</li>
+<li>$|ab|\le{\frac{a^2+b^2}{2}}$</li>
+<li>$\sin{x}&lt;x&lt;\tan{x}, 0&lt;x&lt;\frac{\pi}{2}$</li>
+<li>$\arctan{x}\le{x}\le{\arcsin{x}},0\le{x}\le{1}$</li>
+<li>$\sin{x}\le{x},\forall{x}$<ul>
+<li>$X_{n+1}=\sin{X_n}$，由$X_{n+1}=\sin{X_n}\le{X_n}$，$X_n$单调减少</li>
+</ul>
+</li>
+<li>$e^x\ge{x+1},\forall{x}$<ul>
+<li>$X_{n+1}=e^{X_n}-1$，由$X_{n+1}=e^{X_n}-1\ge{X_n}$，$X_n$单调增加</li>
+</ul>
+</li>
+<li>$x-1\ge{\ln{x}},x&gt;0$<ul>
+<li>$X_{n+1}=\ln{X_n}+1$，由$X_{n+1}=\ln{X_n}+1\le{X_n}$，$X_n$单调减少</li>
+</ul>
+</li>
+<li>$\frac{1}{1+x}&lt;\ln{(1+\frac{1}{x})}&lt;\frac{1}{x}$<ul>
+<li>拉格朗日中值定理可以证明</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-1-函数"><a href="#1-1-函数" class="headerlink" title="1.1 函数"></a>1.1 函数</h1><h2 id="一些定义"><a href="#一些定义" class="headerlink" title="一些定义"></a>一些定义</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>x，y为两个变量，x ∈ D，如果 x ∈ D，总存在<strong>唯一确定</strong>的y与x对应，称y为x的函数，记作 y = f(x)</p>
 <p>D 称为定义域 </p>
 <p>R = {y| y = f(x), x ∈ D} 称为函数的值域</p>
 <ul>
@@ -191,7 +393,12 @@
 <h3 id="反函数"><a href="#反函数" class="headerlink" title="反函数"></a>反函数</h3><blockquote>
 <p>若函数 y=f(x) 严格单调，记 x=g(y) 为f的反函数</p>
 </blockquote>
-<p>反函数注意<strong>不要对调y和x</strong></p>
+<ol>
+<li>严格单调函数必有反函数（<strong>积分换元法需要使用</strong>）；有反函数的函数不一定单调</li>
+<li>$y=f(x)$和$x=f^{-1}(y)$在同一坐标系中的图像完全重合</li>
+<li>$y=f(x)$和$y=f^{-1}(x)$在同一坐标系中的图像关于$y=x$对称，这是$x$和$y$互换的结果</li>
+</ol>
+<h3 id="复合函数"><a href="#复合函数" class="headerlink" title="复合函数"></a>复合函数</h3><p>函数$y=f(u)$定义域为$D_f$，函数$u=g(x)$定义域为$D_g$且$g(D_g)\in{D_f}$，则$y=f[g(x)],x\in{D_g}$确定的函数称为函数$u=g(x)$和$y=f(u)$构成的复合函数</p>
 <h3 id="基本初等函数"><a href="#基本初等函数" class="headerlink" title="基本初等函数"></a>基本初等函数</h3><blockquote>
 <p>幂 指 对 三角 反三角</p>
 </blockquote>
@@ -205,31 +412,93 @@
 <h3 id="初等函数"><a href="#初等函数" class="headerlink" title="初等函数"></a>初等函数</h3><blockquote>
 <p>由<strong>常数</strong>和<strong>基本初等函数</strong>经过<strong>有限次四则运算和复合运算</strong>得到的函数</p>
 </blockquote>
+<h3 id="参数方程"><a href="#参数方程" class="headerlink" title="参数方程"></a>参数方程</h3><ol>
+<li>摆线<ol>
+<li>可看作自行车轮子一点滚动形成的轨迹</li>
+<li>$x=r(t-\sin{t})$, $y=r(1-\cos{t})$</li>
+</ol>
+</li>
+</ol>
+<p><img src="/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/1.png" alt></p>
+<ol>
+<li>星形线（内摆线<ol>
+<li>小圆在大圆内部做纯滚动，大圆半径为小圆半径的4倍</li>
+<li>$x=r\cos^3{t}$, $y=r\sin^3{t}$</li>
+<li>$x^{\frac{2}{3}}+y^{\frac{2}{3}}=r^{\frac{2}{3}}$</li>
+</ol>
+</li>
+</ol>
+<p><img src="/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/2.png" alt></p>
 <h2 id="初等函数的性质"><a href="#初等函数的性质" class="headerlink" title="初等函数的性质"></a>初等函数的性质</h2><h3 id="奇偶性"><a href="#奇偶性" class="headerlink" title="奇偶性"></a>奇偶性</h3><blockquote>
 <p>D 首先必须<strong>关于原点对称</strong>！否则就免谈</p>
 </blockquote>
 <ul>
-<li>f(-x) = f(x)  偶函数</li>
-<li>f(-x) = -f(x) 奇函数</li>
+<li>$f(-x) = f(x)$  偶函数，函数图像关于$y$轴对称</li>
+<li>$f(-x) = -f(x$) 奇函数，函数图像关于原点对称</li>
 </ul>
+<ol>
+<li>$F_1(x)=f(x)-f(-x)$必为奇函数<ol>
+<li>双曲正弦$\sh{x} = \frac{e^x-x^{-x}}{2}$为奇函数</li>
+<li>其反函数为反双曲正弦$arsinh(x)=\ln{(x+\sqrt{x^2+1})}$</li>
+<li>$(\ln{(x+\sqrt{x^2+1})})’=\frac{1}{\sqrt{x^2+1}}$</li>
+<li>$\int{\frac{1}{\sqrt{x^2+1}}}dx=\ln{(x+\sqrt{x^2+1})}+C$</li>
+</ol>
+</li>
+<li>$F_2(x)=f(x)+f(-x)$必为偶函数<ol>
+<li>双曲正弦$\ch{x} = \frac{e^x+x^{-x}}{2}$为偶函数</li>
+</ol>
+</li>
+<li>奇函数在原点有定义时，$f(0)=0$</li>
+<li>偶函数在原点可导时，$f’(0)=0$</li>
+<li>函数关于$x=T$对称的充要条件：$f(x)=f(2T-x)$或者$f(x+T)=f(x-T)$</li>
+</ol>
+<p><img src="/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/a1.png" alt></p>
 <h3 id="单调性"><a href="#单调性" class="headerlink" title="单调性"></a>单调性</h3><p>y = f(x) x ∈ D</p>
 <blockquote>
-<p>∀ x1, x2 ∈ D 且 x1 &lt; x2，有 f(x1) &lt; f(x2)，称f(x)在D上严格单调递增<br>∀ x1, x2 ∈ D 且 x1 &lt; x2，有 f(x1) &gt; f(x2)，称f(x)在D上严格单调递减</p>
+<p>$\forall x_1, x_2 \in D$ 且 $x_1 &lt; x_2$，有 $f(x_1) &lt; f(x_2)$，称$f(x)$在$D$上严格单调递增<br>∀ x1, x2 ∈ D 且 x1 &lt; x2，有 f(x1) &gt; f(x2)，称f(x)在D上严格单调递减</p>
 </blockquote>
-<h3 id="有界性"><a href="#有界性" class="headerlink" title="有界性"></a>有界性</h3><p>y = f(x) x ∈ D</p>
+<ol>
+<li>后期会经常使用求导来讨论函数在某个区间上的单调性</li>
+<li>但是定义法也不能忘记，比如离散的数列就不能求导</li>
+</ol>
+<h3 id="有界性"><a href="#有界性" class="headerlink" title="有界性"></a>有界性</h3><p>$y=f(x),x\in{D}$</p>
 <blockquote>
 <p>∃ M&gt;0，对于 ∀ x ∈ D，有 |f(x)| &lt;= M，称f(x)在D上有界<br>∃ M1，对于 ∀ x ∈ D，f(x) &gt;= M1，称函数有下界 M1<br>∃ M2，对于 ∀ x ∈ D，f(x) &lt;= M2，称函数有上界 M2 </p>
 </blockquote>
 <p>函数有界的<strong>充分必要条件</strong>是函数既有上界又有下界</p>
+<ol>
+<li>讨论函数有界与否必须首先指明区间$I\in{D}$</li>
+</ol>
 <h3 id="周期性"><a href="#周期性" class="headerlink" title="周期性"></a>周期性</h3><p>y = f(x) x ∈ D</p>
 <blockquote>
 <p>如果 ∃ T&gt;0，使得 ∀ x ∈ D (x+T ∈ D)，有 f(x+T) = f(x)，称f(x)是具有周期性</p>
 </blockquote>
+<ol>
+<li>对于周期函数$f(x)$，其在一个周期内的积分值与积分起点无关<ol>
+<li>$\int_0^Tf(x)dx=\int_a^{a+T}f(x)d(x)$</li>
+<li>可以得知：奇函数在一个周期内的积分值为0</li>
+</ol>
+</li>
+</ol>
+<h3 id="重要结论"><a href="#重要结论" class="headerlink" title="重要结论"></a>重要结论</h3><ol>
+<li>若$f(x)$为可导的偶函数，则$f’(x)$为奇函数</li>
+<li>若$f(x)$为可导的奇函数，则$f’(x)$为偶函数</li>
+<li>若$f(x)$是可导的周期函数，则$f’(x)$也是以$T$为周期的周期函数</li>
+<li>连续的奇函数的一切原函数都是偶函数</li>
+<li>连续的偶函数的原函数中仅有一个原函数是奇函数（$f(0)=0$</li>
+<li>若连续函数$f(x)$以$T$为周期且$\int_0^Tf(x)dx=0$，则$f(x)$的一切原函数也周期$T$</li>
+<li>若$f(x)$在$(a,b)$内可导且$f’(x)$有界，则$f(x)$在$(a,b)$有界（拉格朗日证明</li>
+</ol>
+<p><img src="/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/a2.png" alt></p>
 <h1 id="1-2-数列极限"><a href="#1-2-数列极限" class="headerlink" title="1.2 数列极限"></a>1.2 数列极限</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>∀ ℇ &lt; 0, ∃ N &gt; 0, 当 n &gt; N 时，|an - A| &lt; ℇ，称 {an} 的极限为 A<br>记作 lim(n-&gt;∞) an = A</p>
+<p>$\forall\epsilon&gt;0,\exist{N}&gt;0,n&gt;N$时，恒有$|x_n-a|&lt;\epsilon$，则$\lim_{n\rightarrow{\infty}}x_n=a$</p>
 </blockquote>
-<p>考点：用数列极限的定义证明 an 是极限</p>
-<p>做法：根据定义，解出 N 即可</p>
+<ol>
+<li>写距离 $|x_n-a|&lt;\epsilon$</li>
+<li>反解出$n$的范围$n&gt;g(\epsilon)$</li>
+<li>取$N=[g(\epsilon)]+1$</li>
+</ol>
+<p>$\lim_{n\rightarrow{\infty}a_n=0}$和$\lim_{n\rightarrow{\infty}｜a_n｜=0}$互为充要条件</p>
 <h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><blockquote>
 <p>唯一性：数列若有极限，该极限唯一</p>
 </blockquote>
@@ -244,6 +513,9 @@
 <p>保号性：如果 lim(n-&gt;∞) an = A，如果A&gt;0（或A<0），则 ∃ n> 0，n &gt; N 时，an&gt;0（或 an&lt;0）</0），则></p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">证明数列极限保号性</span><br><span class="line">假设 A&gt;0，取 ℇ = A/2</span><br><span class="line">假设 A&lt;0，取 ℇ = -A/2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果{$a_n$}收敛，则其任何子列{$a_{n_k}$都收敛，且极限相等}</p>
+</blockquote>
 <h2 id="1-3-函数极限"><a href="#1-3-函数极限" class="headerlink" title="1.3 函数极限"></a>1.3 函数极限</h2><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><blockquote>
 <p>x-&gt;a<br>∀ ℇ&gt;0，∃ 𝞭&gt;0，当 0&lt;|x-a|&lt;𝞭，|f(x)-A|&lt;ℇ，称f(x)当x-&gt;a时的极限为A<br>记作 lim(x-&gt;a) f(x) = A</p>
 </blockquote>
@@ -264,6 +536,12 @@
 <p>唯一性：函数有极限，极限必定唯一</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">证明唯一性：</span><br><span class="line">反证：取 ℇ = (A-B)/2 &gt; 0</span><br><span class="line">可以根据定义，发现矛盾</span><br></pre></td></tr></table></figure>
+<ol>
+<li>$\lim_{x\rightarrow{+\infty}}e^x=+\infty, \lim_{x\rightarrow{-\infty}}e^x=0$, 故$\lim_{x\rightarrow{\infty}}e^x$不存在</li>
+<li>$\lim_{x\rightarrow{0}}\frac{\sin{x}}{|x|}$不存在</li>
+<li>$\lim_{x\rightarrow{0}}\arctan{x}$不存在</li>
+<li>$\lim_{x\rightarrow{0}}[x]$不存在</li>
+</ol>
 <blockquote>
 <p>局部有界性：lim(x-&gt;a) f(x) = A, 则 ∃ 𝞭&gt;0，M&gt;0，0&lt;|x-a|&lt;𝞭 时|f(x)|&lt;=M</p>
 </blockquote>
@@ -271,6 +549,7 @@
 <blockquote>
 <p>保号性：lim(x-&gt;a) f(x) = A，A&gt;0（或者A<0），则 ∃ 𝞭>0，当 0&lt;|x-a|&lt;𝞭时，f(x)&gt;0（或者f(x)&lt;0）</0），则></p>
 </blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">取 ℇ = A/2</span><br></pre></td></tr></table></figure>
 <h1 id="1-4-无穷小和无穷大"><a href="#1-4-无穷小和无穷大" class="headerlink" title="1.4 无穷小和无穷大"></a>1.4 无穷小和无穷大</h1><h2 id="无穷小"><a href="#无穷小" class="headerlink" title="无穷小"></a>无穷小</h2><blockquote>
 <p>a(x)为x的函数，如果lim(x-&gt;x0) a(x) = 0，则称a(x)当x-&gt;x0时为无穷小</p>
 </blockquote>
@@ -311,7 +590,7 @@
 <h3 id="函数的情形"><a href="#函数的情形" class="headerlink" title="函数的情形"></a>函数的情形</h3><blockquote>
 <p>f(x) &lt;= g(x) &lt;= h(x)<br>lim f(x) = lim h(x) = A<br>那么，lim g(x) = A</p>
 </blockquote>
-<p>自变量必须有相同的趋向</p>
+<p>如果$\phi{(x)}\le{f(x)}\le{g(x)}$且$\lim[g(x)-\phi(x)]=0$，$\lim{f(x)}$也不一定存在</p>
 <h2 id="II-单调有界数列必定有极限"><a href="#II-单调有界数列必定有极限" class="headerlink" title="II.单调有界数列必定有极限"></a>II.单调有界数列必定有极限</h2><ol>
 <li>{an} 有界的<strong>充要条件</strong>是 {an} 有上下界</li>
 <li>如果 {an} 单调递增，那么一定有下界。极限是否存在取决于是否有上界</li>
@@ -331,6 +610,11 @@
 </blockquote>
 <h2 id="等价无穷小的性质"><a href="#等价无穷小的性质" class="headerlink" title="等价无穷小的性质"></a>等价无穷小的性质</h2><p>a-&gt;0, b-&gt;0, 则 a~b 的<strong>充分必要条件</strong>是 b = a + o(a)（高阶）</p>
 <p>a~a1, b-&gt;b1, lim(b1/a1) = A, 那么 lim(b/a) = A。这意味着求极限可以等价无穷小替换</p>
+<ol>
+<li>$o(x^m)\pm o(x^n)=o(x^l), l=\min(m,n)$</li>
+<li>$o(x^m)o(x^n)=o(x^{m+n})$</li>
+<li>$o(x^m)=o(kx^m)=ko(x^m),k=C$</li>
+</ol>
 <h2 id="常见等价无穷小"><a href="#常见等价无穷小" class="headerlink" title="常见等价无穷小"></a>常见等价无穷小</h2><p>以下趋势均为 x-&gt;0</p>
 <ul>
 <li>x ~ sin(x)</li>
@@ -661,6 +945,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
               </li>
              
@@ -669,11 +957,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">考研数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研线性代数</a>
               </li>
             
             <div class="clearfix"></div>

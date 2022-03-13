@@ -49,7 +49,7 @@
 		  <h1 class="header-author"><a href="/">Valerie</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">do not go gentle into that good night</p>
+		<p class="header-subtitle">禁：自我感动</p>
 		
 
 		<nav class="header-menu">
@@ -105,7 +105,7 @@
 			  <h1 class="header-author js-header-author">Valerie</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>do not go gentle into that good night<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>禁：自我感动<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -146,6 +146,1026 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-文件管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/">文件管理</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" class="archive-article-date">
+  	<time datetime="2022-03-13T06:16:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4-1-1-初识文件管理"><a href="#4-1-1-初识文件管理" class="headerlink" title="4.1_1 初识文件管理"></a>4.1_1 初识文件管理</h1><h2 id="文件的属性"><a href="#文件的属性" class="headerlink" title="文件的属性"></a>文件的属性</h2><ol>
+<li>文件名：方便用户找到文件。同一目录下不允许有重名文件</li>
+<li>标识符：os用于区分各个文件的一种内部名称</li>
+<li>类型：指明文件的类型</li>
+<li>位置<ol>
+<li>存放路径：给用户使用</li>
+<li>在外存中的地址：os使用，用户不可见</li>
+</ol>
+</li>
+<li>大小</li>
+<li>创建修改时间</li>
+<li>文件所有者</li>
+<li>保护信息：对文件进行保护的访问控制信息</li>
+</ol>
+<h2 id="文件内部数据如何组织？"><a href="#文件内部数据如何组织？" class="headerlink" title="文件内部数据如何组织？"></a>文件内部数据如何组织？</h2><ul>
+<li>无结构文件：例如文本文件，由二进制或字符流组成，又称<strong>流式文件</strong></li>
+<li>有结构文件：例如数据库表，由一组相似的记录组成，又称<strong>记录式文件</strong><ul>
+<li>各个记录之间如何组织（顺序存放 or 索引表）是<strong>文件的逻辑结构</strong>探讨的问题</li>
+</ul>
+</li>
+</ul>
+<h2 id="文件之间如何组织？"><a href="#文件之间如何组织？" class="headerlink" title="文件之间如何组织？"></a>文件之间如何组织？</h2><ul>
+<li>目录结构</li>
+</ul>
+<h2 id="操作系统应该向上提供哪些功能"><a href="#操作系统应该向上提供哪些功能" class="headerlink" title="操作系统应该向上提供哪些功能"></a>操作系统应该向上提供哪些功能</h2><ul>
+<li>创建文件</li>
+<li>读文件</li>
+<li>写文件</li>
+<li>删除文件</li>
+<li>打开文件（读写文件前需要打开文件</li>
+<li>关闭文件（读写文件后需要关闭文件</li>
+</ul>
+<h2 id="从上往下看，文件应该如何存放在外存"><a href="#从上往下看，文件应该如何存放在外存" class="headerlink" title="从上往下看，文件应该如何存放在外存"></a>从上往下看，文件应该如何存放在外存</h2><h2 id="其他需要操作系统实现的文件管理功能"><a href="#其他需要操作系统实现的文件管理功能" class="headerlink" title="其他需要操作系统实现的文件管理功能"></a>其他需要操作系统实现的文件管理功能</h2><ul>
+<li>文件共享</li>
+<li>文件保护</li>
+</ul>
+<h1 id="4-1-2-文件的逻辑结构"><a href="#4-1-2-文件的逻辑结构" class="headerlink" title="4.1_2 文件的逻辑结构"></a>4.1_2 文件的逻辑结构</h1><ul>
+<li>逻辑结构：用户看来，文件内部的数据如何组织起来</li>
+<li>物理结构：操作系统看来，文件的数据如何存放在外存中</li>
+</ul>
+<h2 id="有结构文件的逻辑结构"><a href="#有结构文件的逻辑结构" class="headerlink" title="有结构文件的逻辑结构"></a>有结构文件的逻辑结构</h2><h3 id="顺序文件"><a href="#顺序文件" class="headerlink" title="顺序文件"></a>顺序文件</h3><blockquote>
+<p>文件中的记录顺序排列，记录可以是定长或可变长的，各个记录在物理上可以顺序存储或链式存储</p>
+</blockquote>
+<ul>
+<li>串结构：记录之间的顺序与关键字无关</li>
+<li>顺序结构：记录之间的顺序按照关键字顺序排列</li>
+</ul>
+<ol>
+<li>链式存储无法实现随机存取</li>
+<li><strong>顺序存储可变长记录，无法随机存取</strong></li>
+<li>顺序存储定长记录<ol>
+<li>可实现随机存取</li>
+<li>采用顺序结构可以快速找到某关键字对应的记录</li>
+<li>缺点是增加/删除记录困难</li>
+</ol>
+</li>
+</ol>
+<p>Tips：题目说的顺序文件指的是<strong>物理上顺序存储的顺序文件</strong></p>
+<h3 id="索引文件"><a href="#索引文件" class="headerlink" title="索引文件"></a>索引文件</h3><ol>
+<li>建立一张索引表加快文件检索速度，每条记录对应一个索引项<ol>
+<li>索引表本身是定长记录的顺序文件，可以随机存取</li>
+</ol>
+</li>
+<li>文件中的记录在物理上可以离散存放</li>
+<li>可以用不同的数据项建立多个索引表</li>
+<li>主要用于需要对信息处理的及时性要求较高的场合</li>
+</ol>
+<h3 id="索引顺序文件"><a href="#索引顺序文件" class="headerlink" title="索引顺序文件"></a>索引顺序文件</h3><p>为了解决索引文件空间利用率低的问题</p>
+<ol>
+<li>一组记录对应一个索引表项</li>
+<li>为了进一步提高检索效率，可以为顺序文件建立多级索引表</li>
+</ol>
+<h1 id="4-1-3-文件目录"><a href="#4-1-3-文件目录" class="headerlink" title="4.1_3 文件目录"></a>4.1_3 文件目录</h1><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/1.png" alt></p>
+<h2 id="文件控制块"><a href="#文件控制块" class="headerlink" title="文件控制块"></a>文件控制块</h2><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/2.png" alt></p>
+<ol>
+<li>FCB的有序集合称为“文件目录”，一个FCB就是一个文件目录项</li>
+<li>FCB包含文件的基本信息、存取控制信息、使用信息</li>
+<li><strong>FCB中最重要最基本是文件名、文件存放的物理地址</strong>；FCB实现文件名和文件之间的映射，使用户程序可以实现按文件名存取</li>
+</ol>
+<p>需要对目录进行的操作</p>
+<ol>
+<li>搜索</li>
+<li>创建文件：在其所属目录中新增一个目录项</li>
+<li>删除文件：在目录中删除相应的目录项</li>
+<li>显示目录：用户可以请求显示目录内容</li>
+<li>修改目录：文件属性变化时需要修改相应的目录项</li>
+</ol>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><h3 id="单级目录结构"><a href="#单级目录结构" class="headerlink" title="单级目录结构"></a>单级目录结构</h3><p>早期操作系统不支持多级目录，整个系统只建立一张目录表，每个文件占一个目录项</p>
+<ol>
+<li>实现了按名存取</li>
+<li>不允许文件名重复</li>
+<li>不适用于多用户操作系统</li>
+</ol>
+<h3 id="两级目录结构"><a href="#两级目录结构" class="headerlink" title="两级目录结构"></a>两级目录结构</h3><p>早期操作系统，采用两级目录结构，分为<strong>主文件目录(MFD)</strong>和<strong>用户文件目录*(UFD)</strong></p>
+<p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/3.png" alt></p>
+<h3 id="多级目录结构（树形目录结构"><a href="#多级目录结构（树形目录结构" class="headerlink" title="多级目录结构（树形目录结构"></a>多级目录结构（树形目录结构</h3><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/4.png" alt></p>
+<ol>
+<li>文件分类方便</li>
+<li>可以有效进行文件的管理和保护</li>
+<li>缺点：<strong>不方便实现文件共享</strong>（为此提出“无环图目录结构”</li>
+</ol>
+<h3 id="无环图目录结构"><a href="#无环图目录结构" class="headerlink" title="无环图目录结构"></a>无环图目录结构</h3><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/5.png" alt></p>
+<h2 id="索引节点-FCB的改进"><a href="#索引节点-FCB的改进" class="headerlink" title="索引节点 FCB的改进"></a>索引节点 FCB的改进</h2><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/6.png" alt></p>
+<ul>
+<li>存放在外存的索引节点称为<strong>磁盘索引节点</strong></li>
+<li>索引节点放入内存后称为<strong>内存索引节点</strong></li>
+<li>相比之下内存索引节点需要增加一些信息，例如文件是否被修改，此时有几个进程在访问该文件</li>
+</ul>
+<p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/7.png" alt></p>
+<h1 id="4-1-4-文件的物理结构（文件分配方式"><a href="#4-1-4-文件的物理结构（文件分配方式" class="headerlink" title="4.1_4 文件的物理结构（文件分配方式"></a>4.1_4 文件的物理结构（文件分配方式</h1><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/8.png" alt></p>
+<p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/9.png" alt></p>
+<h2 id="连续分配"><a href="#连续分配" class="headerlink" title="连续分配"></a>连续分配</h2><blockquote>
+<p>每个文件在磁盘上占有一组连续的块</p>
+</blockquote>
+<ol>
+<li>文件目录记录存放的起始块号和长度（占用多少个块）</li>
+<li><strong>物理块号=起始块号+逻辑块号</strong></li>
+<li>支持顺序访问和随机访问</li>
+<li><strong>连续分配的文件在顺序读/写时速度最快</strong><ol>
+<li>读取某个磁盘块时需要移动磁头</li>
+<li>磁盘块相隔越远，移动磁头所需时间越长</li>
+</ol>
+</li>
+<li>连续分配的文件不方便进行扩展</li>
+<li>存储空间利用率低，会产生难以利用的磁盘碎片<ol>
+<li>可以用紧凑技术来处理碎片，时间开销很大</li>
+</ol>
+</li>
+</ol>
+<h2 id="链接分配"><a href="#链接分配" class="headerlink" title="链接分配"></a>链接分配</h2><blockquote>
+<p>采取离散分配的方式，为文件分配离散的磁盘块，然后指针链接。分为<strong>隐式链接</strong>和<strong>显式链接</strong>两种</p>
+</blockquote>
+<p>Tips：题目没有说明的话，默认隐式链接</p>
+<h3 id="隐式链接"><a href="#隐式链接" class="headerlink" title="隐式链接"></a>隐式链接</h3><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/10.png" alt></p>
+<ol>
+<li>方便文件扩展，不会产生磁盘碎片</li>
+<li>只支持顺序访问，不支持随机访问，查找效率低</li>
+<li>存储指针也要消耗存储空间</li>
+</ol>
+<h3 id="显式链接"><a href="#显式链接" class="headerlink" title="显式链接"></a>显式链接</h3><blockquote>
+<p>用于链接文件各个物理块的指针显式存放在一张表中，称为文件分配表（FAT</p>
+</blockquote>
+<p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/11.png" alt></p>
+<ol>
+<li>逻辑块号转换为物理块号的过程不需要读磁盘操作</li>
+<li>支持顺序访问和随机访问</li>
+<li>由于块号转换不需要访问磁盘，因此相比于隐式链接，访问速度快很多</li>
+<li>不会产生外部碎片，便于文件拓展</li>
+<li>FAT需要占用一定存储空间</li>
+</ol>
+<h2 id="索引分配"><a href="#索引分配" class="headerlink" title="索引分配"></a>索引分配</h2><blockquote>
+<p>允许文件离散分配在磁盘块中。系统会为每个文件建立一张索引表，表中记录文件的各个逻辑块对应的物理块<br>索引表存放的磁盘块称为索引块，文件数据存放的磁盘块称为数据块</p>
+</blockquote>
+<p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/12.png" alt></p>
+<ol>
+<li>可以实现随机访问</li>
+<li>容易实现文件拓展</li>
+<li>索引表需要占一定存储空间</li>
+</ol>
+<p>索引表太大了，一个索引块装不下，怎么搞？</p>
+<ol>
+<li>链接方案：多个索引块链接起来存放<ol>
+<li>必须顺序读取所有索引块，磁盘I/O次数过多，效率低</li>
+</ol>
+</li>
+<li>索引分配：建立多层索引，类似多级页表<ol>
+<li><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/13.png" alt></li>
+</ol>
+</li>
+<li>混合索引<ol>
+<li><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/14.png" alt></li>
+<li>对于小文件，访问一个数据块所需的读磁盘次数更少</li>
+</ol>
+</li>
+</ol>
+<p>考点：</p>
+<ol>
+<li>计算文件的最大长度——各级索引表最大长度不能超过一个块</li>
+<li>访问某个数据块所需的读磁盘次数<ol>
+<li>注意题目是否已经把顶级索引块调入内存</li>
+</ol>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研操作系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-函数图像" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/">函数图像</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/" class="archive-article-date">
+  	<time datetime="2022-03-09T11:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="直角坐标系下的图"><a href="#直角坐标系下的图" class="headerlink" title="直角坐标系下的图"></a>直角坐标系下的图</h1><h2 id="常见图像"><a href="#常见图像" class="headerlink" title="常见图像"></a>常见图像</h2><h3 id="基本初等函数和初等函数"><a href="#基本初等函数和初等函数" class="headerlink" title="基本初等函数和初等函数"></a>基本初等函数和初等函数</h3><h4 id="常数函数"><a href="#常数函数" class="headerlink" title="常数函数"></a>常数函数</h4><p><img src="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/1.png" alt></p>
+<ol>
+<li>$y=A$为偶函数</li>
+<li>常用于找交点个数</li>
+</ol>
+<h4 id="幂函数"><a href="#幂函数" class="headerlink" title="幂函数"></a>幂函数</h4><p><img src="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/2.png" alt></p>
+<ol>
+<li>当$y&gt;0$时，$y=x$与$y=\sqrt{x}$、$y=x^{\frac{1}{3}}$、$\ln{x}$有相同单调性，与$y=\frac{1}{x}$有相反的单调性，因此<ol>
+<li>见到$y=\sqrt{u}$、$y=u^{\frac{1}{3}}$，可以用$u$来研究最值</li>
+<li>$|u|$的最值，直接$|u|=\sqrt{u^2}$，求$u^2$最值即可</li>
+<li>$u_1u_2u_3$最值，可以用$\ln{u_1u_2u_3}=\ln{u_1}+\ln{u_2}+\ln{u_3}$</li>
+<li>$\frac{1}{u}$最值，看$u$即可（最大最小值相反</li>
+</ol>
+</li>
+</ol>
+<h4 id="指数函数"><a href="#指数函数" class="headerlink" title="指数函数"></a>指数函数</h4><p><img src="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/3.png" alt></p>
+<ol>
+<li>$lim_{x\rightarrow{\infty}}e^x$不存在</li>
+<li>常用面积：$\int_{-\infty}^0e^xdx=1$</li>
+</ol>
+<h4 id="对数函数"><a href="#对数函数" class="headerlink" title="对数函数"></a>对数函数</h4><p><img src="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/4.png" alt></p>
+<ol>
+<li>幂指函数$u^v = e^{v\ln{u}}$</li>
+</ol>
+<h4 id="三角函数"><a href="#三角函数" class="headerlink" title="三角函数"></a>三角函数</h4><ol>
+<li>正弦余弦一拱的面积为2，$\int_0^{\pi}\sin{x}dx=2$</li>
+<li>$\int_{\frac{\pi}{4}}^\frac{3\pi}{4}\sin{x}dx=\sqrt{2}$</li>
+<li>$x\rightarrow{0_+}$，$\sin{x}&lt;x$</li>
+<li>正割函数$\sec{x} = \frac{1}{\cos{x}}$</li>
+<li>余割函数$\csc{x} = \frac{1}{\sin{x}}$</li>
+<li>反正弦、反余弦函数<ol>
+<li>$\arcsin{x}+\arccos{x}=\frac{\pi}{2}$</li>
+</ol>
+</li>
+<li>反正切、反余切<ol>
+<li>$\lim_{x\rightarrow{+\infty}}\arctan{x}=\frac{\pi}{2}$</li>
+<li>$\lim_{x\rightarrow{-\infty}}\arctan{x}=-\frac{\pi}{2}$</li>
+<li>$\lim_{x\rightarrow{+\infty}}\arctg{x}=0$</li>
+<li>$\lim_{x\rightarrow{-\infty}}\arctg{x}=\pi$</li>
+<li>$\arctan{x}+\arcctg{x}=\frac{\pi}{2}$</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">证明第6点：函数为常数C的一般方法</span><br><span class="line">1. 求导f&#x27;(x) = 0  拉格朗日</span><br><span class="line">2. 代值f(x0) = C</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/5.png" alt></p>
+<h2 id="图像变换"><a href="#图像变换" class="headerlink" title="图像变换"></a>图像变换</h2><ol>
+<li>平移变换<ol>
+<li>左增右减</li>
+<li>上下平移</li>
+</ol>
+</li>
+<li>对称变换<ol>
+<li>$y=-f(x)$，$x$轴对称</li>
+<li>$y=f(-x)$，$y$轴对称</li>
+<li>$y=-f(-x)$，原点对称</li>
+<li>反函数$y=f^{-1}(x)$关于直线$y=x$对称</li>
+<li>绝对值<ol>
+<li>$y=|f(x)|$，下边转到上</li>
+<li>$y=f(|x|)$，右边转到左。为偶函数</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>伸缩变换<ol>
+<li>水平 $y=f(kx)$</li>
+<li>垂直 $y=kf(x)$</li>
+</ol>
+</li>
+</ol>
+<h1 id="极坐标系下图像"><a href="#极坐标系下图像" class="headerlink" title="极坐标系下图像"></a>极坐标系下图像</h1><h2 id="描点法"><a href="#描点法" class="headerlink" title="描点法"></a>描点法</h2><ol>
+<li>心形线 $r=a(1-\cos{\theta}),a&gt;0$</li>
+</ol>
+<p><img src="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/6.png" alt></p>
+<ol>
+<li>三叶玫瑰线 $r=a\sin{3\theta}$</li>
+</ol>
+<p><img src="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/7.png" alt></p>
+<ol>
+<li>阿基米德螺线 $r=a\theta$</li>
+</ol>
+<p><img src="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/8.png" alt></p>
+<ol>
+<li>伯努利双纽线 $r^2=a^2\cos{2\theta}$, $r^2=a^2\sin{2\theta}$</li>
+</ol>
+<p><img src="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/9.png" alt></p>
+<h2 id="直角系观点画极坐标系图像"><a href="#直角系观点画极坐标系图像" class="headerlink" title="直角系观点画极坐标系图像"></a>直角系观点画极坐标系图像</h2><ol>
+<li>画直角坐标系下$r$$\theta$图</li>
+<li>对应到极坐标系下</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">考研数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/09/%E5%87%BD%E6%95%B0%E5%9B%BE%E5%83%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-存储系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/06/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/">存储系统</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/06/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/" class="archive-article-date">
+  	<time datetime="2022-03-06T06:07:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="3-1-存储系统基本概念"><a href="#3-1-存储系统基本概念" class="headerlink" title="3.1 存储系统基本概念"></a>3.1 存储系统基本概念</h1><p><img src="/2022/03/06/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/1.png" alt></p>
+<h2 id="存储器分类"><a href="#存储器分类" class="headerlink" title="存储器分类"></a>存储器分类</h2><ol>
+<li>按照存储介质<ol>
+<li>半导体存储器：主存、cache</li>
+<li>磁表面存储器：磁盘、磁带</li>
+<li>光存储器</li>
+</ol>
+</li>
+<li>按照存取方式<ol>
+<li><strong>随机存取</strong>存储器RAM：读写时间与存储单元所在的物理位置无关</li>
+<li>顺序存取寄存器SAM：读写时间取决于存储单元所在的物理位置</li>
+<li>直接存取寄存器DAM：既有随机存取、又有顺序存取</li>
+</ol>
+</li>
+<li>按照信息可更改性<ol>
+<li>读写存储器：例如磁盘、内存、cache</li>
+<li>只读存储器ROM：例如CD-ROM、<strong>BIOS通常写在ROM中</strong></li>
+</ol>
+</li>
+<li>信息的可保存性<ol>
+<li>易失性存储器（断电后存储信息消失的存储器）：主存、cache</li>
+<li>非易失性存储器（断电后信息依然保持）：磁盘、光盘</li>
+<li>破坏性读出：DRAM芯片</li>
+<li>非破坏性读出：SRAM</li>
+</ol>
+</li>
+</ol>
+<h2 id="存储器的性能指标"><a href="#存储器的性能指标" class="headerlink" title="存储器的性能指标"></a>存储器的性能指标</h2><ol>
+<li>存储容量：存储字数<em>字长（例如`1M</em>8位`<ol>
+<li>MDR位数反映存储字长</li>
+<li>MAR位数反映存储字数</li>
+</ol>
+</li>
+<li>单位成本</li>
+<li>存储速度：数据传输率（主存带宽）=数据宽度/存储周期</li>
+</ol>
+<p><img src="/2022/03/06/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/2.png" alt></p>
+<h1 id="3-3-1-主存储器的基本组成"><a href="#3-3-1-主存储器的基本组成" class="headerlink" title="3.3_1 主存储器的基本组成"></a>3.3_1 主存储器的基本组成</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">考研计算机组成原理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/06/%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-内存管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="archive-article-date">
+  	<time datetime="2022-03-05T12:23:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="3-1-1-内存的基础知识"><a href="#3-1-1-内存的基础知识" class="headerlink" title="3.1_1 内存的基础知识"></a>3.1_1 内存的基础知识</h1><h2 id="何为内存？有何作用？"><a href="#何为内存？有何作用？" class="headerlink" title="何为内存？有何作用？"></a>何为内存？有何作用？</h2><p>内存可以存放数据。程序在执行前需要先放到内存中才能被CPU处理（缓和CPU和硬盘之间的速度矛盾</p>
+<p>内存中有很多存储单元，内存地址从0开始，每个地址对应一个存储单元，一个存储单元能存储多少比特位取决于计算机</p>
+<h2 id="几个常用的数量单位"><a href="#几个常用的数量单位" class="headerlink" title="几个常用的数量单位"></a>几个常用的数量单位</h2><p>$1K = 2^{10} = 1024$</p>
+<p>$1M = 2^{20}$</p>
+<p>$1G = 2^{30}$</p>
+<h2 id="程序的链接与装入"><a href="#程序的链接与装入" class="headerlink" title="程序的链接与装入"></a>程序的链接与装入</h2><ol>
+<li>编译：由编译程序将用户源代码编译成若干目标模块</li>
+<li>链接：由链接程序将编译形成的一组目标模块以及他们所需的库函数链接在一起，形成一个完整的装入模块</li>
+<li>装入：由装入程序将装入模块装入内存运行</li>
+</ol>
+<h3 id="绝对装入"><a href="#绝对装入" class="headerlink" title="绝对装入"></a>绝对装入</h3><blockquote>
+<p>在编译时，如果知道程序将放到内存中的哪个位置，编译程序将产生绝对地址的目标代码。装入程序按照装入模块中的地址，将程序和数据装入内存</p>
+</blockquote>
+<p>绝对装入只适用于单道程序环境</p>
+<h3 id="可重定位装入"><a href="#可重定位装入" class="headerlink" title="可重定位装入"></a>可重定位装入</h3><blockquote>
+<p>又称静态重定位。编译连接后装入模块的地址都从0开始，指令中使用的地址都是相对于起始地址而言的逻辑地址。装入模块装入到内存的时候进行重定位<br>重定位：装入时对目标程序中指令和数据地址进行修改的过程</p>
+</blockquote>
+<p>静态重定位的特点是：</p>
+<ol>
+<li>在一个作业装入内存时，必须分配其要求的全部内存空间，否则就不能装入该作业</li>
+<li>作业一旦进入内存，在运行期间就不能再移动，也不能再申请内存空间</li>
+</ol>
+<h3 id="动态重定位"><a href="#动态重定位" class="headerlink" title="动态重定位"></a>动态重定位</h3><blockquote>
+<p>编译链接后的装入模块的地址都从0开始。装入程序将模块装入内存后，并不会立即把逻辑地址转换为物理地址，而是<strong>在真正执行时才进行</strong>。这种方法需要一个重定位寄存器支持</p>
+</blockquote>
+<p>特点：</p>
+<ol>
+<li>可以将程序分配到不连续的存储区中</li>
+<li>程序运行前只需要装入部分代码即可投入运行</li>
+<li>在程序运行期间可以根据需要，动态申请分配内存</li>
+<li>便于程序段的共享</li>
+<li>可以向用户提供一个比存储空间大得多的地址空间</li>
+<li>允许程序在内存中移动</li>
+</ol>
+<h2 id="链接的三种方式"><a href="#链接的三种方式" class="headerlink" title="链接的三种方式"></a>链接的三种方式</h2><ol>
+<li>静态链接<ol>
+<li>在程序运行前，现将各自目标模块以及库函数链接形成一个完整的装配模块，以后不再拆开。</li>
+<li>需要解决地址变换问题</li>
+</ol>
+</li>
+<li>装入时动态链接<ol>
+<li>在装入内存时，一边装入一边链接</li>
+<li>优点在于便于修改和更新，实现对目标模块的共享</li>
+</ol>
+</li>
+<li>运行时动态链接<ol>
+<li>在程序执行中需要该目标模块时才进行链接</li>
+<li>加快程序的装入，节省大量内存空间</li>
+</ol>
+</li>
+</ol>
+<h2 id="逻辑地址和物理地址"><a href="#逻辑地址和物理地址" class="headerlink" title="逻辑地址和物理地址"></a>逻辑地址和物理地址</h2><ol>
+<li>逻辑地址<ol>
+<li>编译后，每个目标模块都从0号单元开始编址，称为改目标模块的相对地址（逻辑地址</li>
+<li>程序在运行时使用的是逻辑地址，内存管理的具体机制对程序员和用户程序是透明的</li>
+<li>不同进程可以有相同的逻辑地址，可以映射到主存的不同位置</li>
+</ol>
+</li>
+<li>物理地址<ol>
+<li>是地址转换的最终地址。指令和数据都需要通过物理地址从主存中存取</li>
+<li>装入程序将可执行代码装入内存时，必须通过地址转换将逻辑地址转换为物理地址（重定位</li>
+</ol>
+</li>
+</ol>
+<h2 id="进程的内存映像"><a href="#进程的内存映像" class="headerlink" title="进程的内存映像"></a>进程的内存映像</h2><ol>
+<li>代码段：程序的二进制代码，只读，可被多个进程共享</li>
+<li>数据段：程序运行时加工处理的对象，包括全局和静态变量</li>
+<li>进程控制快PCB：存放在系统区，os通过PCB控制、管理进程</li>
+<li>堆：存放动态分配变量。<code>malloc</code>函数动态地向<strong>高地址</strong>分配空间</li>
+<li>栈：用来实现函数调用。从用户空间最大地址往低地址增长</li>
+</ol>
+<h1 id="3-1-2-内存管理的概念"><a href="#3-1-2-内存管理的概念" class="headerlink" title="3.1_2 内存管理的概念"></a>3.1_2 内存管理的概念</h1><ol>
+<li>内存空间的分配与回收</li>
+<li>内存空间的扩展<ol>
+<li>覆盖技术</li>
+<li>交换技术</li>
+<li>虚拟存储技术</li>
+</ol>
+</li>
+<li>负责地址转换功能（将逻辑地址转换为物理地址），这个过程称为<strong>重定位</strong></li>
+<li>内存保护：各个进程在各自的内存空间内进行，互不干扰<ol>
+<li>CPU中设置一对上下限寄存器，进程访问时检查是否越界</li>
+<li>采用重定位寄存器（基址寄存器）和界地址寄存器（限长寄存器）进行越界检查（限长寄存器存储进程的最大逻辑地址</li>
+</ol>
+</li>
+<li>内存共享<ol>
+<li>只读的区域才可以被共享</li>
+<li><strong>可重入代码：又称纯代码，是允许多个进程同时访问但不允许被任何进程修改的代码</strong></li>
+</ol>
+</li>
+</ol>
+<h1 id="3-1-3-覆盖与交换"><a href="#3-1-3-覆盖与交换" class="headerlink" title="3.1_3 覆盖与交换*"></a>3.1_3 覆盖与交换*</h1><h2 id="覆盖技术"><a href="#覆盖技术" class="headerlink" title="覆盖技术"></a>覆盖技术</h2><p>目的：解决<strong>程序大小超过物理内存总和</strong>的问题</p>
+<p>思想：将程序分为多段（模块），常用的段常驻内存，不常用的段在需要时调入内存</p>
+<ol>
+<li>内存中分为一个“固定区”和若干个“覆盖区”</li>
+<li>需要常驻内存的段放在固定区中，调入后就不再调出，除非运行结束</li>
+<li>不常用的段放在覆盖区，需要时调入内存，不需要时调出内存</li>
+</ol>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/1.png" alt="覆盖技术"></p>
+<ol>
+<li>必须由程序员声明覆盖结构，操作系统完成自动覆盖。</li>
+<li>缺点：对用户不透明，增加了用户编程负担</li>
+</ol>
+<h2 id="交换技术（对换"><a href="#交换技术（对换" class="headerlink" title="交换技术（对换"></a>交换技术（对换</h2><p>思想：内存空间紧张时，系统将内存中某些进程暂时换出外村，外存中某些已具备运行条件的进程换入内存</p>
+<ol>
+<li>暂时换出外存等待的进程状态为<strong>挂起状态</strong>，又可以分为就绪挂起、阻塞挂起</li>
+<li>在具有对换功能的操作系统中，通常把磁盘空间分为<strong>文件区</strong>和<strong>对换区</strong><ol>
+<li>文件区用于存储文件，追求空间利用率，因此采用离散分配方式</li>
+<li>对换区用于存储被换出的进程，追求换入换出效率，因此采用连续分配方式</li>
+<li>对换区只占磁盘空间一小部分，IO速度比文件区的快</li>
+</ol>
+</li>
+<li>可以优先换出阻塞进程、优先级低的进程</li>
+<li><strong>PCB会常驻内存，不会被换出</strong></li>
+</ol>
+<h1 id="3-1-4-连续分配管理方式"><a href="#3-1-4-连续分配管理方式" class="headerlink" title="3.1_4 连续分配管理方式"></a>3.1_4 连续分配管理方式</h1><blockquote>
+<p>连续分配：为用户进程分配一个<strong>连续的内存空间</strong><br>内部碎片：分配给某个进程的内存区域中，有些部分没有用上<br>外部碎片：内存中的某些空闲分区因为太小，难以利用</p>
+</blockquote>
+<h2 id="单一连续分配"><a href="#单一连续分配" class="headerlink" title="单一连续分配"></a>单一连续分配</h2><ol>
+<li>内存被分为系统区和用户区</li>
+<li>系统区用于存放操作系统相关数据，仅供操作系统使用，通常在低地址部分；用户区用于存放用户进程相关数据</li>
+<li><strong>用户区中只能有一道用户程序</strong>，用户程序独占整个用户区空间</li>
+</ol>
+<p>优点：实现简单；无外部碎片</p>
+<p>缺点：只能单用户、单任务；有内部碎片，存储器利用率极低</p>
+<h2 id="固定分区分配"><a href="#固定分区分配" class="headerlink" title="固定分区分配"></a>固定分区分配</h2><p>将用户空间划分为若干个固定大小的分区，每个分区中只装入一道作业</p>
+<ol>
+<li>分区大小相等：缺乏灵活性，适用于一台计算机控制多个相同对象的场合</li>
+<li>分区大小不等：增加了灵活性，可以满足不同大小的进程需求</li>
+</ol>
+<p>操作系统需要建立一个数据结构，实现各个分区的分配和回收。每个表项需要包括分区的大小、起始地址、状态</p>
+<p>优点：实现简单，无外部碎片</p>
+<p>缺点：用户程序过大时可能分区不能满足需求，需要覆盖技术，这会降低性能；会产生内部碎片</p>
+<h2 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h2><p>又称<strong>可变分区分配</strong>。不会预先划分内存去，而是进程装入内存时，根据进程大小动态建立分区，使得分区的大小正好适合进程的需要</p>
+<ol>
+<li>使用<strong>空闲分区表</strong>或者<strong>空闲分区链</strong>记录内存的使用情况</li>
+<li>作业装入内存时，必须按照一定的动态分区分配算法</li>
+<li>动态分区分配没有内部碎片，但是有外部碎片</li>
+<li>可以使用<strong>紧凑技术</strong>来解决外部碎片</li>
+</ol>
+<h1 id="3-1-5-动态分区分配算法"><a href="#3-1-5-动态分区分配算法" class="headerlink" title="3.1_5 动态分区分配算法"></a>3.1_5 动态分区分配算法</h1><h2 id="首次适应算法"><a href="#首次适应算法" class="headerlink" title="首次适应算法"></a>首次适应算法</h2><p>思想：每次都从低地址开始查找，找到第一个能满足大小的空闲分区</p>
+<p>实现：空闲分区按地址递增次序排列，每次分配内存时顺序查找空闲分区链/表，找到第一个满足要求的空闲分区</p>
+<h2 id="邻近适应算法（循环首次适应算法"><a href="#邻近适应算法（循环首次适应算法" class="headerlink" title="邻近适应算法（循环首次适应算法"></a>邻近适应算法（循环首次适应算法</h2><p>思想：在首次适应算法基础上，查找时不从头查找，而是从上次查找结束的位置开始</p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/2.png" alt></p>
+<h2 id="最佳适应算法"><a href="#最佳适应算法" class="headerlink" title="最佳适应算法"></a>最佳适应算法</h2><p>思想：优先使用小的空闲区，留下大片连续空间</p>
+<p>实现：空闲分区安容量递增次序链接</p>
+<p>缺点：会产生很多的外部碎片</p>
+<h2 id="最坏适应算法（最大适应算法"><a href="#最坏适应算法（最大适应算法" class="headerlink" title="最坏适应算法（最大适应算法"></a>最坏适应算法（最大适应算法</h2><p>思想：为了解决最佳适应算法的问题，优先使用最大的空闲分区</p>
+<p>实现：空闲分区按照容量递减次序链接</p>
+<p>缺点：导致容量较大的空闲内存被迅速用完，之后如果有大进程到达，就没有空闲分区可用了</p>
+<h1 id="3-1-6-基本分页存储管理的概念"><a href="#3-1-6-基本分页存储管理的概念" class="headerlink" title="3.1_6 基本分页存储管理的概念"></a>3.1_6 基本分页存储管理的概念</h1><p>页框（页帧）：将<strong>内存空间</strong>划分为一个个大小相等的分区，每个分区就是一个<strong>页框</strong>，每个页框有一个<strong>页框</strong>号（从0开始</p>
+<p>页（页面）：将<strong>进程</strong>的逻辑地址空间也分为<strong>与页框大小相等</strong>的一个个部分，每个部分成为一个<strong>页</strong>，每个页有一个<strong>页号</strong>（从0开始</p>
+<p>为了方便地址转换，页面的大小通常为2的整数幂</p>
+<p>操作系统以页框为单位为各个进程分配内存空间，进程的每一个页面放入一个页框中，一一对应。页面不必连续存放，可以放在不相邻的各个页框中</p>
+<blockquote>
+<p>地址结构：页号P+页内偏移量W<br>例如32位地址，低0～11位为W，12～32位为页号<br>那么每一页大小为：$2^{12}=4KB$，最多有$2^{20}$页</p>
+</blockquote>
+<h2 id="页表"><a href="#页表" class="headerlink" title="页表"></a>页表</h2><p><strong>为了得知进程的每个页面在内存块中存放的位置，操作系统需要为每个进程建立一张页表</strong>，通常存放在PCB中</p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/3.png" alt></p>
+<p>页表项连续存放，因此页号可以是隐含的，不占存储空间（类比数组</p>
+<p><strong>页表记录的是内存块号而不是内存块起始地址</strong>，J号内存块起始地址=J*内存块大小（从0开始</p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/4.png" alt></p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/5,png" alt></p>
+<h1 id="3-1-7-基本地址变换机构"><a href="#3-1-7-基本地址变换机构" class="headerlink" title="3.1_7 基本地址变换机构"></a>3.1_7 基本地址变换机构</h1><p>基本地址变换机构可以<strong>借助进程的页表将逻辑地址转换为物理地址</strong></p>
+<ol>
+<li>设置一个页表寄存器（PTR），存放页表在内存中的起始地址F和页表长度M</li>
+<li>进程未执行时，页表的起始地址和页表长度放在PCB中，进程被调度时，操作系统内核会将其放到页表寄存器中</li>
+</ol>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/6.png" alt></p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/7.png" alt></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">例题</span><br><span class="line"></span><br><span class="line">页面大小 L=1KB，页号2对应物理块号b=8，计算逻辑地址2500的物理地址</span><br><span class="line"></span><br><span class="line">2500对应的页号：2500/1024 = 2，对应的页内偏移量：2500%1024 = 452</span><br><span class="line">b=8，所以 物理地址=1024*8+452</span><br></pre></td></tr></table></figure>
+<h1 id="3-1-8-具有快表的地址变换机构"><a href="#3-1-8-具有快表的地址变换机构" class="headerlink" title="3.1_8 具有快表的地址变换机构"></a>3.1_8 具有快表的地址变换机构</h1><h2 id="什么是快表（TLB"><a href="#什么是快表（TLB" class="headerlink" title="什么是快表（TLB"></a>什么是快表（TLB</h2><p>快表又称联想寄存器，是访问速度比内存快很多的<strong>高速缓存</strong>（TLB不是内存），用来<strong>存放最近访问的页表项的副本</strong>，可以加快地址变换的速度，与之对应的，内存中的页表称为慢表</p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/8.png" alt></p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/9.png" alt></p>
+<h1 id="3-1-9-两级页表"><a href="#3-1-9-两级页表" class="headerlink" title="3.1_9 两级页表"></a>3.1_9 两级页表</h1><h2 id="单级页表存在的问题"><a href="#单级页表存在的问题" class="headerlink" title="单级页表存在的问题"></a>单级页表存在的问题</h2><ol>
+<li>页表必须连续存放，因此页表很大时需要占用很多个连续的页框</li>
+<li>没有必要让整个页表常驻内存，因为进程在一段时间内很可能只要访问某些特定的页面</li>
+</ol>
+<h2 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h2><ul>
+<li>为页表再建立一张页表，称为<strong>页目录表</strong>(顶级页表、外层页表)</li>
+</ul>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/10.png" alt></p>
+<ul>
+<li>使用虚拟内存技术，在需要访问页面时，才把页面调入内存</li>
+</ul>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/11.png" alt></p>
+<h1 id="3-1-10-基本分段存储管理方式"><a href="#3-1-10-基本分段存储管理方式" class="headerlink" title="3.1_10 基本分段存储管理方式"></a>3.1_10 基本分段存储管理方式</h1><p>分页管理方式从计算机角度考虑设计；分段管理考虑了用户和程序员，满足方便用户编程、<strong>信息共享和保护、动态增长以及动态链接</strong></p>
+<p>与分页最大的区别就是：离散分配时所分配的地址空间的基本单位不同</p>
+<h2 id="分段"><a href="#分段" class="headerlink" title="分段"></a>分段</h2><p>进程按照自身<strong>逻辑关系</strong>划分为若干个段，每个段都有一个段名，从0开始编址</p>
+<blockquote>
+<p>地址结构：段号S+段内偏移量</p>
+</blockquote>
+<p>内存分配规则：以段为单位进行分配，<strong>每个段在内存中占据连续空间</strong>，但<strong>各个段之间可以不相邻</strong></p>
+<p>优点：用户编程方便，可读性强</p>
+<ol>
+<li>分段系统的逻辑地址由段号（段名）和段内地址（段内偏移量）组成</li>
+<li>段号的位数决定了每个进程最多可以分多少段</li>
+<li>段内地址的位数决定了每个段的最大长度是多少</li>
+</ol>
+<h2 id="段表"><a href="#段表" class="headerlink" title="段表"></a>段表</h2><p>目的：从物理内存中找到各个逻辑段的存放位置，所以为每个进程建立一张段映射表</p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/12.png" alt></p>
+<h2 id="地址变换"><a href="#地址变换" class="headerlink" title="地址变换"></a>地址变换</h2><p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/13.png" alt></p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/14.png" alt></p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/15.png" alt></p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/16.png" alt></p>
+<p>同样可以引入快表，加快访问</p>
+<blockquote>
+<p>可重入代码 / 纯代码：不能被修改的代码，不属于临界资源，可以进行共享</p>
+</blockquote>
+<h1 id="3-1-11-段页式管理方式"><a href="#3-1-11-段页式管理方式" class="headerlink" title="3.1_11 段页式管理方式"></a>3.1_11 段页式管理方式</h1><h2 id="分页、分段管理的优缺点分析"><a href="#分页、分段管理的优缺点分析" class="headerlink" title="分页、分段管理的优缺点分析"></a>分页、分段管理的优缺点分析</h2><ol>
+<li>分页管理<ol>
+<li>内存空间利用率高，不会产生外部碎片，只有少量内部碎片</li>
+<li>不方便按照逻辑模块实现信息的共享和保护</li>
+</ol>
+</li>
+<li>分段管理<ol>
+<li>可以方便地进行实现信息共享和保护</li>
+<li>如果段长过大，为其分配很大的连续空间会很不方便</li>
+<li>会产生外部碎片</li>
+</ol>
+</li>
+</ol>
+<h2 id="段页式管理"><a href="#段页式管理" class="headerlink" title="段页式管理"></a>段页式管理</h2><p>将进程按照逻辑模块分段，再将各段分页</p>
+<p>在一个进程中，段表只有一个，页表可能有多个</p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/17.png" alt></p>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/18.png" alt></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">错题区</span><br><span class="line">1. 动态重定位在作业的执行过程中进行</span><br><span class="line">2. 分页和分段管理提供给用户的物理地址空间谁大谁小无法确定，和划分标准有关</span><br><span class="line">3. 分页管理中的页面为操作系统感知</span><br><span class="line">4. 页表的起始地址放在寄存器中</span><br><span class="line">5. 操作系统实现分区存储管理的代价最小</span><br><span class="line">6. 外存对换区的管理应该以提高换入换出速度为主</span><br><span class="line">7. os对内存的管理采用分页管理，所划分的页面大小必须相同</span><br><span class="line">8. 对主存储器的访问以字节或字为单位</span><br><span class="line">9. 操作系统采用分页存储管理，要求每个进程拥有一张页表，进程的页表驻留在内存中（页号在PCB中，PCB也在内存中，需要时调入寄存器</span><br></pre></td></tr></table></figure>
+<h1 id="3-2-1-虚拟内存的基本概念"><a href="#3-2-1-虚拟内存的基本概念" class="headerlink" title="3.2_1 虚拟内存的基本概念"></a>3.2_1 虚拟内存的基本概念</h1><h2 id="传统存储管理方式的特征和缺点"><a href="#传统存储管理方式的特征和缺点" class="headerlink" title="传统存储管理方式的特征和缺点"></a>传统存储管理方式的特征和缺点</h2><p>指的是上面一系列存储管理方式</p>
+<ol>
+<li>许多暂时用不上的数据也会长期占用内存，导致内存利用率不高</li>
+<li>一次性：作业必须一次性全部装入内存才能开始运行<ol>
+<li>作业很大时不能全部装入内存，导致<strong>大作业无法运行</strong></li>
+<li>大量作业需要运行时，由于内存无法容纳所有作业，因此只有少量作业能运行，导致<strong>并发度下降</strong></li>
+</ol>
+</li>
+<li>驻留性：作业一但装入内存，就一直驻留在内存中直到运行结束。事实上一个时间段内只需要访问作业的一小部分数据即可正常运行，这就导致了内存中驻留大量的暂时用不到的数据</li>
+</ol>
+<h2 id="局部性原理"><a href="#局部性原理" class="headerlink" title="局部性原理"></a>局部性原理</h2><ul>
+<li>时间局部性：执行了程序中某条指令后，不久这条指令很可能再次执行；数据也是（原因是程序中存在大量循环</li>
+<li>空间局部性：访问了某个存储单元后，不久其相邻的存储单元也很可能被访问（原因是很多数据在内存中连续存放，指令也是顺序存放</li>
+</ul>
+<h2 id="虚拟内存的定义和特征"><a href="#虚拟内存的定义和特征" class="headerlink" title="虚拟内存的定义和特征"></a>虚拟内存的定义和特征</h2><ol>
+<li>基于局部性原理，<strong>在程序装入时，将程序中很快会用到的部分装入内存，暂时用不到的部分留在外存，就可以让程序开始执行</strong></li>
+<li>当<strong>访问的信息不在内存</strong>时，由<strong>操作系统负责将所需信息从外存调入内存</strong>，然后继续执行程序</li>
+<li>此时用户看来似乎有一个比实际内存大得多的内存</li>
+</ol>
+<p>虚拟内存三个主要特征</p>
+<ol>
+<li>多次性：无需在作业运行时一次装入所有内存，而是分为多次调入内存</li>
+<li>对换性：在作业运行时无需一直常驻内存，而是允许在作业运行过程中将作业换入换出</li>
+<li>虚拟性：从逻辑上扩产了内存容量，使用户看到的内存容量远大于实际的容量</li>
+</ol>
+<h2 id="如何实现虚拟内存技术"><a href="#如何实现虚拟内存技术" class="headerlink" title="如何实现虚拟内存技术"></a>如何实现虚拟内存技术</h2><p>需要建立在<strong>连续分配的内存管理方式</strong>基础上</p>
+<ul>
+<li>请求分页存储管理</li>
+<li>请求分段存储管理</li>
+<li>请求段页式存储管理</li>
+</ul>
+<p>操作系统需要提供<strong>请求调页</strong>/<strong>请求调段</strong>功能</p>
+<h1 id="3-2-2-请求分页存储管理方式"><a href="#3-2-2-请求分页存储管理方式" class="headerlink" title="3.2_2 请求分页存储管理方式"></a>3.2_2 请求分页存储管理方式</h1><p>和基本分页存储管理主要区别</p>
+<ol>
+<li>访问信息不在内存时，操作系统负责将所需信息从外存调入内存（将缺失页面从外存调入内存</li>
+<li>内存空间不够时，操作系统负责将内存中暂时不用的信息换出到外存（页面置换</li>
+</ol>
+<h2 id="页表机制"><a href="#页表机制" class="headerlink" title="页表机制"></a>页表机制</h2><ol>
+<li>系统需要知道页面是否已经调入；若没有调入，需要知道该页面在外存的位置</li>
+<li>没有修改过的页面不用浪费时间写回外存；操作系统需要记录各个页面是否被修改过的信息</li>
+</ol>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/19.png" alt></p>
+<h2 id="缺页中断机构"><a href="#缺页中断机构" class="headerlink" title="缺页中断机构"></a>缺页中断机构</h2><p>请求分页系统中，要访问的页面不在内存时，产生一个缺页中断，然后由操作系统的缺页中断处理程序处理中断</p>
+<p>此时缺页的进程阻塞，放入阻塞队列；调页完成后唤醒，放回就绪队列</p>
+<p>如果内存中有空闲块，则为进程分配一个空闲块，所缺页面装入，并修改页表中相应的页表项</p>
+<p>如果没有空闲块，则由页面置换算法选择一个页面淘汰；若页面在内存期间被修改过，则写回外存</p>
+<ol>
+<li><strong>缺页中断属于内中断</strong>，<strong>故障</strong>类型（可能被故障处理程序修复</li>
+<li>一条指令在执行期间可能产生多次中断</li>
+</ol>
+<h2 id="地址变化机构"><a href="#地址变化机构" class="headerlink" title="地址变化机构"></a>地址变化机构</h2><p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/20.png" alt></p>
+<h1 id="3-2-3-页面置换算法"><a href="#3-2-3-页面置换算法" class="headerlink" title="3.2_3 页面置换算法"></a>3.2_3 页面置换算法</h1><p>页面的换入换出需要磁盘IO，开销较大，因此好的页面置换算法需要追求更少的缺页率</p>
+<ol>
+<li>最佳置换算法（OPT<ol>
+<li>淘汰以后永不使用，或者最长时间内不再被访问的页面，<strong>保证最低缺页率</strong></li>
+<li>需要知道进程接下来访问哪些页面，最佳置换算法是无法实现的</li>
+</ol>
+</li>
+<li>先进先出置换算法（FIFO<ol>
+<li>每次淘汰的页面是最早进入内存的页面</li>
+<li>实现：用一个队列</li>
+<li>Belady异常：为进程分配的物理块数增大时，缺页次数不减反增的异常现象；只有FIFO算法会产生Belady异常</li>
+<li>先进入的页面也有可能最常被访问，算法性能差</li>
+</ol>
+</li>
+<li>最近最久未使用置换算法（LRU<ol>
+<li>每次淘汰最近最久未使用的页面</li>
+<li><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/21.png" alt></li>
+<li>实现难，虽然性能好</li>
+</ol>
+</li>
+<li>时钟置换算法（CLOCK<ol>
+<li><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/22.png" alt></li>
+</ol>
+</li>
+<li>改进型时钟置换算法<ol>
+<li><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/23.png" alt></li>
+</ol>
+</li>
+</ol>
+<h1 id="3-2-4-页面分配策略"><a href="#3-2-4-页面分配策略" class="headerlink" title="3.2_4 页面分配策略"></a>3.2_4 页面分配策略</h1><blockquote>
+<p>驻留集：请求分页存储管理中给进程分配的物理块的集合</p>
+</blockquote>
+<ol>
+<li>固定分配：进程运行期间驻留集大小不变</li>
+<li>可变分配：进程运行期间驻留集大小可变</li>
+<li>局部置换：缺页时只能选进程自己的物理块进行置换</li>
+<li>全局置换：可以将操作系统保留的空闲物理块分配给缺页进程，也可以将别的进程持有的物理块置换到外存，再分配给缺页进程</li>
+</ol>
+<p>页面置换、分配策略</p>
+<ol>
+<li>固定分配局部置换</li>
+<li>可变分配全局置换：只要缺页就分配新物理块</li>
+<li>可变分配局部置换：根据缺页频率动态地增减进程的物理块</li>
+</ol>
+<h2 id="何时调入页面？"><a href="#何时调入页面？" class="headerlink" title="何时调入页面？"></a>何时调入页面？</h2><ol>
+<li>预调页策略：一次调入若干个相邻的页面。主要用于进程的首次调入</li>
+<li>请求调页策略：缺页才将所缺页面调入内存</li>
+</ol>
+<h2 id="从何处调入页面？"><a href="#从何处调入页面？" class="headerlink" title="从何处调入页面？"></a>从何处调入页面？</h2><p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/24.png" alt></p>
+<h2 id="抖动（颠簸）现象"><a href="#抖动（颠簸）现象" class="headerlink" title="抖动（颠簸）现象"></a>抖动（颠簸）现象</h2><blockquote>
+<p>刚刚换出的页面马上又要换入内存，刚刚换入的页面马上又要换出外存<br>产生抖动主要原因是：进程频繁访问的页面数目高于可用的物理块数（分配给进程的物理块不够  </p>
+<p>工作集：某段时间间隔里进程实际访问页面的集合</p>
+</blockquote>
+<p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/25.png" alt></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研操作系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-行列式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/05/%E8%A1%8C%E5%88%97%E5%BC%8F/">行列式</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/05/%E8%A1%8C%E5%88%97%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2022-03-05T12:08:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>求解二元一次方程组</p>
+<script type="math/tex; mode=display">
+    \left\{
+    \begin{aligned}
+        a_1x+b_1y = c_1 \\
+        a_2x+b_2y = c_2 \\
+    \end{aligned}
+    \right.</script><p>得到</p>
+<script type="math/tex; mode=display">
+    \left\{
+    \begin{aligned}
+        x = \frac{c_1b_2-c_2b_1}{a_1b_2-a_2b_1} \\
+        y = \frac{c_1a_2-c_2a_1}{a_2b_1-a_1b_2} \\
+    \end{aligned}
+    \right.</script>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研线性代数</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/05/%E8%A1%8C%E5%88%97%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-线性表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -166,10 +1186,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="2-1-线性表的定义和基本操作"><a href="#2-1-线性表的定义和基本操作" class="headerlink" title="2.1 线性表的定义和基本操作"></a>2.1 线性表的定义和基本操作</h1><blockquote>
-<p>具有<strong>相同</strong>数据类型的n个数据元素的有限序列，n为表长<br>n=0时为空表<br>可表示为 L = (a1, a2, …, an)</p>
+        <h1 id="2-1-线性表的定义和基本操作"><a href="#2-1-线性表的定义和基本操作" class="headerlink" title="2.1 线性表的定义和基本操作"></a>2.1 线性表的定义和基本操作</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>具有<strong>相同</strong>数据类型的$n$个数据元素的<strong>有限序列</strong>，$n$为表长<br>$n=0$时为空表<br>可表示为 $L = (a_1, a_2, …, a_n)$</p>
 </blockquote>
-
+<ol>
+<li>$a_i$时是线性表中的第$i$个元素</li>
+<li>$a_1$为表头元素，$a_n$为表尾元素</li>
+<li>除了第一个元素外，每个元素有且只有一个<strong>直接前驱</strong>；除了最后一个元素外，每个元素有且只有一个<strong>直接后继</strong></li>
+</ol>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><p>创建、销毁、增删改查</p>
+<h1 id="2-2-1-顺序表的定义"><a href="#2-2-1-顺序表的定义" class="headerlink" title="2.2_1 顺序表的定义"></a>2.2_1 顺序表的定义</h1><blockquote>
+<p>用顺序存储的方式实现线性表<br>顺序存储：逻辑上相邻的元素存储在物理位置上也相邻的存储单元中<br>元素之间的关系由存储单元的邻接关系来体现</p>
+</blockquote>
+<ol>
+<li>由于元素类型相同，所以每个数据元素所占空间大小相同。因此如果知道其中一个元素的地址，可以很容易的得到每个元素的内存地址</li>
+<li><code>sizeof(ElemType)</code>可以得到不同类型变量占据内存空间大小</li>
+</ol>
+<h2 id="顺序表的实现——静态分配"><a href="#顺序表的实现——静态分配" class="headerlink" title="顺序表的实现——静态分配"></a>顺序表的实现——静态分配</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MaxSize 10;</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;</span><br><span class="line">    ElemType data[MaxSize];</span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line">&#125;SqList;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化一个顺序表</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">InitList</span><span class="params">(SqList&amp; L)</span></span>&#123;</span><br><span class="line">    <span class="comment">// for(int i=0;i&lt;MaxSize;++i)&#123;</span></span><br><span class="line">    <span class="comment">//     L.data[i] = 0;</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    L.length = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="顺序表的实现——动态分配"><a href="#顺序表的实现——动态分配" class="headerlink" title="顺序表的实现——动态分配"></a>顺序表的实现——动态分配</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> InitSize 10</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>&#123;</span><br><span class="line">    ElemType* data;</span><br><span class="line">    <span class="type">int</span> MaxSize;</span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line">&#125;SeqList;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化顺序表</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">InitList</span><span class="params">(SqList&amp; L)</span></span>&#123;</span><br><span class="line">    L.data = (ElemType*) <span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(ElemType)*InitSize); <span class="comment">// malloc 函数 + 强制类型转换</span></span><br><span class="line">    L.length = <span class="number">0</span>;</span><br><span class="line">    L.MaxSize = InitSize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="顺序表的特点"><a href="#顺序表的特点" class="headerlink" title="顺序表的特点"></a>顺序表的特点</h2><ol>
+<li>随机访问：可以在O(1)时间内找到第i个元素</li>
+<li>存储密度高</li>
+<li>扩展容量不方便；插入删除元素不方便</li>
+</ol>
+<h1 id="2-2-2-顺序表的插入和删除"><a href="#2-2-2-顺序表的插入和删除" class="headerlink" title="2.2_2 顺序表的插入和删除"></a>2.2_2 顺序表的插入和删除</h1><h2 id="ListInsert-amp-L-i-e"><a href="#ListInsert-amp-L-i-e" class="headerlink" title="ListInsert(&amp;L, i, e)"></a>ListInsert(&amp;L, i, e)</h2>
       
 
       
@@ -360,7 +1400,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="3-1-微分中值定理"><a href="#3-1-微分中值定理" class="headerlink" title="3.1 微分中值定理"></a>3.1 微分中值定理</h1><h2 id="引导"><a href="#引导" class="headerlink" title="引导"></a>引导</h2><ol>
+        <h1 id="常用泰勒展开"><a href="#常用泰勒展开" class="headerlink" title="常用泰勒展开"></a>常用泰勒展开</h1><p>根据和$y=x$的关系，反函数的关系记忆以下四个</p>
+<ul>
+<li>$\sin{x}=x-\frac{1}{6}x^3+o(x^3)$</li>
+<li>$\arcsin{x}=x+\frac{1}{6}x^3+o(x^3)$</li>
+<li>$\tan{x}=x+\frac{1}{3}x^3+o(x^3)$</li>
+<li>$\arctan{x}=x-\frac{1}{3}x^3+o(x^3)$</li>
+</ul>
+<p>由$(\sin{x})’=\cos{x}$</p>
+<ul>
+<li>$\cos{x}=1-\frac{1}{2}x^2+\frac{1}{4!}x^4+o(x^4)$</li>
+</ul>
+<p>正负相间</p>
+<ul>
+<li>$\ln{(1+x)}=\frac{x}{1}-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3)$</li>
+</ul>
+<p>全为正</p>
+<ul>
+<li>$e^x=\frac{x^0}{0!}+\frac{x^1}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$</li>
+<li>$(1+x)^a=1+ax+\frac{a(a-1)}{2!}x^2+o(x^2)$</li>
+</ul>
+<h1 id="3-1-微分中值定理"><a href="#3-1-微分中值定理" class="headerlink" title="3.1 微分中值定理"></a>3.1 微分中值定理</h1><h2 id="引导"><a href="#引导" class="headerlink" title="引导"></a>引导</h2><ol>
 <li>极值点<ol>
 <li>设 $y=f(x), x\in D, x_0\in D$ </li>
 <li>∃ $\delta&gt;0$, $0&lt;|x-x_0|&lt;\delta$ 时，$f(x)&gt;f(x_0)$，则称$f(x_0)$ 为极小值点</li>
@@ -456,10 +1516,14 @@
 <li>$f(x)=\ln{x}$</li>
 </ul>
 <p>$f(x)=\ln{x}=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+…+\frac{(-1)^{n-1}}{n}x^n+o(x^n)$</p>
+<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><ul>
+<li>$\frac{A}{B}$型极限，展开到同阶</li>
+<li>$A-B$型极限，展开到系数不相等的$x$的最低次幂为止 </li>
+</ul>
 <h1 id="3-4-函数单调性与曲线凹凸性"><a href="#3-4-函数单调性与曲线凹凸性" class="headerlink" title="3.4 函数单调性与曲线凹凸性"></a>3.4 函数单调性与曲线凹凸性</h1><h2 id="函数单调性"><a href="#函数单调性" class="headerlink" title="函数单调性"></a>函数单调性</h2><p>定义</p>
 <ul>
 <li>对于函数$y=f(x), x\in{D}$，如果 $\forall x_1, x_2\in{D}$且 $x_1&lt;x_2$, 有$f(x_1)&lt;f(x_2)$ ,则称$f(x)$ 在 $D$ 上单调递增</li>
-<li>对于函数$y=f(x), x\in{D}$，如果 $\forall x_1, x_2\in{D}$且 $x_1<x_2$, 有$f(x_1)>f(x_2)$ ,则称$f(x)$ 在 $D$ 上单调递减</x_2$,></li>
+<li>对于函数$y=f(x), x\in{D}$ ，如果 $\forall x_1, x_2\in{D}$且 $x_1<x_2$ , 有$f(x_1)>f(x_2)$，则称$f(x)$ 在 $D$ 上单调递减</x_2$></li>
 </ul>
 <p>判断</p>
 <p>$y=f(x)\in{C[a, b]},(a,b)$内可导</p>
@@ -481,18 +1545,79 @@
 <h3 id="判别方法"><a href="#判别方法" class="headerlink" title="判别方法"></a>判别方法</h3><p>引理</p>
 <p>若 $f’’(x)&gt;0$ ，则当 $x\neq{x_0}$, 有 $f(x)&gt;f(x_0)+f’(x_0)(x-x_0)$</p>
 <p>若 $f’’(x)&lt;0$ ，则当 $x\neq{x_0}$, 有 $f(x)&lt;f(x_0)+f’(x_0)(x-x_0)$</p>
-<p>$f(x)\in{C[a,b]，(a,b)}内二阶可导，则</p>
+<p>$f(x)\in{C[a,b]，(a,b)}$内二阶可导，则</p>
 <ul>
 <li>若 $f’’(x)&gt;0, (a&lt;x&lt;b)$，则 $y=f(x)$ 图像在 $[a,b]$ 上是凹的</li>
 <li>若 $f’’(x)&lt;0, (a&lt;x&lt;b)$，则 $y=f(x)$ 图像在 $[a,b]$ 上是凸的</li>
 </ul>
 <h1 id="3-5-极值和最值"><a href="#3-5-极值和最值" class="headerlink" title="3.5 极值和最值"></a>3.5 极值和最值</h1><h2 id="极值：极大值和极小值"><a href="#极值：极大值和极小值" class="headerlink" title="极值：极大值和极小值"></a>极值：极大值和极小值</h2><p>对于函数 $y=f(x),x\in{D}, x_0\in{D}$</p>
 <ul>
-<li>如果 $\exist{\delta}&gt;0, 0&lt;|x-x_0|&lt;\delta$ 时,有 $f(x_0)&gt;f(x)$, 称 $x_0$ 为 $f(x)$ 的一个极大值点, $f(x_0)$ 为极大值</li>
-<li>如果 $\exist{\delta}&gt;0, 0&lt;|x-x_0|&lt;\delta$ 时,有 $f(x_0)&lt;f(x)$, 称 $x_0$ 为 $f(x)$ 的一个极小值点, $f(x_0)$ 为极小值</li>
+<li>如果 $\exist {\delta}&gt;0, 0&lt;|x-x_0|&lt;\delta$ 时,有 $f(x_0)&gt;f(x)$, 称 $x_0$ 为 $f(x)$ 的一个极大值点, $f(x_0)$ 为极大值</li>
+<li>如果 $\exist {\delta}&gt;0, 0&lt;|x-x_0|&lt;\delta$ 时,有 $f(x_0)&lt;f(x)$, 称 $x_0$ 为 $f(x)$ 的一个极小值点, $f(x_0)$ 为极小值</li>
 </ul>
 <p>$x=a$ 为极值点且 $f(x)$ 可导，可以推出 $f’(a)=0$, 反之不行</p>
-<h3 id="判别方法-1"><a href="#判别方法-1" class="headerlink" title="判别方法"></a>判别方法</h3>
+<h3 id="判别方法-1"><a href="#判别方法-1" class="headerlink" title="判别方法"></a>判别方法</h3><h4 id="法1"><a href="#法1" class="headerlink" title="法1"></a>法1</h4><p>如果</p>
+<script type="math/tex; mode=display">
+\left\{
+    \begin{aligned}
+    x<x_0时，f'(x)<0 \\
+    x>x_0时，f'(x)>0
+    \end{aligned}
+\right.</script><p>则$x=x_0$为极小点</p>
+<p>如果</p>
+<script type="math/tex; mode=display">
+\left\{
+    \begin{aligned}
+    x<x_0时，f'(x)>0 \\
+    x>x_0时，f'(x)<0
+    \end{aligned}
+\right.</script><p>则$x=x_0$为极大点</p>
+<h4 id="法二（第二充分条件"><a href="#法二（第二充分条件" class="headerlink" title="法二（第二充分条件"></a>法二（第二充分条件</h4><p>设$f’(x_0) = 0$，如果</p>
+<ol>
+<li>$f’’(x)&gt;0$，$x_0$为极小点</li>
+<li>$f’’(x)&lt;0$，$x_0$为极大点</li>
+</ol>
+<blockquote>
+<p>证明<br>$f’’(x_0)&gt;0$，则$f’’(x_0)=lim_{x\rightarrow{x_0}}\frac{f’(x)}{x-x_0}&gt;0$<br>由于函数极限保号性<br>$\exist\delta&gt;0, 0&lt;|x-x_0|&lt;\delta$时，$\frac{f’(x)}{x-x_0}&gt;0$<br>分类讨论可以转化为法1</p>
+</blockquote>
+<p>弊端：不能讨论$f’’(x_0)=0$的情况</p>
+<p><img src="/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/4.png" alt></p>
+<p><img src="/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/5.png" alt></p>
+<h2 id="最值（最大值和最小值"><a href="#最值（最大值和最小值" class="headerlink" title="最值（最大值和最小值"></a>最值（最大值和最小值</h2><p>$f(x)\in{C[a,b]}$，找到$f’(x)=0或不存在$的所有点（驻点和不可导点），$x_1,x_2,…,x_n$</p>
+<p>最小值为$\min{f(a), f(b), f(x_1), …, f(x_n)}$</p>
+<p>最大值为$\max{f(a), f(b), f(x_1), …, f(x_n)}$</p>
+<blockquote>
+<p>例题：证明$x\in{[0,1]}$时，$\frac{1}{2^{p-1}}\leq{x^p+(1-x)^p}\leq{1}$<br>中间设为函数，求其最大最小值</p>
+</blockquote>
+<p>应用题：构造出目标函数，求解最大值 /  最小值</p>
+<h1 id="3-6-函数图像描绘"><a href="#3-6-函数图像描绘" class="headerlink" title="3.6 函数图像描绘"></a>3.6 函数图像描绘</h1><h2 id="渐近线"><a href="#渐近线" class="headerlink" title="渐近线"></a>渐近线</h2><h3 id="水平渐近线"><a href="#水平渐近线" class="headerlink" title="水平渐近线"></a>水平渐近线</h3><blockquote>
+<p>曲线$L:y=f(x)$,若$lim_{x\rightarrow{\infty}}f(x)=A$，称$f(x)$有水平渐近线$y=A$</p>
+</blockquote>
+<h3 id="铅直渐近线"><a href="#铅直渐近线" class="headerlink" title="铅直渐近线"></a>铅直渐近线</h3><blockquote>
+<p>曲线$L:y=f(x)$,若$lim_{x\rightarrow{a}}f(x)={\infty}$，称$f(x)$有铅直渐近线$x=A$</p>
+</blockquote>
+<p>铅直渐近线只会出现在函数的间断点处</p>
+<h3 id="斜渐近线"><a href="#斜渐近线" class="headerlink" title="斜渐近线"></a>斜渐近线</h3><blockquote>
+<p>曲线$L:y=f(x)$,若$lim_{x\rightarrow{\infty}}\frac{f(x)}{x}=A(A\neq0,\infty), lim_{x\rightarrow{\infty}}(f(x)-Ax)=B$，称$f(x)$有斜渐近线$y=Ax+B$</p>
+</blockquote>
+<p>求解斜渐近线步骤1. 求A；2. 求B</p>
+<h2 id="作图"><a href="#作图" class="headerlink" title="作图"></a>作图</h2><ol>
+<li>$x$的定义域$D$</li>
+<li>增减性，$f’(x)$</li>
+<li>凹凸性，$f’’(x)$</li>
+<li>渐近线</li>
+<li>列表，画图</li>
+</ol>
+<h1 id="3-7-弧微分与曲率"><a href="#3-7-弧微分与曲率" class="headerlink" title="3.7 弧微分与曲率"></a>3.7 弧微分与曲率</h1><h2 id="弧微分"><a href="#弧微分" class="headerlink" title="弧微分"></a>弧微分</h2><p>$ds=\sqrt{(dx)^2+(dy)^2}$</p>
+<ol>
+<li>$L:y=f(x)$，则$ds=\sqrt{1+f^{‘2}(x)}dx$</li>
+<li>$L:\left\{\begin{aligned}<br> x=\phi(t) \\<br> y=\psi(t) \\<br>\end{aligned}\right.$，则$ds=\sqrt{\phi^{‘2}(t)+\psi^{‘2}(t)}dt$</li>
+</ol>
+<h2 id="曲率与曲率半径"><a href="#曲率与曲率半径" class="headerlink" title="曲率与曲率半径"></a>曲率与曲率半径</h2><ol>
+<li>曲率$K=|\frac{y’’}{(1+y^{‘2})^{\frac{3}{2}}}|$</li>
+<li>曲率半径$r=\frac{1}{K}$</li>
+</ol>
+
       
 
       
@@ -1430,867 +2555,9 @@
 
 
   
-    <article id="post-导数与微分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/">导数与微分</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/" class="archive-article-date">
-  	<time datetime="2022-02-24T05:30:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="2-1-导数的概念"><a href="#2-1-导数的概念" class="headerlink" title="2.1 导数的概念"></a>2.1 导数的概念</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>y=f(x) x∈D, x0∈D, x0+∆x∉D, ∆y=f(x0+∆x)-f(x0)<br>若 lim(∆x-&gt;0) ∆y/∆x 存在，称f(x)在x=x0可导，该极限称为f(x)在x=x0的导数，记作dy/dx|x=x0  </p>
-</blockquote>
-<ol>
-<li>导数的等价定义：f’(x0) = lim(∆x-&gt;0) (f(x0+∆x)-f(x0))/∆x = lim(x-&gt;x0) (f(x)-f(x0))/(x-x0)</li>
-<li>f(x)在某一点可导，则在该点出必定连续</li>
-<li>导数存在的<strong>充要条件</strong>是左导数和右导数存在并相等</li>
-<li><strong>可导一定连续 连续不一定可导</strong></li>
-</ol>
-<p>考点：函数在某一点的可导性</p>
-<ul>
-<li>先看在该点是否<strong>连续</strong>，不连续一定不可导</li>
-<li>求左右导数，看是否存在且相等</li>
-</ul>
-<h2 id="常用导数"><a href="#常用导数" class="headerlink" title="常用导数"></a>常用导数</h2><p>求导的主要对象：初等函数</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>f(x)</th>
-<th>f’(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>C（常数）</td>
-<td>0</td>
-</tr>
-<tr>
-<td>x^n</td>
-<td>n*x^(n-1)</td>
-</tr>
-<tr>
-<td>a^x（a&gt;0 &amp;&amp; a!=1）</td>
-<td>a^x * ln(a)</td>
-</tr>
-<tr>
-<td>log(a, x)（a&gt;0 &amp;&amp; a!=1）</td>
-<td>1/(x*ln(a))</td>
-</tr>
-<tr>
-<td>sin x</td>
-<td>cos x</td>
-</tr>
-<tr>
-<td>cos x</td>
-<td>-sin x</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="2-2-求导法则"><a href="#2-2-求导法则" class="headerlink" title="2.2 求导法则"></a>2.2 求导法则</h1><h2 id="四则运算法则"><a href="#四则运算法则" class="headerlink" title="四则运算法则"></a>四则运算法则</h2><blockquote>
-<p>设u(x) v(x)可导<br>(u(x)+v(x))’ = u’(x)+v’(x)<br>(u(x)-v(x))’ = u’(x)-v’(x)<br>(u(x)v(x))’ = u’(x)v(x)+u(x)v’(x)<br>v(x)!=0时，(u(x)/v(x))’ = ((u’(x)v(x)-u(x)v’(x))/(v(x)^2))<br>推广：<br>(ku)’ = ku’ k为常数<br>(uvw)’ = u’vw + uv’w + uvw’  </p>
-</blockquote>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>f(x)</th>
-<th>f’(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tan x</td>
-<td>sec^2(x)</td>
-</tr>
-<tr>
-<td>cot x</td>
-<td>-csc^2(x)</td>
-</tr>
-<tr>
-<td>sec x</td>
-<td>sec x * tan x</td>
-</tr>
-<tr>
-<td>csc x</td>
-<td>-csc x * cot x</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="反函数求导法则"><a href="#反函数求导法则" class="headerlink" title="反函数求导法则"></a>反函数求导法则</h2><p>前提 ：y=f(x) 严格单调，才能有反函数</p>
-<blockquote>
-<p>设y=f(x)可导并且f’(x)!=0，则x=𝜙(y)可导<br>且 𝜙‘(y) = 1/f’(x)</p>
-</blockquote>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>f(x)</th>
-<th>f’(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>arcsin x</td>
-<td>1/((1-x^2)^0.5)</td>
-</tr>
-<tr>
-<td>arccos x</td>
-<td>-1/((1-x^2)^0.5)</td>
-</tr>
-<tr>
-<td>arctan x</td>
-<td>1/(1+x^2)</td>
-</tr>
-<tr>
-<td>arccot x</td>
-<td>-1(1+x^2)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="复合函数求导法则——链式法则"><a href="#复合函数求导法则——链式法则" class="headerlink" title="复合函数求导法则——链式法则"></a>复合函数求导法则——链式法则</h2><blockquote>
-<p>若y=f(u)可导，u=𝜙(x)可导且𝜙’(x)!=0，则y=f[𝜙(x)]可导，且dy/dx = f’[𝜙(x)]*𝜙’(x)  </p>
-</blockquote>
-<h1 id="2-3-高阶导数"><a href="#2-3-高阶导数" class="headerlink" title="2.3 高阶导数"></a>2.3 高阶导数</h1><p>二阶及以上的导数称为高阶导数</p>
-<h2 id="方法一：归纳法"><a href="#方法一：归纳法" class="headerlink" title="方法一：归纳法"></a>方法一：归纳法</h2><p>通过前几项，找出规律</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">y = sin x</span><br><span class="line">可以归纳出 sin(x)^(n) = sin(x+(n𝛱)/2)</span><br><span class="line"></span><br><span class="line">同理 cos(x)^(n) = cos(x+(n𝛱)/2)</span><br></pre></td></tr></table></figure>
-<p><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/1.png" alt></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>$f(x)$</th>
-<th>$f^{(n)}(x)$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$\sin{x}$</td>
-<td>$\sin{x+\frac{(n\pi)}{2}}$</td>
-</tr>
-<tr>
-<td>$\cos{x}$</td>
-<td>$\cos{x+\frac{(n\pi)}{2}}$</td>
-</tr>
-<tr>
-<td>1/(ax+b)</td>
-<td>(-1)^n <em> n! </em> a^n /(ax+b)^(n+1)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="方法二：公式法"><a href="#方法二：公式法" class="headerlink" title="方法二：公式法"></a>方法二：公式法</h2><p><strong>莱布尼茨公式</strong>：</p>
-<p>$(uv)^{(n)}=C^0_n u^{(n)}v+C^1_n u^{(n-1)}v^{(1)}+C^2_n u^{(n-2)}v^{(2)}+……+C^n_n uv^{(n)}$</p>
-<p>其中</p>
-<p>$C^m_n=\frac{n!}{m!\cdot(n-m)!}$</p>
-<h1 id="2-4-隐函数和参数方程确定的函数求导"><a href="#2-4-隐函数和参数方程确定的函数求导" class="headerlink" title="2.4 隐函数和参数方程确定的函数求导"></a>2.4 隐函数和参数方程确定的函数求导</h1><h2 id="隐函数"><a href="#隐函数" class="headerlink" title="隐函数"></a>隐函数</h2><ul>
-<li>显函数：$y=f(x)$</li>
-<li>隐函数：$F(x,y)=0$ 理论上可以求出 $y=f(x)$，但不一定解得出来。这个求解的过程叫做<strong>隐函数的显式化</strong></li>
-</ul>
-<p>隐函数求 $\frac{dy}{dx}$ 方法：<strong>$y看成𝜙(x)$，两边同时对$x$求导</strong></p>
-<p><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/2.png" alt></p>
-<h2 id="参数方程确定的函数求导"><a href="#参数方程确定的函数求导" class="headerlink" title="参数方程确定的函数求导"></a>参数方程确定的函数求导</h2><p>参数方程形如：</p>
-<script type="math/tex; mode=display">f(x)=\left\{
-\begin{aligned}
-x=\phi{(t)}\\ 
-y=\psi{(t)}\\
-\end{aligned}
-\right.</script><p>确定了 $y=y(x)$。若$\phi{(t)}$ 和 $\psi{(t)}$ 可导，且$\phi{(t)\neq0}$  </p>
-<p>则$\frac{dy}{dx}=\frac{\psi^{‘}{(t)}}{\phi^{‘}{(t)}}$</p>
-<p>$\frac{d^2y}{dx^2}=\frac{d(\frac{dy}{dx})}{dx}$ 同乘以$dt$ 可以推出 $\frac{d^2y}{dx^2}=\frac{d\frac{\frac{dy}{dx}}{dt}}{\phi’(t)}$</p>
-<h1 id="2-5-微分"><a href="#2-5-微分" class="headerlink" title="2.5 微分"></a>2.5 微分</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>$y=f(x),x\in{D},x_0+\Delta{x}\in{D},\Delta{y}=f(x_0+\Delta{x})-f(x_0)$，如果$\Delta{y} = A\Delta{x}+o(\Delta{x})$，则称$y=f(x)$在$x=x_0$可微，将$A\Delta{x}$称为在该点的微分<br>记作$dy\bigg|_{x=x_0}=A\Delta{x}=Adx$</p>
-</blockquote>
-<ol>
-<li><strong>可导和可微等价</strong></li>
-<li>$A=f’(x_0)$</li>
-<li>若 $y=f(x)$可导，则 $dy=df(x)=f’(x)dx$</li>
-</ol>
-<p>一些数学意义</p>
-<p><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/3.png" alt></p>
-<ol>
-<li>若 $y=f(x)$ 在 $x=x_0$ 可微，则 $\Delta{y}-dy=o(\Delta{x})$</li>
-</ol>
-<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>$f(x)$</th>
-<th>$d(f(x))$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$C$</td>
-<td>0</td>
-</tr>
-<tr>
-<td>$x^a$</td>
-<td>$ax^{a-1}dx$</td>
-</tr>
-<tr>
-<td>$a^x$</td>
-<td>$a^x\ln{a}dx$</td>
-</tr>
-<tr>
-<td>$\log_a{x}$</td>
-<td>$\frac{1}{x\ln{a}}dx$</td>
-</tr>
-<tr>
-<td>$\sin{x}$</td>
-<td>$\cos{x}dx$</td>
-</tr>
-<tr>
-<td>$\cos{x}$</td>
-<td>$-\sin{x}dx$</td>
-</tr>
-<tr>
-<td>$\tan{x}$</td>
-<td>$\sec^2{x}dx$</td>
-</tr>
-<tr>
-<td>$\cot{x}$</td>
-<td>$-\csc^2{x}dx$</td>
-</tr>
-<tr>
-<td>$\sec{x}$</td>
-<td>$\sec{x}\tan{x}dx$</td>
-</tr>
-<tr>
-<td>$\csc{x}$</td>
-<td>$-\csc{x}\cot{x}dx$</td>
-</tr>
-<tr>
-<td>$\arcsin{x}$</td>
-<td>$\frac{1}{\sqrt{1-x^2}}dx$</td>
-</tr>
-<tr>
-<td>$\arccos{x}$</td>
-<td>$-\frac{1}{\sqrt{1-x^2}}dx$</td>
-</tr>
-<tr>
-<td>$\arctan{x}$</td>
-<td>$\frac{1}{1+x^2}dx$</td>
-</tr>
-<tr>
-<td>$arccot {x}$</td>
-<td>$-\frac{1}{1+x^2}dx$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="四则法则"><a href="#四则法则" class="headerlink" title="四则法则"></a>四则法则</h3><ol>
-<li>$d(u \pm v)=du \pm dv$</li>
-<li>$d(uv) = udv + vdu$</li>
-<li>$(\frac{u}{v})’ = \frac{vdu - udv}{v^2}$</li>
-</ol>
-<h3 id="复合"><a href="#复合" class="headerlink" title="复合"></a>复合</h3><p>一阶微分形式不变性：$y=f(u)$, $u=g(x)$,则 $dy=f’(u)du$</p>
-<h2 id="近似计算"><a href="#近似计算" class="headerlink" title="近似计算"></a>近似计算</h2><p>$f(x_0+\Delta{x})\approx f(x_0)+f’(x_0)(x-\Delta{x})$</p>
-<p>$f(x)\approx f(x_0)+f’(x_0)(x-x_0)$</p>
-<blockquote>
-<p>例题：求 sin30.5 $\sqrt{1.04}=?$</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研高等数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode-1706-球会落何处" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/24/leetcode-1706-%E7%90%83%E4%BC%9A%E8%90%BD%E4%BD%95%E5%A4%84/">leetcode 1706. 球会落何处</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/24/leetcode-1706-%E7%90%83%E4%BC%9A%E8%90%BD%E4%BD%95%E5%A4%84/" class="archive-article-date">
-  	<time datetime="2022-02-24T04:10:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/where-will-the-ball-fall/">这里做题</a></p>
-<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><img src="/2022/02/24/leetcode-1706-%E7%90%83%E4%BC%9A%E8%90%BD%E4%BD%95%E5%A4%84/1.png" alt></p>
-<p><img src="/2022/02/24/leetcode-1706-%E7%90%83%E4%BC%9A%E8%90%BD%E4%BD%95%E5%A4%84/2.png" alt></p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>观察到数据量比较小，因此直接模拟就好</p>
-<ul>
-<li>难度：Medium</li>
-<li>技能：模拟</li>
-</ul>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">findBall</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = grid.<span class="built_in">size</span>(), m = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(m, <span class="number">-1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;m;++j)&#123;</span><br><span class="line">            <span class="type">int</span> col = j;    <span class="comment">// 球在哪一列</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; row : grid)&#123;</span><br><span class="line">                <span class="type">int</span> direction = row[col];</span><br><span class="line">                col += direction;   <span class="comment">// 向下滚</span></span><br><span class="line">                <span class="keyword">if</span>(col&lt;<span class="number">0</span> || col&gt;=m ||row[col]!=direction)&#123;</span><br><span class="line">                    col = <span class="number">-1</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(col&gt;=<span class="number">0</span>)  ans[j] = col;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/24/leetcode-1706-%E7%90%83%E4%BC%9A%E8%90%BD%E4%BD%95%E5%A4%84/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode-917-仅仅反转字母" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/23/leetcode-917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/">leetcode 917. 仅仅反转字母</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/23/leetcode-917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/" class="archive-article-date">
-  	<time datetime="2022-02-23T11:05:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/2022/02/23/leetcode-917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/1.png" alt></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/23/leetcode-917-%E4%BB%85%E4%BB%85%E5%8F%8D%E8%BD%AC%E5%AD%97%E6%AF%8D/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-函数与极限" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/">函数与极限</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/" class="archive-article-date">
-  	<time datetime="2022-02-21T14:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-1-函数"><a href="#1-1-函数" class="headerlink" title="1.1 函数"></a>1.1 函数</h1><h2 id="一些定义"><a href="#一些定义" class="headerlink" title="一些定义"></a>一些定义</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>x，y为两个变量，x ∈ D，如果 x ∈ D，总存在<strong>唯一确定</strong>的y与x对应，称y为x的函数，记作 y = f(x)</p>
-<p>D 称为定义域 </p>
-<p>R = {y| y = f(x), x ∈ D} 称为函数的值域</p>
-<ul>
-<li>∀ 表示任意</li>
-<li>∃ 表示存在</li>
-</ul>
-<h3 id="特殊的函数"><a href="#特殊的函数" class="headerlink" title="特殊的函数"></a>特殊的函数</h3><ul>
-<li>符号函数</li>
-</ul>
-<p>sgn x = -1, x &lt; 0;  0,  x = 0;  1,  x &gt; 0</p>
-<ul>
-<li>迪利克雷函数</li>
-</ul>
-<p>D(x) = 1,  x ∈ Q （有理数）; 0,  x ∈ R\Q</p>
-<ul>
-<li>取整函数 向下取整</li>
-</ul>
-<p>y = [x]</p>
-<h3 id="反函数"><a href="#反函数" class="headerlink" title="反函数"></a>反函数</h3><blockquote>
-<p>若函数 y=f(x) 严格单调，记 x=g(y) 为f的反函数</p>
-</blockquote>
-<p>反函数注意<strong>不要对调y和x</strong></p>
-<h3 id="基本初等函数"><a href="#基本初等函数" class="headerlink" title="基本初等函数"></a>基本初等函数</h3><blockquote>
-<p>幂 指 对 三角 反三角</p>
-</blockquote>
-<ul>
-<li>x^a</li>
-<li>a^x (a&gt;0 &amp;&amp; a!=1)</li>
-<li>log(a, x)</li>
-<li>sinx cosx tanx cotx secx cscx</li>
-<li>arcsinx arccosx arctanx arccotx</li>
-</ul>
-<h3 id="初等函数"><a href="#初等函数" class="headerlink" title="初等函数"></a>初等函数</h3><blockquote>
-<p>由<strong>常数</strong>和<strong>基本初等函数</strong>经过<strong>有限次四则运算和复合运算</strong>得到的函数</p>
-</blockquote>
-<h2 id="初等函数的性质"><a href="#初等函数的性质" class="headerlink" title="初等函数的性质"></a>初等函数的性质</h2><h3 id="奇偶性"><a href="#奇偶性" class="headerlink" title="奇偶性"></a>奇偶性</h3><blockquote>
-<p>D 首先必须<strong>关于原点对称</strong>！否则就免谈</p>
-</blockquote>
-<ul>
-<li>f(-x) = f(x)  偶函数</li>
-<li>f(-x) = -f(x) 奇函数</li>
-</ul>
-<h3 id="单调性"><a href="#单调性" class="headerlink" title="单调性"></a>单调性</h3><p>y = f(x) x ∈ D</p>
-<blockquote>
-<p>∀ x1, x2 ∈ D 且 x1 &lt; x2，有 f(x1) &lt; f(x2)，称f(x)在D上严格单调递增<br>∀ x1, x2 ∈ D 且 x1 &lt; x2，有 f(x1) &gt; f(x2)，称f(x)在D上严格单调递减</p>
-</blockquote>
-<h3 id="有界性"><a href="#有界性" class="headerlink" title="有界性"></a>有界性</h3><p>y = f(x) x ∈ D</p>
-<blockquote>
-<p>∃ M&gt;0，对于 ∀ x ∈ D，有 |f(x)| &lt;= M，称f(x)在D上有界<br>∃ M1，对于 ∀ x ∈ D，f(x) &gt;= M1，称函数有下界 M1<br>∃ M2，对于 ∀ x ∈ D，f(x) &lt;= M2，称函数有上界 M2 </p>
-</blockquote>
-<p>函数有界的<strong>充分必要条件</strong>是函数既有上界又有下界</p>
-<h3 id="周期性"><a href="#周期性" class="headerlink" title="周期性"></a>周期性</h3><p>y = f(x) x ∈ D</p>
-<blockquote>
-<p>如果 ∃ T&gt;0，使得 ∀ x ∈ D (x+T ∈ D)，有 f(x+T) = f(x)，称f(x)是具有周期性</p>
-</blockquote>
-<h1 id="1-2-数列极限"><a href="#1-2-数列极限" class="headerlink" title="1.2 数列极限"></a>1.2 数列极限</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>∀ ℇ &lt; 0, ∃ N &gt; 0, 当 n &gt; N 时，|an - A| &lt; ℇ，称 {an} 的极限为 A<br>记作 lim(n-&gt;∞) an = A</p>
-</blockquote>
-<p>考点：用数列极限的定义证明 an 是极限</p>
-<p>做法：根据定义，解出 N 即可</p>
-<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><blockquote>
-<p>唯一性：数列若有极限，该极限唯一</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">证明数列极限唯一性</span><br><span class="line">取 ℇ = (A - B) / 2</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>有界性：如果数列有极限，那么数列有界</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">证明数列极限有界性</span><br><span class="line">取 ℇ = 1</span><br><span class="line">lim(n-&gt;∞) an = A, 所以 ∃ N &gt; 0, n &gt; N 时 |an - A| &lt; 1</span><br><span class="line">因为 | |an| - |A| | &lt;= |an - A|</span><br><span class="line">所以 n &gt; N 时，||an| - |A| | &lt; 1</span><br><span class="line"></span><br><span class="line">|an| &lt; 1 + |A|  这个式子仅当 n &gt; N 成立</span><br><span class="line">因此若想对全体数列项成立，取 M = max&#123;|a1|,|a2|....|aN|, 1+|A|&#125;</span><br><span class="line">∀ n，有|an| &lt;= M 证毕</span><br></pre></td></tr></table></figure>
-<p>有界的数列不一定有极限</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如 an = 1 + (-1)^n</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>保号性：如果 lim(n-&gt;∞) an = A，如果A&gt;0（或A<0），则 ∃ n> 0，n &gt; N 时，an&gt;0（或 an&lt;0）</0），则></p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">证明数列极限保号性</span><br><span class="line">假设 A&gt;0，取 ℇ = A/2</span><br><span class="line">假设 A&lt;0，取 ℇ = -A/2</span><br></pre></td></tr></table></figure>
-<h2 id="1-3-函数极限"><a href="#1-3-函数极限" class="headerlink" title="1.3 函数极限"></a>1.3 函数极限</h2><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>x-&gt;a<br>∀ ℇ&gt;0，∃ 𝞭&gt;0，当 0&lt;|x-a|&lt;𝞭，|f(x)-A|&lt;ℇ，称f(x)当x-&gt;a时的极限为A<br>记作 lim(x-&gt;a) f(x) = A</p>
-</blockquote>
-<ol>
-<li>x-&gt;a的过程中，x不取到a，因此<strong>极限是否存在与f(x)在a点有无定义没有关系</strong></li>
-<li>x-&gt;a包含 x-&gt;a- 和 x-&gt;a+ 包含<strong>左极限</strong>和<strong>右极限</strong></li>
-<li>函数在a点极限存在的<strong>充要条件</strong>是：在a点的左极限右极限存在且相等 f(a+0) = f(a-0)</li>
-</ol>
-<p>考点</p>
-<ol>
-<li>用定义证明函数极限</li>
-<li>给分段函数，根据左右极限求一些系数</li>
-</ol>
-<blockquote>
-<p>x-&gt;+∞<br>∀ ℇ&gt;0, ∃ X&gt;0, x&gt;X时, |f(x)-A| &lt; ℇ 称lim(x-&gt;+∞) f(x) = A<br>x-&gt;-∞<br>∀ ℇ&gt;0, ∃ X&gt;0, x&lt;-X时, |f(x)-A| &lt; ℇ 称lim(x-&gt;-∞) f(x) = A<br>x-&gt;∞<br>∀ ℇ&gt;0, ∃ X&gt;0, |x|&gt;X时, |f(x)-A| &lt; ℇ 称lim(x-&gt;∞) f(x) = A  </p>
-</blockquote>
-<h2 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h2><blockquote>
-<p>唯一性：函数有极限，极限必定唯一</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">证明唯一性：</span><br><span class="line">反证：取 ℇ = (A-B)/2 &gt; 0</span><br><span class="line">可以根据定义，发现矛盾</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>局部有界性：lim(x-&gt;a) f(x) = A, 则 ∃ 𝞭&gt;0，M&gt;0，0&lt;|x-a|&lt;𝞭 时|f(x)|&lt;=M</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">证明唯一性：</span><br><span class="line">反证：取 ℇ = 1</span><br><span class="line">可以根据定义证明出</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>保号性：lim(x-&gt;a) f(x) = A，A&gt;0（或者A<0），则 ∃ 𝞭>0，当 0&lt;|x-a|&lt;𝞭时，f(x)&gt;0（或者f(x)&lt;0）</0），则></p>
-</blockquote>
-<h1 id="1-4-无穷小和无穷大"><a href="#1-4-无穷小和无穷大" class="headerlink" title="1.4 无穷小和无穷大"></a>1.4 无穷小和无穷大</h1><h2 id="无穷小"><a href="#无穷小" class="headerlink" title="无穷小"></a>无穷小</h2><blockquote>
-<p>a(x)为x的函数，如果lim(x-&gt;x0) a(x) = 0，则称a(x)当x-&gt;x0时为无穷小</p>
-</blockquote>
-<ol>
-<li>0是无穷小，但无穷小不一定是0</li>
-<li>对于a(x)!=0，<strong>a(x)是否为无穷小与自变量的趋向有关</strong></li>
-</ol>
-<blockquote>
-<p>等价定义：∀ ℇ&gt;0, ∃ 𝞭&gt;0,当 0&lt;|x-x0|&lt;𝞭时，|a(x)-0|&lt;ℇ 即 lim(x-&gt;x0) a(x) = 0</p>
-</blockquote>
-<p>一些性质：</p>
-<ol>
-<li>两个无穷小的和差仍为无穷小</li>
-<li>常数与无穷小之积仍为无穷小</li>
-<li>多个无穷小之积仍为无穷小</li>
-<li>lim(x-&gt;x0) f(x) = A 的充分必要条件是：f(x)=A+a, a-&gt;0 (x-&gt;x0)</li>
-</ol>
-<h2 id="无穷大"><a href="#无穷大" class="headerlink" title="无穷大"></a>无穷大</h2><blockquote>
-<p>∀ M&gt;0, ∃ 𝞭&gt;0, 当0&lt;|x-x0|&lt;𝞭, 有|f(x)|&gt;M, 称f(x)当x-&gt;x0时为无穷大，记作lim(x-&gt;x0) f(x) = ∞<br>∀ M&gt;0, ∃ X&gt;0, 当x&gt;|X|, 有|f(x)|&gt;M, 称f(x)当x-&gt;∞时为无穷大，记作lim(x-&gt;∞) f(x) = ∞  </p>
-</blockquote>
-<h2 id="无穷小和无穷大的关系"><a href="#无穷小和无穷大的关系" class="headerlink" title="无穷小和无穷大的关系"></a>无穷小和无穷大的关系</h2><p>lim(x-&gt;x0) f(x) = 0 ==&gt; lim(x-&gt;x0) 1/f(x) = ∞</p>
-<h1 id="1-5-极限的运算法则"><a href="#1-5-极限的运算法则" class="headerlink" title="1.5 极限的运算法则"></a>1.5 极限的运算法则</h1><p>预备知识：初等函数 无穷小</p>
-<h2 id="四则运算法则"><a href="#四则运算法则" class="headerlink" title="四则运算法则"></a>四则运算法则</h2><p>条件：x-&gt;x0, f(x0)-&gt;A, g(x)-&gt;B</p>
-<blockquote>
-<p>x-&gt;x0时，f(x)+g(x)-&gt;A+B, f(x)-g(x)-&gt;A-B</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(x) = A+a, g(x) = B+b 易证明</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>k为常数，lim(x-&gt;x0) kf(x) = kA</p>
-<p>lim(x-&gt;x0) f(x)g(x) = AB</p>
-<p>如果lim(x-&gt;x0) g(x) != 0，则lim(x-&gt;x0) f(x)/g(x) = A/B</p>
-</blockquote>
-<p>多项式除法的极限，同除以最高次项（或最低次项</p>
-<h2 id="复合运算极限法则"><a href="#复合运算极限法则" class="headerlink" title="复合运算极限法则"></a>复合运算极限法则</h2><p>嵌套</p>
-<h1 id="1-6-极限存在准则-包括两个重要极限"><a href="#1-6-极限存在准则-包括两个重要极限" class="headerlink" title="1.6 极限存在准则 包括两个重要极限"></a>1.6 极限存在准则 包括两个重要极限</h1><h2 id="I-夹逼定理"><a href="#I-夹逼定理" class="headerlink" title="I.夹逼定理"></a>I.夹逼定理</h2><h3 id="数列的情形"><a href="#数列的情形" class="headerlink" title="数列的情形"></a>数列的情形</h3><blockquote>
-<p>an &lt;= bn &lt;= cn<br>lim(n-&gt;∞) an = lim(n-&gt;∞) cn = A<br>那么，lim(n-&gt;∞) bn = A</p>
-</blockquote>
-<h3 id="函数的情形"><a href="#函数的情形" class="headerlink" title="函数的情形"></a>函数的情形</h3><blockquote>
-<p>f(x) &lt;= g(x) &lt;= h(x)<br>lim f(x) = lim h(x) = A<br>那么，lim g(x) = A</p>
-</blockquote>
-<p>自变量必须有相同的趋向</p>
-<h2 id="II-单调有界数列必定有极限"><a href="#II-单调有界数列必定有极限" class="headerlink" title="II.单调有界数列必定有极限"></a>II.单调有界数列必定有极限</h2><ol>
-<li>{an} 有界的<strong>充要条件</strong>是 {an} 有上下界</li>
-<li>如果 {an} 单调递增，那么一定有下界。极限是否存在取决于是否有上界</li>
-<li>如果 {an} 单调递减，那么一定有上界。极限是否存在取决于是否有下界</li>
-</ol>
-<h2 id="两个重要极限"><a href="#两个重要极限" class="headerlink" title="两个重要极限"></a>两个重要极限</h2><blockquote>
-<p>lim(x-&gt;0) six/x = 1<br>推广：lim(∆-&gt;0) (sin∆)/∆ = 1  </p>
-<p>lim(n-&gt;∞) (1+1/n)^n = e<br>推广 lim(n-&gt;0) (1+n)^(1/n) = e<br>lime(∆-&gt;0) (1+1/∆)^∆ = e  </p>
-</blockquote>
-<p>(1^∞) 类型的极限，一般都要往第二个重要极限凑</p>
-<h1 id="1-7-无穷小的比较"><a href="#1-7-无穷小的比较" class="headerlink" title="1.7 无穷小的比较"></a>1.7 无穷小的比较</h1><blockquote>
-<p>有界函数 乘以 无穷小 仍为无穷小</p>
-</blockquote>
-<p>设 a-&gt;0 b-&gt;0</p>
-<blockquote>
-<p>lim (a/b) = 0, 称a为b的高阶无穷小，记作 a=o(b)<br>lim (a/b) = ∞, 称a为b的低阶无穷小<br>lim (a/b) = k, k为常数，称a和b为同阶无穷小，如果 k=1, 那么a和b为等价无穷小 a~b<br>lim (a/b^k) = K, 称a为b的k阶无穷小</p>
-</blockquote>
-<h2 id="等价无穷小的性质"><a href="#等价无穷小的性质" class="headerlink" title="等价无穷小的性质"></a>等价无穷小的性质</h2><p>a-&gt;0, b-&gt;0, 则 a~b 的<strong>充分必要条件</strong>是 b = a + o(a)（高阶）</p>
-<p>a~a1, b-&gt;b1, lim(b1/a1) = A, 那么 lim(b/a) = A。这意味着求极限可以等价无穷小替换</p>
-<h2 id="常见等价无穷小"><a href="#常见等价无穷小" class="headerlink" title="常见等价无穷小"></a>常见等价无穷小</h2><p>以下趋势均为 x-&gt;0</p>
-<ul>
-<li>x ~ sin(x)</li>
-<li>x ~ tan(x)</li>
-<li>x ~ arcsin(x)</li>
-<li>x ~ arctan(x)</li>
-<li>x ~ ln(1+x)</li>
-<li>x ~ e^x-1</li>
-<li>1-cosx ~ x^2/2</li>
-<li>(1+x)^a-1 ~ ax</li>
-</ul>
-<h1 id="1-8-函数的连续性和间断点"><a href="#1-8-函数的连续性和间断点" class="headerlink" title="1.8 函数的连续性和间断点"></a>1.8 函数的连续性和间断点</h1><h2 id="f-x-在某一点连续连续"><a href="#f-x-在某一点连续连续" class="headerlink" title="f(x)在某一点连续连续"></a>f(x)在某一点连续连续</h2><blockquote>
-<p>若lim(x-&gt;a) f(x) = f(a)，则f(x)在x=a处连续<br>即 f(a-0) = f(a+0) = f(a)  </p>
-</blockquote>
-<ol>
-<li>f(a-0)=f(a)称f(x)在x=a左连续；f(a+0)=f(a)右连续</li>
-<li>f(x)在x=a连续的<strong>充要条件</strong>是f(x)在x=a左连续，右连续</li>
-</ol>
-<h2 id="f-x-在闭区间连续"><a href="#f-x-在闭区间连续" class="headerlink" title="f(x)在闭区间连续"></a>f(x)在闭区间连续</h2><blockquote>
-<p>若f(x)在[a,b]上有定义，f(x)在(a,b)内处处连续，f(a)=f(a+0),f(b)=f(b-0)，那么称f(x)在[a,b]上连续<br>记作 f(x) ∈ C[a,b]</p>
-</blockquote>
-<h2 id="间断点及分类"><a href="#间断点及分类" class="headerlink" title="间断点及分类"></a>间断点及分类</h2><blockquote>
-<p>lim(x-&gt;a) f(x) != f(a)，称f(a)在x=a间断</p>
-</blockquote>
-<p>间断点的分类：</p>
-<ol>
-<li>第一类间断点：f(a-0)和f(a+0)都存在<ol>
-<li>可去间断点：f(a-0)=f(a+0)</li>
-<li>跳跃间断点：f(a-0)!=f(a+0)</li>
-</ol>
-</li>
-<li>第二类间断点：f(a-0)和f(a+0)至少一个不存在</li>
-</ol>
-<h1 id="1-9-连续函数的运算和初等函数连续性"><a href="#1-9-连续函数的运算和初等函数连续性" class="headerlink" title="1.9 连续函数的运算和初等函数连续性"></a>1.9 连续函数的运算和初等函数连续性</h1><h2 id="连续函数的运算"><a href="#连续函数的运算" class="headerlink" title="连续函数的运算"></a>连续函数的运算</h2><h3 id="四则运算"><a href="#四则运算" class="headerlink" title="四则运算"></a>四则运算</h3><blockquote>
-<p>f(x) g(x) 在x=x0连续，则f(x)+g(x)和f(x)-g(x)和f(x)g(x)在x=x0连续<br>若g(x0)!=0, 则f(x)/g(x)在x=x0连续</p>
-</blockquote>
-<h3 id="复合运算"><a href="#复合运算" class="headerlink" title="复合运算"></a>复合运算</h3><p>复合函数的连续性可以得到保持</p>
-<h2 id="初等函数连续性"><a href="#初等函数连续性" class="headerlink" title="初等函数连续性"></a>初等函数连续性</h2><p>复习一下，基本初等函数：幂指对三角反三角</p>
-<p>初等函数：常数和基本初等函数经过有限次复合和四则运算得到的函数</p>
-<blockquote>
-<p>基本初等函数在其定义域内连续<br>初等函数在其定义域内连续  </p>
-</blockquote>
-<h1 id="1-10-闭区间上连续函数的性质"><a href="#1-10-闭区间上连续函数的性质" class="headerlink" title="1.10 闭区间上连续函数的性质"></a>1.10 闭区间上连续函数的性质</h1><blockquote>
-<p>最值定理：f(x)∈C[a,b],则f(x)在[a,b]取得到最小值m和最大值M<br>有界定理：若f(x)∈C[a,b]，则∃k&gt;0，使∀x∈[a,b]，有|f(x)|&lt;=k<br>零点定理：若f(x)∈C[a,b]，f(a)·f(b)&lt;0, 则必定存在x0∈[a,b],f(x0)=0<br>介值定理：若f(x)∈C[a,b]，则∀n∈[m,M], 则∃𝝽∈[a,b]使得f(𝝽)=n<br>即介于m和M的任意值都可以被取到</p>
-</blockquote>
-<p>TIPS：</p>
-<ol>
-<li>函数闭区间连续，证明开区间问题，首选零点定理</li>
-<li>函数闭区间连续，证明闭区间问题 / 函数值之和，选介值定理</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研高等数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-leetcode-838-推多米诺" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/21/leetcode-838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/">leetcode 838. 推多米诺</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/21/leetcode-838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/" class="archive-article-date">
-  	<time datetime="2022-02-21T08:32:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/push-dominoes/">这里做题</a></p>
-<p>一图流</p>
-<p><img src="/2022/02/21/leetcode-838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/1.png" alt></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日一题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/21/leetcode-838-%E6%8E%A8%E5%A4%9A%E7%B1%B3%E8%AF%BA/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -2414,6 +2681,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
               </li>
              
@@ -2422,11 +2693,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">考研数学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研线性代数</a>
               </li>
             
             <div class="clearfix"></div>
