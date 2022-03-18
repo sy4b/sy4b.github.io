@@ -166,7 +166,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="4-1-1-初识文件管理"><a href="#4-1-1-初识文件管理" class="headerlink" title="4.1_1 初识文件管理"></a>4.1_1 初识文件管理</h1><h2 id="文件的属性"><a href="#文件的属性" class="headerlink" title="文件的属性"></a>文件的属性</h2><ol>
+        <h1 id="4-1-1-初识文件管理"><a href="#4-1-1-初识文件管理" class="headerlink" title="4.1_1 初识文件管理"></a>4.1_1 初识文件管理</h1><h2 id="文件的概念"><a href="#文件的概念" class="headerlink" title="文件的概念"></a>文件的概念</h2><blockquote>
+<p>文件是以硬盘为载体的存储在计算机上的信息集合<br>系统运行时，计算机以进程为载体进行资源调度和分配；而用户进行输入和输出中，以文件为基本单位</p>
+</blockquote>
+<h2 id="文件的属性"><a href="#文件的属性" class="headerlink" title="文件的属性"></a>文件的属性</h2><p><strong>操作系统通过文件控制块FCB来维护文件元数据</strong></p>
+<ol>
 <li>文件名：方便用户找到文件。同一目录下不允许有重名文件</li>
 <li>标识符：os用于区分各个文件的一种内部名称</li>
 <li>类型：指明文件的类型</li>
@@ -177,7 +181,7 @@
 </li>
 <li>大小</li>
 <li>创建修改时间</li>
-<li>文件所有者</li>
+<li>文件创建者、所有者</li>
 <li>保护信息：对文件进行保护的访问控制信息</li>
 </ol>
 <h2 id="文件内部数据如何组织？"><a href="#文件内部数据如何组织？" class="headerlink" title="文件内部数据如何组织？"></a>文件内部数据如何组织？</h2><ul>
@@ -197,10 +201,37 @@
 <li>删除文件</li>
 <li>打开文件（读写文件前需要打开文件</li>
 <li>关闭文件（读写文件后需要关闭文件</li>
+<li>截断文件：允许文件所有属性不变，删除文件内容，长度设置为0并释放空间</li>
 </ul>
-<h2 id="从上往下看，文件应该如何存放在外存"><a href="#从上往下看，文件应该如何存放在外存" class="headerlink" title="从上往下看，文件应该如何存放在外存"></a>从上往下看，文件应该如何存放在外存</h2><h2 id="其他需要操作系统实现的文件管理功能"><a href="#其他需要操作系统实现的文件管理功能" class="headerlink" title="其他需要操作系统实现的文件管理功能"></a>其他需要操作系统实现的文件管理功能</h2><ul>
-<li>文件共享</li>
-<li>文件保护</li>
+<h2 id="从上往下看，文件应该如何存放在外存"><a href="#从上往下看，文件应该如何存放在外存" class="headerlink" title="从上往下看，文件应该如何存放在外存"></a>从上往下看，文件应该如何存放在外存</h2><h2 id="其他需要操作系统实现的文件管理功能"><a href="#其他需要操作系统实现的文件管理功能" class="headerlink" title="其他需要操作系统实现的文件管理功能"></a>其他需要操作系统实现的文件管理功能</h2><h3 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h3><h3 id="文件保护"><a href="#文件保护" class="headerlink" title="文件保护"></a>文件保护</h3><p>防止文件共享可能导致文件被破坏或被未经核准的用户修改</p>
+<p>文件保护通过口令保护、加密保护和访问控制实现。其中口令和加密是为防止文件被他人窃取或存取，访问控制用于控制用户对文件的访问方式</p>
+<h4 id="访问类型"><a href="#访问类型" class="headerlink" title="访问类型"></a>访问类型</h4><p>对文件的保护可从限制对文件的访问类型中出发。可加以控制的访问类型包括</p>
+<ol>
+<li>读文件</li>
+<li>写文件</li>
+<li>执行文件：将文件装入内存中并执行</li>
+<li>添加：将新信息添加到文件结尾部分</li>
+<li>删除：删除文件，释放空间</li>
+<li>列表清单：列出文件名和文件属性</li>
+</ol>
+<p>其他高层功能操作可以通过系统程序调用低层系统调用实现。保护可以只在低层提供</p>
+<h4 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h4><p>访问控制常用方法是根据用户身份进行控制：为每个文件和目录增加一个访问控制列表，规定每个用户名及其允许的访问类型。精简的访问列表采用</p>
+<ol>
+<li>拥有者：创建文件的用户</li>
+<li>组：一组需要共享文件且具有相似访问的用户</li>
+<li>其他：系统内所有其他用户</li>
+</ol>
+<ul>
+<li>口令：用户在创建一个文件时提供口令（附在FCB中），同时告知允许共享该文件的所有用户。用户请求访问文件时需要提供口令<ul>
+<li>优点：时间空间开销不大</li>
+<li>缺点：口令直接存在系统内部，不够安全</li>
+</ul>
+</li>
+<li>密码：用户对文件进行加密，访问时需要提供密钥。<ul>
+<li>优点：保密性强，节约空间</li>
+<li>缺点：编码和译码都需要时间</li>
+</ul>
+</li>
 </ul>
 <h1 id="4-1-2-文件的逻辑结构"><a href="#4-1-2-文件的逻辑结构" class="headerlink" title="4.1_2 文件的逻辑结构"></a>4.1_2 文件的逻辑结构</h1><ul>
 <li>逻辑结构：用户看来，文件内部的数据如何组织起来</li>
@@ -215,7 +246,10 @@
 </ul>
 <ol>
 <li>链式存储无法实现随机存取</li>
-<li><strong>顺序存储可变长记录，无法随机存取</strong></li>
+<li><strong>顺序存储可变长记录，无法随机存取</strong><ol>
+<li>原因：无法预知每条记录的长度</li>
+</ol>
+</li>
 <li>顺序存储定长记录<ol>
 <li>可实现随机存取</li>
 <li>采用顺序结构可以快速找到某关键字对应的记录</li>
@@ -239,11 +273,13 @@
 <li>为了进一步提高检索效率，可以为顺序文件建立多级索引表</li>
 </ol>
 <h1 id="4-1-3-文件目录"><a href="#4-1-3-文件目录" class="headerlink" title="4.1_3 文件目录"></a>4.1_3 文件目录</h1><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/1.png" alt></p>
-<h2 id="文件控制块"><a href="#文件控制块" class="headerlink" title="文件控制块"></a>文件控制块</h2><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/2.png" alt></p>
+<h2 id="文件控制块"><a href="#文件控制块" class="headerlink" title="文件控制块"></a>文件控制块</h2><p>文件控制块FCB是用于存放控制文件所需的各种信息的数据结构</p>
+<p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/2.png" alt></p>
 <ol>
-<li>FCB的有序集合称为“文件目录”，一个FCB就是一个文件目录项</li>
+<li><strong>FCB的有序集合称为文件目录，一个FCB就是一个文件目录项</strong></li>
+<li>一个文件目录也被视为一个文件，称为<strong>目录文件</strong></li>
 <li>FCB包含文件的基本信息、存取控制信息、使用信息</li>
-<li><strong>FCB中最重要最基本是文件名、文件存放的物理地址</strong>；FCB实现文件名和文件之间的映射，使用户程序可以实现按文件名存取</li>
+<li><strong>FCB中最重要最基本是文件名、文件存放的物理地址</strong>；FCB实现文件名和文件之间的映射，使用户程序可以<strong>实现按文件名存取</strong></li>
 </ol>
 <p>需要对目录进行的操作</p>
 <ol>
@@ -268,7 +304,8 @@
 <li>缺点：<strong>不方便实现文件共享</strong>（为此提出“无环图目录结构”</li>
 </ol>
 <h3 id="无环图目录结构"><a href="#无环图目录结构" class="headerlink" title="无环图目录结构"></a>无环图目录结构</h3><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/5.png" alt></p>
-<h2 id="索引节点-FCB的改进"><a href="#索引节点-FCB的改进" class="headerlink" title="索引节点 FCB的改进"></a>索引节点 FCB的改进</h2><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/6.png" alt></p>
+<h2 id="索引节点-FCB的改进"><a href="#索引节点-FCB的改进" class="headerlink" title="索引节点 FCB的改进"></a>索引节点 FCB的改进</h2><p>思路：查找目录的过程中，只需要用到文件名，找到后才需要调出其他信息，因此这部分信息没有必要调入内存</p>
+<p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/6.png" alt></p>
 <ul>
 <li>存放在外存的索引节点称为<strong>磁盘索引节点</strong></li>
 <li>索引节点放入内存后称为<strong>内存索引节点</strong></li>
@@ -301,6 +338,7 @@
 <p>Tips：题目没有说明的话，默认隐式链接</p>
 <h3 id="隐式链接"><a href="#隐式链接" class="headerlink" title="隐式链接"></a>隐式链接</h3><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/10.png" alt></p>
 <ol>
+<li><strong>隐式链接的指针对用户是透明的</strong></li>
 <li>方便文件扩展，不会产生磁盘碎片</li>
 <li>只支持顺序访问，不支持随机访问，查找效率低</li>
 <li>存储指针也要消耗存储空间</li>
@@ -349,7 +387,7 @@
 </ol>
 </li>
 </ol>
-
+<h1 id="4-1-5-文件存储空间管理"><a href="#4-1-5-文件存储空间管理" class="headerlink" title="4.1_5 文件存储空间管理"></a>4.1_5 文件存储空间管理</h1>
       
 
       
@@ -747,7 +785,7 @@
 </ol>
 <h2 id="逻辑地址和物理地址"><a href="#逻辑地址和物理地址" class="headerlink" title="逻辑地址和物理地址"></a>逻辑地址和物理地址</h2><ol>
 <li>逻辑地址<ol>
-<li>编译后，每个目标模块都从0号单元开始编址，称为改目标模块的相对地址（逻辑地址</li>
+<li>编译后，每个目标模块都从0号单元开始编址，称为该目标模块的相对地址（逻辑地址</li>
 <li>程序在运行时使用的是逻辑地址，内存管理的具体机制对程序员和用户程序是透明的</li>
 <li>不同进程可以有相同的逻辑地址，可以映射到主存的不同位置</li>
 </ol>
@@ -827,7 +865,7 @@
 <p>操作系统需要建立一个数据结构，实现各个分区的分配和回收。每个表项需要包括分区的大小、起始地址、状态</p>
 <p>优点：实现简单，无外部碎片</p>
 <p>缺点：用户程序过大时可能分区不能满足需求，需要覆盖技术，这会降低性能；会产生内部碎片</p>
-<h2 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h2><p>又称<strong>可变分区分配</strong>。不会预先划分内存去，而是进程装入内存时，根据进程大小动态建立分区，使得分区的大小正好适合进程的需要</p>
+<h2 id="动态分区分配"><a href="#动态分区分配" class="headerlink" title="动态分区分配"></a>动态分区分配</h2><p>又称<strong>可变分区分配</strong>。不会预先划分内存区，而是进程装入内存时，根据进程大小动态建立分区，使得分区的大小正好适合进程的需要</p>
 <ol>
 <li>使用<strong>空闲分区表</strong>或者<strong>空闲分区链</strong>记录内存的使用情况</li>
 <li>作业装入内存时，必须按照一定的动态分区分配算法</li>
@@ -839,7 +877,7 @@
 <h2 id="邻近适应算法（循环首次适应算法"><a href="#邻近适应算法（循环首次适应算法" class="headerlink" title="邻近适应算法（循环首次适应算法"></a>邻近适应算法（循环首次适应算法</h2><p>思想：在首次适应算法基础上，查找时不从头查找，而是从上次查找结束的位置开始</p>
 <p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/2.png" alt></p>
 <h2 id="最佳适应算法"><a href="#最佳适应算法" class="headerlink" title="最佳适应算法"></a>最佳适应算法</h2><p>思想：优先使用小的空闲区，留下大片连续空间</p>
-<p>实现：空闲分区安容量递增次序链接</p>
+<p>实现：空闲分区按照容量递增次序链接</p>
 <p>缺点：会产生很多的外部碎片</p>
 <h2 id="最坏适应算法（最大适应算法"><a href="#最坏适应算法（最大适应算法" class="headerlink" title="最坏适应算法（最大适应算法"></a>最坏适应算法（最大适应算法</h2><p>思想：为了解决最佳适应算法的问题，优先使用最大的空闲分区</p>
 <p>实现：空闲分区按照容量递减次序链接</p>
@@ -924,17 +962,19 @@
 <h1 id="3-2-1-虚拟内存的基本概念"><a href="#3-2-1-虚拟内存的基本概念" class="headerlink" title="3.2_1 虚拟内存的基本概念"></a>3.2_1 虚拟内存的基本概念</h1><h2 id="传统存储管理方式的特征和缺点"><a href="#传统存储管理方式的特征和缺点" class="headerlink" title="传统存储管理方式的特征和缺点"></a>传统存储管理方式的特征和缺点</h2><p>指的是上面一系列存储管理方式</p>
 <ol>
 <li>许多暂时用不上的数据也会长期占用内存，导致内存利用率不高</li>
-<li>一次性：作业必须一次性全部装入内存才能开始运行<ol>
+<li><strong>一次性</strong>：作业必须一次性全部装入内存才能开始运行<ol>
 <li>作业很大时不能全部装入内存，导致<strong>大作业无法运行</strong></li>
 <li>大量作业需要运行时，由于内存无法容纳所有作业，因此只有少量作业能运行，导致<strong>并发度下降</strong></li>
 </ol>
 </li>
-<li>驻留性：作业一但装入内存，就一直驻留在内存中直到运行结束。事实上一个时间段内只需要访问作业的一小部分数据即可正常运行，这就导致了内存中驻留大量的暂时用不到的数据</li>
+<li><strong>驻留性</strong>：作业一但装入内存，就一直驻留在内存中直到运行结束。事实上一个时间段内只需要访问作业的一小部分数据即可正常运行，这就导致了内存中驻留大量的暂时用不到的数据</li>
 </ol>
 <h2 id="局部性原理"><a href="#局部性原理" class="headerlink" title="局部性原理"></a>局部性原理</h2><ul>
-<li>时间局部性：执行了程序中某条指令后，不久这条指令很可能再次执行；数据也是（原因是程序中存在大量循环</li>
-<li>空间局部性：访问了某个存储单元后，不久其相邻的存储单元也很可能被访问（原因是很多数据在内存中连续存放，指令也是顺序存放</li>
+<li><strong>时间局部性</strong>：执行了程序中某条指令后，不久这条指令很可能再次执行；数据也是（原因是程序中存在大量循环</li>
+<li><strong>空间局部性</strong>：访问了某个存储单元后，不久其相邻的存储单元也很可能被访问（原因是很多数据在内存中连续存放，指令也是顺序存放</li>
 </ul>
+<p>广义上讲，快表、页高速缓存、虚拟内存技术都属于高速缓存技术，依赖的原理就是局部性原理</p>
+<p>虚拟内存技术实际上建立了“内存-外存”的两级存储器结构，利用局部性原理实现高速缓存</p>
 <h2 id="虚拟内存的定义和特征"><a href="#虚拟内存的定义和特征" class="headerlink" title="虚拟内存的定义和特征"></a>虚拟内存的定义和特征</h2><ol>
 <li>基于局部性原理，<strong>在程序装入时，将程序中很快会用到的部分装入内存，暂时用不到的部分留在外存，就可以让程序开始执行</strong></li>
 <li>当<strong>访问的信息不在内存</strong>时，由<strong>操作系统负责将所需信息从外存调入内存</strong>，然后继续执行程序</li>
@@ -942,91 +982,138 @@
 </ol>
 <p>虚拟内存三个主要特征</p>
 <ol>
-<li>多次性：无需在作业运行时一次装入所有内存，而是分为多次调入内存</li>
-<li>对换性：在作业运行时无需一直常驻内存，而是允许在作业运行过程中将作业换入换出</li>
-<li>虚拟性：从逻辑上扩产了内存容量，使用户看到的内存容量远大于实际的容量</li>
+<li><strong>多次性</strong>：<strong>无需在作业运行时一次装入所有内存，而是分为多次调入内存</strong>。只需要将当前运行的那部分程序和数据装入内存即可开始运行，需要运行尚未调入的部分时再调入那部分</li>
+<li><strong>对换性</strong>：在作业运行时无需一直常驻内存，而是<strong>允许在作业运行过程中将作业换入换出</strong></li>
+<li><strong>虚拟性</strong>：<strong>从逻辑上扩充了内存容量</strong>，使用户看到的内存容量远大于实际的容量</li>
 </ol>
-<h2 id="如何实现虚拟内存技术"><a href="#如何实现虚拟内存技术" class="headerlink" title="如何实现虚拟内存技术"></a>如何实现虚拟内存技术</h2><p>需要建立在<strong>连续分配的内存管理方式</strong>基础上</p>
+<h2 id="如何实现虚拟内存技术"><a href="#如何实现虚拟内存技术" class="headerlink" title="如何实现虚拟内存技术"></a>如何实现虚拟内存技术</h2><p>需要建立在<strong>离散分配的内存管理方式</strong>基础上，分为以下三种方式</p>
 <ul>
 <li>请求分页存储管理</li>
 <li>请求分段存储管理</li>
 <li>请求段页式存储管理</li>
 </ul>
-<p>操作系统需要提供<strong>请求调页</strong>/<strong>请求调段</strong>功能</p>
+<p>均需要一定的硬件支持，一般包括</p>
+<ul>
+<li>一定容量的内存和外存</li>
+<li>页表/段表机制，作为主要的数据结构</li>
+<li>中断机构。用户程序需要访问的部分未调入内存时，产生中断</li>
+<li>地址变换机构。实现逻辑地址到物理地址的变换</li>
+</ul>
 <h1 id="3-2-2-请求分页存储管理方式"><a href="#3-2-2-请求分页存储管理方式" class="headerlink" title="3.2_2 请求分页存储管理方式"></a>3.2_2 请求分页存储管理方式</h1><p>和基本分页存储管理主要区别</p>
 <ol>
 <li>访问信息不在内存时，操作系统负责将所需信息从外存调入内存（将缺失页面从外存调入内存</li>
 <li>内存空间不够时，操作系统负责将内存中暂时不用的信息换出到外存（页面置换</li>
 </ol>
 <h2 id="页表机制"><a href="#页表机制" class="headerlink" title="页表机制"></a>页表机制</h2><ol>
-<li>系统需要知道页面是否已经调入；若没有调入，需要知道该页面在外存的位置</li>
-<li>没有修改过的页面不用浪费时间写回外存；操作系统需要记录各个页面是否被修改过的信息</li>
+<li>系统需要知道<strong>页面是否已经调入</strong>；若没有调入，需要知道<strong>该页面在外存的位置</strong></li>
+<li><strong>没有修改过的页面不用浪费时间写回外存</strong>；操作系统需要<strong>记录各个页面是否被修改过的信息</strong></li>
 </ol>
 <p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/19.png" alt></p>
-<h2 id="缺页中断机构"><a href="#缺页中断机构" class="headerlink" title="缺页中断机构"></a>缺页中断机构</h2><p>请求分页系统中，要访问的页面不在内存时，产生一个缺页中断，然后由操作系统的缺页中断处理程序处理中断</p>
-<p>此时缺页的进程阻塞，放入阻塞队列；调页完成后唤醒，放回就绪队列</p>
+<h2 id="缺页中断机构"><a href="#缺页中断机构" class="headerlink" title="缺页中断机构"></a>缺页中断机构</h2><p>请求分页系统中，要访问的页面不在内存时，产生一个<strong>缺页中断</strong>，然后由操作系统的缺页中断处理程序处理中断</p>
+<p>此时<strong>缺页的进程阻塞，放入阻塞队列</strong>；<strong>调页完成后唤醒，放回就绪队列</strong></p>
 <p>如果内存中有空闲块，则为进程分配一个空闲块，所缺页面装入，并修改页表中相应的页表项</p>
 <p>如果没有空闲块，则由页面置换算法选择一个页面淘汰；若页面在内存期间被修改过，则写回外存</p>
 <ol>
 <li><strong>缺页中断属于内中断</strong>，<strong>故障</strong>类型（可能被故障处理程序修复</li>
-<li>一条指令在执行期间可能产生多次中断</li>
+<li><strong>一条指令在执行期间可能产生多次中断</strong></li>
 </ol>
 <h2 id="地址变化机构"><a href="#地址变化机构" class="headerlink" title="地址变化机构"></a>地址变化机构</h2><p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/20.png" alt></p>
-<h1 id="3-2-3-页面置换算法"><a href="#3-2-3-页面置换算法" class="headerlink" title="3.2_3 页面置换算法"></a>3.2_3 页面置换算法</h1><p>页面的换入换出需要磁盘IO，开销较大，因此好的页面置换算法需要追求更少的缺页率</p>
+<ol>
+<li>先检索快表<ol>
+<li>若找到需要访问的页，则修改页表项中的“访问位”，写指令需要修改“修改位”，然后通过快表给出的物理块号和业页内地址形成物理地址</li>
+<li>若未在快表中找到，则去内存中查找页表。对比页表项中“状态位”，看是否调入内存。<ol>
+<li>如果已调入内存，则写入快表，快表满则通过页面置换算法替换一张</li>
+<li>如果未调入内存，则产生缺页中断，请求从外存中调入</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h1 id="3-2-3-页面置换算法"><a href="#3-2-3-页面置换算法" class="headerlink" title="3.2_3 页面置换算法"></a>3.2_3 页面置换算法</h1><p>页面的换入换出需要磁盘IO，开销较大，因此好的页面置换算法需要<strong>追求更少的缺页率</strong></p>
 <ol>
 <li>最佳置换算法（OPT<ol>
-<li>淘汰以后永不使用，或者最长时间内不再被访问的页面，<strong>保证最低缺页率</strong></li>
-<li>需要知道进程接下来访问哪些页面，最佳置换算法是无法实现的</li>
+<li><strong>淘汰以后永不使用，或者最长时间内不再被访问的页面</strong>，<strong>保证最低缺页率</strong></li>
+<li>需要知道进程接下来访问哪些页面，然而这是无法预知的，因此最佳置换算法是无法实现的，但可以利用该算法评价其他算法</li>
+<li>题目做法：内存满需要换页时，往后查找当前内存中的页面首次出现需要访问的位置，淘汰最后出现的页面</li>
 </ol>
 </li>
 <li>先进先出置换算法（FIFO<ol>
 <li>每次淘汰的页面是最早进入内存的页面</li>
-<li>实现：用一个队列</li>
-<li>Belady异常：为进程分配的物理块数增大时，缺页次数不减反增的异常现象；只有FIFO算法会产生Belady异常</li>
-<li>先进入的页面也有可能最常被访问，算法性能差</li>
+<li>实现：用一个队列，根据页面调入内存的时间根据先后次序链接</li>
+<li><strong>Belady异常：为进程分配的物理块数增大时，缺页次数不减反增的异常现象</strong>；<strong>只有FIFO算法会产生Belady异常</strong></li>
+<li>该算法与进程实际运行时的规律不相适，先进入的页面也有可能最常被访问，<strong>算法性能差</strong></li>
+<li>做题：模拟一个队列即可</li>
 </ol>
 </li>
 <li>最近最久未使用置换算法（LRU<ol>
-<li>每次淘汰最近最久未使用的页面</li>
+<li>过去一段时间内未访问的页面，在最近的将来也不会被访问。<strong>每次淘汰最近最久未使用的页面</strong></li>
 <li><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/21.png" alt></li>
-<li>实现难，虽然性能好</li>
+<li>需要寄存器和栈的硬件支持，实现难，虽然性能好</li>
+<li>做题：内存满需要换页时，向前查找当前内存中的页面最近一次被访问的时间，淘汰最早出现的页面</li>
 </ol>
 </li>
 <li>时钟置换算法（CLOCK<ol>
+<li>为每一帧设置一个“访问位”</li>
+<li>页面首次被装入或被访问时，访问位置1</li>
+<li>页面被链接为一个循环队列，设置一个指针检查各个页面访问位</li>
+<li>如果页面访问位为0，则换出该页面</li>
+<li>如果访问位为1，则暂不换出，访问位置0，指针移到下一个页面检查</li>
 <li><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/22.png" alt></li>
 </ol>
 </li>
 <li>改进型时钟置换算法<ol>
+<li>由于被修改过的页面需要写回外存，有开销，因此增加了“修改位”-M（记“访问位”为A<ol>
+<li>A=0，M=0，最近没访问，也没被修改，是最佳淘汰页</li>
+<li>A=0，M=1，最近没被访问，被修改过，次好</li>
+<li>A=1，M=0，最近被访问，没被修改，可能近期会再被访问</li>
+<li>A=1，M=1，最近被修改被访问</li>
+</ol>
+</li>
+<li>算法步骤<ol>
+<li>从当前位置开始第一轮扫描：找第一类页面即A=M=0</li>
+<li>若1失败，则第二轮扫描，找第二类页面即A=0，M=1，遇到A=1的页面将其置0</li>
+<li>若2也失败，第三轮扫描，找第一类页面</li>
+<li>若3也失败，第四轮扫描，找第二类页面，此时一定可以成功</li>
+</ol>
+</li>
 <li><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/23.png" alt></li>
 </ol>
 </li>
 </ol>
 <h1 id="3-2-4-页面分配策略"><a href="#3-2-4-页面分配策略" class="headerlink" title="3.2_4 页面分配策略"></a>3.2_4 页面分配策略</h1><blockquote>
-<p>驻留集：请求分页存储管理中给进程分配的物理块的集合</p>
+<p>驻留集：请求分页存储管理中<strong>给进程分配的物理块的集合</strong></p>
 </blockquote>
+<p>分配驻留集时需要考虑：</p>
 <ol>
-<li>固定分配：进程运行期间驻留集大小不变</li>
-<li>可变分配：进程运行期间驻留集大小可变</li>
-<li>局部置换：缺页时只能选进程自己的物理块进行置换</li>
-<li>全局置换：可以将操作系统保留的空闲物理块分配给缺页进程，也可以将别的进程持有的物理块置换到外存，再分配给缺页进程</li>
+<li>分配给一个进程的页框越少，驻留在主存中的进程数量就越多，可以提高并发度</li>
+<li>若进程在主存中页面过少，则缺页率会增加</li>
+<li>分配的页框过多，由于局部性原理，缺页率不会有太大影响，并发度降低</li>
 </ol>
-<p>页面置换、分配策略</p>
-<ol>
-<li>固定分配局部置换</li>
-<li>可变分配全局置换：只要缺页就分配新物理块</li>
+<blockquote>
+<p>固定分配：进程运行期间驻留集大小不变<br>可变分配：进程运行期间驻留集大小可变<br>局部置换：缺页时只能选进程自己的物理块进行置换<br>全局置换：可以将操作系统保留的空闲物理块分配给缺页进程，也可以将别的进程持有的物理块置换到外存，再分配给缺页进程  </p>
+</blockquote>
+<h2 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h2><ol>
+<li>固定分配局部置换<ol>
+<li>平均分配算法</li>
+<li>按比例分配算法：依据进程大小按比例分配物理块</li>
+<li>优先权分配算法：重要和紧迫的进程分配较多物理块</li>
+</ol>
+</li>
+<li>可变分配全局置换：只要缺页就分配新的空闲物理块</li>
 <li>可变分配局部置换：根据缺页频率动态地增减进程的物理块</li>
 </ol>
-<h2 id="何时调入页面？"><a href="#何时调入页面？" class="headerlink" title="何时调入页面？"></a>何时调入页面？</h2><ol>
-<li>预调页策略：一次调入若干个相邻的页面。主要用于进程的首次调入</li>
+<h2 id="调入页面的时机"><a href="#调入页面的时机" class="headerlink" title="调入页面的时机"></a>调入页面的时机</h2><ol>
+<li>预调页策略：基于局部性原理，一次调入若干个相邻的页面。主要用于进程的首次调入</li>
 <li>请求调页策略：缺页才将所缺页面调入内存</li>
 </ol>
 <h2 id="从何处调入页面？"><a href="#从何处调入页面？" class="headerlink" title="从何处调入页面？"></a>从何处调入页面？</h2><p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/24.png" alt></p>
 <h2 id="抖动（颠簸）现象"><a href="#抖动（颠簸）现象" class="headerlink" title="抖动（颠簸）现象"></a>抖动（颠簸）现象</h2><blockquote>
 <p>刚刚换出的页面马上又要换入内存，刚刚换入的页面马上又要换出外存<br>产生抖动主要原因是：进程频繁访问的页面数目高于可用的物理块数（分配给进程的物理块不够  </p>
-<p>工作集：某段时间间隔里进程实际访问页面的集合</p>
+<p>工作集：某段时间间隔里进程实际访问页面的集合，由时间$t$和窗口大小$\Delta$确定  </p>
 </blockquote>
+<p>工作集题目：求某一时刻的工作集，在该时间点往前找窗口，访问的页面集合就是工作集</p>
 <p><img src="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/25.png" alt></p>
-
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">题目总结区</span><br><span class="line">1. 考虑页面置换算法，系统中有m个物理块供调度，初始全空，页面引用字符串长度p，包含n个不同页号，无论采用什么算法，缺页次数不会少于n次</span><br><span class="line">2. 虚拟存储器的最大容量由计算机的地址结构决定</span><br><span class="line">3. LRU算法实现起来耗费高的原因：需要对所有页实现排序</span><br><span class="line">4. 虚拟存储器系统页表项中，决定是否发生页故障的是：“合法位”</span><br><span class="line">5. 内存抖动的主要原因：页面置换算法不合理</span><br><span class="line">6. 计算机系统中，快表用于地址变换</span><br></pre></td></tr></table></figure>
       
 
       
@@ -1050,93 +1137,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/03/05/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-行列式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/05/%E8%A1%8C%E5%88%97%E5%BC%8F/">行列式</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/05/%E8%A1%8C%E5%88%97%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2022-03-05T12:08:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>求解二元一次方程组</p>
-<script type="math/tex; mode=display">
-    \left\{
-    \begin{aligned}
-        a_1x+b_1y = c_1 \\
-        a_2x+b_2y = c_2 \\
-    \end{aligned}
-    \right.</script><p>得到</p>
-<script type="math/tex; mode=display">
-    \left\{
-    \begin{aligned}
-        x = \frac{c_1b_2-c_2b_1}{a_1b_2-a_2b_1} \\
-        y = \frac{c_1a_2-c_2a_1}{a_2b_1-a_1b_2} \\
-    \end{aligned}
-    \right.</script>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研线性代数</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/05/%E8%A1%8C%E5%88%97%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
@@ -1420,7 +1420,7 @@
 <li>$e^x=\frac{x^0}{0!}+\frac{x^1}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$</li>
 <li>$(1+x)^a=1+ax+\frac{a(a-1)}{2!}x^2+o(x^2)$</li>
 </ul>
-<h1 id="3-1-微分中值定理"><a href="#3-1-微分中值定理" class="headerlink" title="3.1 微分中值定理"></a>3.1 微分中值定理</h1><h2 id="引导"><a href="#引导" class="headerlink" title="引导"></a>引导</h2><ol>
+<h1 id="3-1-微分中值定理"><a href="#3-1-微分中值定理" class="headerlink" title="3.1 微分中值定理"></a>3.1 微分中值定理</h1><h2 id="引理"><a href="#引理" class="headerlink" title="引理"></a>引理</h2><ol>
 <li>极值点<ol>
 <li>设 $y=f(x), x\in D, x_0\in D$ </li>
 <li>∃ $\delta&gt;0$, $0&lt;|x-x_0|&lt;\delta$ 时，$f(x)&gt;f(x_0)$，则称$f(x_0)$ 为极小值点</li>
@@ -1436,13 +1436,71 @@
         =0 \text{，可能是极值点}\\
         不存在 \text{，可能是极值}
     \end{aligned}
-    \right.</script><h2 id="罗尔定理"><a href="#罗尔定理" class="headerlink" title="罗尔定理"></a>罗尔定理</h2><ol>
+    \right.</script><h2 id="涉及函数的中值定理"><a href="#涉及函数的中值定理" class="headerlink" title="涉及函数的中值定理"></a>涉及函数的中值定理</h2><p>设$f(x)$在$[a,b]$上连续，则</p>
+<ol>
+<li>定理一：有界与最值定理<ol>
+<li>$m\leq{f(x)}\leq{M}$，其中$m、n$分别为$f(x)$在$[a,b]$上的最小值与最大值</li>
+</ol>
+</li>
+<li>定理二：介值定理<ol>
+<li>$m\leq{\mu}\leq{M}$时，存在$\zeta\in{[a,b]}$，使得$f(\zeta)=\mu$</li>
+</ol>
+</li>
+<li>定理三：平均值定理（离散的<ol>
+<li>$a&lt;x_1&lt;x_2&lt;…&lt;x_n&lt;b$时，$[x_1,x_n]$内至少存在一点$\zeta$使得$f(\zeta)=\frac{f(x_1)+f(x_2)+…+f(x_n)}{n}$</li>
+</ol>
+</li>
+<li>定理四：零点定理<ol>
+<li>当$f(a)f(b)&lt;0$时，存在$\zeta\in(a,b)$，使得$f(\zeta)=0$</li>
+</ol>
+</li>
+<li>定理十：积分中值定理（连续的平均值定理<ol>
+<li>存在$\zeta\in{[a,b]}$，使得$\int_a^bf(x)dx=f(\zeta)(b-a)$</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>如何证明积分中值定理中，$\zeta\in{(a,b)}$？（真题考过，可直接使用<br>设$F(x)=\int_a^xf(t)dt$<br>由拉格朗日中值定理  $F(b)-F(a)=F’(\zeta)(b-a), \zeta\in(a,b)$<br>证毕</p>
+</blockquote>
+<h2 id="涉及微分的中值定理"><a href="#涉及微分的中值定理" class="headerlink" title="涉及微分的中值定理"></a>涉及微分的中值定理</h2><h3 id="费马定理"><a href="#费马定理" class="headerlink" title="费马定理"></a>费马定理</h3><p>设$f(x)$在$x_0$处可导并取得极值，则$f’(x_0)=0$</p>
+<p>证明：</p>
+<p>不妨设$x=x_0$取得极大值</p>
+<p>$f’_-(x_0)=\lim_{x\rightarrow{x_0-}}\frac{f(x)-f(x_0)}{x-x_0}\geq{0}$</p>
+<p>$f’_+(x_0)=\lim_{x\rightarrow{x_0+}}\frac{f(x)-f(x_0)}{x-x_0}\leq{0}$</p>
+<p>可导需要左右导数存在且相等$f’_-(x_0)=f’_+(x_0)=0$</p>
+<h4 id="达布定理（导数零点定理"><a href="#达布定理（导数零点定理" class="headerlink" title="达布定理（导数零点定理"></a>达布定理（导数零点定理</h4><p>设$f(x)$在$[a,b]$上可导，证明$f_+’(a)f_-‘(b)&lt;0$时，存在$\zeta\in{(a,b)}$使得$f’(\zeta)=0$</p>
+<p>证明：</p>
+<p>不妨设$f_+’(a)&lt;0, f_-‘(b)&gt;0$</p>
+<p>则$f’_+(a)=\lim_{x\rightarrow{a^+}}\frac{f(x)-f(a)}{x-a}&lt;0$, 在$a$右领域内，$f(a)&lt;f(x)$</p>
+<p>$f’_-(b)=\lim_{x\rightarrow{b^-}}\frac{f(x)-f(b)}{x-b}&lt;0$, 在$a$左领域内，$f(b)&lt;f(x)$</p>
+<p>故极大值在区间内部，由费马定理，证毕</p>
+<ul>
+<li>和零点定理区分开：零点定理要求连续，达布定理不要求连续</li>
+</ul>
+<h3 id="罗尔定理"><a href="#罗尔定理" class="headerlink" title="罗尔定理"></a>罗尔定理</h3><ol>
 <li>$f(x)\in C[a,b]$</li>
 <li>$f(x)$ 在 $(a,b)$ 可导</li>
 <li>$f(a)=f(b)$</li>
 </ol>
 <p>那么，存在 $c\in (a,b), f’(c)=0$</p>
-<h2 id="拉格朗日中值定理"><a href="#拉格朗日中值定理" class="headerlink" title="拉格朗日中值定理"></a>拉格朗日中值定理</h2><ol>
+<p>推广的罗尔定理</p>
+<ol>
+<li>设$f(x)$在$(a,b)$内可导，$\lim_{x\rightarrow{a^+}}f(x)=\lim_{x\rightarrow{b^-}}f(x)=A$，则$(a,b)$内至少存在一点$\zeta$，使得$f’(\zeta)=0$</li>
+<li>设$f(x)$在$(a,b)$内可导，$\lim_{x\rightarrow{a^+}}f(x)=\lim_{x\rightarrow{b^-}}f(x)=\pm\infty$，则$(a,b)$内至少存在一点$\zeta$，使得$f’(\zeta)=0$</li>
+<li>设$f(x)$在$(a,+\infty)$内可导，$\lim_{x\rightarrow{a^+}}f(x)=\lim_{x\rightarrow{+\infty}}f(x)=A$，则$(a,+\infty)$内至少存在一点$\zeta$，使得$f’(\zeta)=0$</li>
+<li>设$f(x)$在$(-\infty,+\infty)$内可导，$\lim_{x\rightarrow{-\infty}}f(x)=\lim_{x\rightarrow{+\infty}}f(x)=\pm\infty$，则$(-\infty,+\infty)$内至少存在一点$\zeta$，使得$f’(\zeta)=0$</li>
+</ol>
+<p>罗尔定理的使用</p>
+<ol>
+<li>常用乘积求导公式$(uv)’=u’v+uv’$来构造辅助函数<ol>
+<li>$\phi{(x)}=x$，见到$f’(x)+f(x)$，构造$F(x)=f(x)e^x$</li>
+<li>$\phi{(x)}=-x$，见到$f’(x)-f(x)$，构造$F(x)=f(x)e^{-x}$</li>
+<li>$\phi{(x)}=x$，见到$f’(x)+kf(x)$，构造$F(x)=f(x)e^{kx}$</li>
+</ol>
+</li>
+<li>三个点相等，可以用三次罗尔定理，得出二阶导数为0</li>
+</ol>
+<h3 id="拉格朗日中值定理"><a href="#拉格朗日中值定理" class="headerlink" title="拉格朗日中值定理"></a>拉格朗日中值定理</h3><ol>
 <li>$f(x)\in C[a,b]$</li>
 <li>$f(x)$ 在 $(a,b)$ 可导</li>
 </ol>
@@ -1457,9 +1515,10 @@
 <ol>
 <li>三个点，考虑用两次拉格朗日中值定理</li>
 <li>$f(b)-f(a)$ 的形式，考虑拉格朗日</li>
+<li>$f’$和$f$的关系，考虑拉格朗日</li>
 </ol>
 <p><img src="/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/1.png" alt></p>
-<h2 id="柯西中值定理"><a href="#柯西中值定理" class="headerlink" title="柯西中值定理"></a>柯西中值定理</h2><ol>
+<h3 id="柯西中值定理"><a href="#柯西中值定理" class="headerlink" title="柯西中值定理"></a>柯西中值定理</h3><ol>
 <li>$f(x), g(x)\in C[a,b]$</li>
 <li>$f(x), g(x)$ 在 $(a,b)$ 可导</li>
 <li>$g(x)\neq 0, (a&lt;x&lt;b)$</li>
@@ -1513,9 +1572,13 @@
 </ul>
 <p>$f(x) = \frac{1}{1+x} = 1-x+x^2-x^3+…(-1)^nx^n+o(x^n)$</p>
 <ul>
-<li>$f(x)=\ln{x}$</li>
+<li>$f(x)=\ln{(1+x)}$</li>
 </ul>
-<p>$f(x)=\ln{x}=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+…+\frac{(-1)^{n-1}}{n}x^n+o(x^n)$</p>
+<p>$f(x)=\ln{(1+x)}=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+…+\frac{(-1)^{n-1}}{n}x^n+o(x^n)$</p>
+<ul>
+<li>$f(x)=(1+x)^a$</li>
+</ul>
+<p>$f(x)=(1+x)^a=1+ax+\frac{a(a-1)}{2!}x^2+…+\frac{a(a-1)…(a-n+1)}{n!}x^n+o(x^n)$</p>
 <h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><ul>
 <li>$\frac{A}{B}$型极限，展开到同阶</li>
 <li>$A-B$型极限，展开到系数不相等的$x$的最低次幂为止 </li>
@@ -1541,6 +1604,9 @@
 <li>若 $\forall{x_1, x_2} \in{D}$ 且 $x_1\neq{x_2}$ 有， $f(\frac{x_1+x_2}{2})&lt;\frac{f(x_1)+f(x_2)}{2}$ ,称 $f(x)$ 在 $D$ 内为凹函数</li>
 <li>若 $\forall{x_1, x_2} \in{D}$ 且 $x_1\neq{x_2}$ 有， $f(\frac{x_1+x_2}{2})&gt;\frac{f(x_1)+f(x_2)}{2}$ ,称 $f(x)$ 在 $D$ 内为凸函数</li>
 </ul>
+<blockquote>
+<p>拐点：连续曲线的凹弧和凸弧的分界点称为曲线的拐点</p>
+</blockquote>
 <p><img src="/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/3.png" alt></p>
 <h3 id="判别方法"><a href="#判别方法" class="headerlink" title="判别方法"></a>判别方法</h3><p>引理</p>
 <p>若 $f’’(x)&gt;0$ ，则当 $x\neq{x_0}$, 有 $f(x)&gt;f(x_0)+f’(x_0)(x-x_0)$</p>
@@ -1550,13 +1616,20 @@
 <li>若 $f’’(x)&gt;0, (a&lt;x&lt;b)$，则 $y=f(x)$ 图像在 $[a,b]$ 上是凹的</li>
 <li>若 $f’’(x)&lt;0, (a&lt;x&lt;b)$，则 $y=f(x)$ 图像在 $[a,b]$ 上是凸的</li>
 </ul>
-<h1 id="3-5-极值和最值"><a href="#3-5-极值和最值" class="headerlink" title="3.5 极值和最值"></a>3.5 极值和最值</h1><h2 id="极值：极大值和极小值"><a href="#极值：极大值和极小值" class="headerlink" title="极值：极大值和极小值"></a>极值：极大值和极小值</h2><p>对于函数 $y=f(x),x\in{D}, x_0\in{D}$</p>
+<h1 id="3-5-极值和最值"><a href="#3-5-极值和最值" class="headerlink" title="3.5 极值和最值"></a>3.5 极值和最值</h1><ul>
+<li>极值点不一定是最值点；最值点也不一定是极值点</li>
+<li>如果$f(x)$在区间$I$上有最值点$x_0$，并且$x_0$不是区间$I$的端点而是内部的点，那么$x_0$必为$f(x)$的一个极值点</li>
+</ul>
+<h2 id="极值：极大值和极小值-要求双侧定义"><a href="#极值：极大值和极小值-要求双侧定义" class="headerlink" title="极值：极大值和极小值(要求双侧定义)"></a>极值：极大值和极小值(要求双侧定义)</h2><p>对于函数 $y=f(x),x\in{D}, x_0\in{D}$</p>
 <ul>
 <li>如果 $\exist {\delta}&gt;0, 0&lt;|x-x_0|&lt;\delta$ 时,有 $f(x_0)&gt;f(x)$, 称 $x_0$ 为 $f(x)$ 的一个极大值点, $f(x_0)$ 为极大值</li>
 <li>如果 $\exist {\delta}&gt;0, 0&lt;|x-x_0|&lt;\delta$ 时,有 $f(x_0)&lt;f(x)$, 称 $x_0$ 为 $f(x)$ 的一个极小值点, $f(x_0)$ 为极小值</li>
 </ul>
 <p>$x=a$ 为极值点且 $f(x)$ 可导，可以推出 $f’(a)=0$, 反之不行</p>
-<h3 id="判别方法-1"><a href="#判别方法-1" class="headerlink" title="判别方法"></a>判别方法</h3><h4 id="法1"><a href="#法1" class="headerlink" title="法1"></a>法1</h4><p>如果</p>
+<h3 id="判别方法-1"><a href="#判别方法-1" class="headerlink" title="判别方法"></a>判别方法</h3><blockquote>
+<p>费马定理<br>设$f(x)$在$x=x_0$可导，且在$x_0$取得极值，那么必有$f’(x_0)=0$</p>
+</blockquote>
+<h4 id="法1（第一充分条件"><a href="#法1（第一充分条件" class="headerlink" title="法1（第一充分条件"></a>法1（第一充分条件</h4><p>如果在$x_0$<strong>去心领域</strong>内</p>
 <script type="math/tex; mode=display">
 \left\{
     \begin{aligned}
@@ -1572,6 +1645,9 @@
     x>x_0时，f'(x)<0
     \end{aligned}
 \right.</script><p>则$x=x_0$为极大点</p>
+<ul>
+<li>间断点也有可能是极值点</li>
+</ul>
 <h4 id="法二（第二充分条件"><a href="#法二（第二充分条件" class="headerlink" title="法二（第二充分条件"></a>法二（第二充分条件</h4><p>设$f’(x_0) = 0$，如果</p>
 <ol>
 <li>$f’’(x)&gt;0$，$x_0$为极小点</li>
@@ -1583,26 +1659,50 @@
 <p>弊端：不能讨论$f’’(x_0)=0$的情况</p>
 <p><img src="/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/4.png" alt></p>
 <p><img src="/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/5.png" alt></p>
-<h2 id="最值（最大值和最小值"><a href="#最值（最大值和最小值" class="headerlink" title="最值（最大值和最小值"></a>最值（最大值和最小值</h2><p>$f(x)\in{C[a,b]}$，找到$f’(x)=0或不存在$的所有点（驻点和不可导点），$x_1,x_2,…,x_n$</p>
+<h4 id="第三充分条件"><a href="#第三充分条件" class="headerlink" title="第三充分条件"></a>第三充分条件</h4><p>若$f(x)$在$x_0$处$n$阶可导，并且$f^{(m)}(x_0)=0,(m=1,2,…,n-1)$，$f^{(n)}(x_0)=0,(n\geq 2)$，则</p>
+<ul>
+<li>$n$为偶数并且$f^{(n)}(x_0)&lt;0$时，在$x_0$取得极大值</li>
+<li>$n$为偶数并且$f^{(n)}(x_0)&gt;0$时，在$x_0$取得极小值</li>
+</ul>
+<h2 id="最值（最大值和最小值"><a href="#最值（最大值和最小值" class="headerlink" title="最值（最大值和最小值"></a>最值（最大值和最小值</h2><ol>
+<li>求闭区间$[a,b]$上连续函数的最值<ol>
+<li>求出驻点、不可导点位置的函数值</li>
+<li>求出区间端点$f(a)$,$f(b)$</li>
+<li>比较上述所有函数值，即可得到</li>
+</ol>
+</li>
+<li>求开区间$(a,b)$上连续函数的最值或取值范围<ol>
+<li>求出区间内驻点、不可导点位置的函数值</li>
+<li>求出区间端点位置的单侧极限</li>
+<li>比较上述值，得到最值或取值范围</li>
+</ol>
+</li>
+</ol>
+<p>$f(x)\in{C[a,b]}$，找到$f’(x)=0或不存在$的所有点（驻点和不可导点），$x_1,x_2,…,x_n$</p>
 <p>最小值为$\min{f(a), f(b), f(x_1), …, f(x_n)}$</p>
 <p>最大值为$\max{f(a), f(b), f(x_1), …, f(x_n)}$</p>
 <blockquote>
 <p>例题：证明$x\in{[0,1]}$时，$\frac{1}{2^{p-1}}\leq{x^p+(1-x)^p}\leq{1}$<br>中间设为函数，求其最大最小值</p>
 </blockquote>
 <p>应用题：构造出目标函数，求解最大值 /  最小值</p>
-<h1 id="3-6-函数图像描绘"><a href="#3-6-函数图像描绘" class="headerlink" title="3.6 函数图像描绘"></a>3.6 函数图像描绘</h1><h2 id="渐近线"><a href="#渐近线" class="headerlink" title="渐近线"></a>渐近线</h2><h3 id="水平渐近线"><a href="#水平渐近线" class="headerlink" title="水平渐近线"></a>水平渐近线</h3><blockquote>
+<h1 id="3-6-函数图像描绘"><a href="#3-6-函数图像描绘" class="headerlink" title="3.6 函数图像描绘"></a>3.6 函数图像描绘</h1><h2 id="渐近线"><a href="#渐近线" class="headerlink" title="渐近线"></a>渐近线</h2><ol>
+<li>先找函数无定义点，找铅垂渐近线</li>
+<li>找水平渐近线</li>
+<li>找斜渐近线</li>
+</ol>
+<h3 id="水平渐近线"><a href="#水平渐近线" class="headerlink" title="水平渐近线"></a>水平渐近线</h3><blockquote>
 <p>曲线$L:y=f(x)$,若$lim_{x\rightarrow{\infty}}f(x)=A$，称$f(x)$有水平渐近线$y=A$</p>
 </blockquote>
 <h3 id="铅直渐近线"><a href="#铅直渐近线" class="headerlink" title="铅直渐近线"></a>铅直渐近线</h3><blockquote>
 <p>曲线$L:y=f(x)$,若$lim_{x\rightarrow{a}}f(x)={\infty}$，称$f(x)$有铅直渐近线$x=A$</p>
 </blockquote>
-<p>铅直渐近线只会出现在函数的间断点处</p>
+<p>铅直渐近线只会出现在函数的间断点处（无定义点、定义区间的端点、分段函数分段点</p>
 <h3 id="斜渐近线"><a href="#斜渐近线" class="headerlink" title="斜渐近线"></a>斜渐近线</h3><blockquote>
 <p>曲线$L:y=f(x)$,若$lim_{x\rightarrow{\infty}}\frac{f(x)}{x}=A(A\neq0,\infty), lim_{x\rightarrow{\infty}}(f(x)-Ax)=B$，称$f(x)$有斜渐近线$y=Ax+B$</p>
 </blockquote>
 <p>求解斜渐近线步骤1. 求A；2. 求B</p>
 <h2 id="作图"><a href="#作图" class="headerlink" title="作图"></a>作图</h2><ol>
-<li>$x$的定义域$D$</li>
+<li>$x$的定义域$D$，是否有奇偶性</li>
 <li>增减性，$f’(x)$</li>
 <li>凹凸性，$f’’(x)$</li>
 <li>渐近线</li>
@@ -1617,6 +1717,25 @@
 <li>曲率$K=|\frac{y’’}{(1+y^{‘2})^{\frac{3}{2}}}|$</li>
 <li>曲率半径$r=\frac{1}{K}$</li>
 </ol>
+<h1 id="第七讲-零点问题与微分不等式"><a href="#第七讲-零点问题与微分不等式" class="headerlink" title="第七讲 零点问题与微分不等式"></a>第七讲 零点问题与微分不等式</h1><h2 id="零点问题"><a href="#零点问题" class="headerlink" title="零点问题"></a>零点问题</h2><ul>
+<li>大题/小题：零点定理证存在性、单调性证唯一性</li>
+<li>小题：罗尔原话、实系数奇次方程至少有一个实数根</li>
+</ul>
+<h3 id="零点定理（主要用于证明根的存在性"><a href="#零点定理（主要用于证明根的存在性" class="headerlink" title="零点定理（主要用于证明根的存在性"></a>零点定理（主要用于证明根的存在性</h3><blockquote>
+<p>$f(x)$在$[a,b]$内连续，且$f(a)f(b)&lt;0$，则$f(x)=0$在$[a,b]$内至少有一个根<br>可以推广到区间端点a右极限和b左极限的情况</p>
+</blockquote>
+<h3 id="单调性（主要用于证明根的唯一性"><a href="#单调性（主要用于证明根的唯一性" class="headerlink" title="单调性（主要用于证明根的唯一性"></a>单调性（主要用于证明根的唯一性</h3><blockquote>
+<p>若$f(x)$在$[a,b]$内单调，则$f(x)=0$在$(a,b)$内至多只有一个根</p>
+</blockquote>
+<h3 id="罗尔原话（罗尔定理的推论"><a href="#罗尔原话（罗尔定理的推论" class="headerlink" title="罗尔原话（罗尔定理的推论"></a>罗尔原话（罗尔定理的推论</h3><blockquote>
+<p>若$f^{(n)}(x)=0$最多有$k$个根，则$f(x)=0$最多有$k+n$个根</p>
+</blockquote>
+<h3 id="实系数奇次方程至少有一个实数根"><a href="#实系数奇次方程至少有一个实数根" class="headerlink" title="实系数奇次方程至少有一个实数根"></a>实系数奇次方程至少有一个实数根</h3><p>$f(x)=x^{2n+1}+a_1x^{2n}+…+a_{2n+1}=0$必定有一个实数根 </p>
+<h2 id="微分不等式"><a href="#微分不等式" class="headerlink" title="微分不等式"></a>微分不等式</h2><ul>
+<li>函数性态证明不等式</li>
+<li>常数变量化证明不等式</li>
+<li>中值定理证明不等式</li>
+</ul>
 
       
 
@@ -2555,6 +2674,447 @@
 
 
   
+    <article id="post-导数与微分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/">导数与微分</a>
+    </h1>
+  
+
+        
+        <a href="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/" class="archive-article-date">
+  	<time datetime="2022-02-24T05:30:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="2-1-导数的概念"><a href="#2-1-导数的概念" class="headerlink" title="2.1 导数的概念"></a>2.1 导数的概念</h1><h2 id="引例-应用题"><a href="#引例-应用题" class="headerlink" title="引例 应用题"></a>引例 应用题</h2><ol>
+<li>$\frac{dA}{dB}$ A对B的瞬时变化率</li>
+<li>切线斜率$f’(x_0)=k$ 法线斜率$-\frac{1}{f’(x_0)}$</li>
+</ol>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>y=f(x) x∈D, x0∈D, x0+∆x∉D, ∆y=f(x0+∆x)-f(x0)<br>若 lim(∆x-&gt;0) ∆y/∆x 存在，称f(x)在x=x0可导，该极限称为f(x)在x=x0的导数，记作dy/dx|x=x0  </p>
+</blockquote>
+<ol>
+<li>导数的等价定义：$f’(x_0) = lim_{∆x\rightarrow{0}}\frac{f(x_0+∆x)-f(x_0)}{∆x} = lim_{x\rightarrow{x_0}}\frac{f(x)-f(x_0)}{x-x_0}$<ol>
+<li>命题中$\Delta{x}$一般会被广义化</li>
+</ol>
+</li>
+<li>f(x)在某一点可导，则在该点出必定连续</li>
+<li>导数存在的<strong>充要条件</strong>是<strong>左导数和右导数存在并相等</strong><ol>
+<li>$f(x)=|x|$在$x=0$处导数不存在，切线不存在</li>
+<li>无穷导数视作导数不存在（光滑$\neq$可导</li>
+</ol>
+</li>
+<li><strong>可导一定连续 连续不一定可导</strong></li>
+<li>导数存在的等价说法<ol>
+<li>$y=f(x)$在$x_0$可导</li>
+<li>$y=f(x)$在$x_0$导数存在</li>
+<li>$f’(x_0)=A$，A为有限数</li>
+</ol>
+</li>
+</ol>
+<p>考点：函数在某一点的可导性</p>
+<ul>
+<li>先看在该点是否<strong>连续</strong>，不连续一定不可导</li>
+<li>求左右导数，看是否存在且相等</li>
+</ul>
+<h2 id="常用导数"><a href="#常用导数" class="headerlink" title="常用导数"></a>常用导数</h2><p>求导的主要对象：初等函数</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>f(x)</th>
+<th>f’(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C（常数）</td>
+<td>0</td>
+</tr>
+<tr>
+<td>x^n</td>
+<td>n*x^(n-1)</td>
+</tr>
+<tr>
+<td>a^x（a&gt;0 &amp;&amp; a!=1）</td>
+<td>a^x * ln(a)</td>
+</tr>
+<tr>
+<td>log(a, x)（a&gt;0 &amp;&amp; a!=1）</td>
+<td>1/(x*ln(a))</td>
+</tr>
+<tr>
+<td>sin x</td>
+<td>cos x</td>
+</tr>
+<tr>
+<td>cos x</td>
+<td>-sin x</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="2-2-求导法则"><a href="#2-2-求导法则" class="headerlink" title="2.2 求导法则"></a>2.2 求导法则</h1><h2 id="四则运算法则"><a href="#四则运算法则" class="headerlink" title="四则运算法则"></a>四则运算法则</h2><blockquote>
+<p>设u(x) v(x)可导<br>(u(x)+v(x))’ = u’(x)+v’(x)<br>(u(x)-v(x))’ = u’(x)-v’(x)<br>(u(x)v(x))’ = u’(x)v(x)+u(x)v’(x)<br>v(x)!=0时，(u(x)/v(x))’ = ((u’(x)v(x)-u(x)v’(x))/(v(x)^2))<br>推广：<br>(ku)’ = ku’ k为常数<br>(uvw)’ = u’vw + uv’w + uvw’  </p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>f(x)</th>
+<th>f’(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tan x</td>
+<td>sec^2(x)</td>
+</tr>
+<tr>
+<td>cot x</td>
+<td>-csc^2(x)</td>
+</tr>
+<tr>
+<td>sec x</td>
+<td>sec x * tan x</td>
+</tr>
+<tr>
+<td>csc x</td>
+<td>-csc x * cot x</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="反函数求导法则"><a href="#反函数求导法则" class="headerlink" title="反函数求导法则"></a>反函数求导法则</h2><p>前提 ：$y=f(x)$ 严格单调，才能有反函数</p>
+<blockquote>
+<p>设$y=f(x)$可导并且$f’(x)\neq 0$（可知$f’(x)$必定恒为正或负），则其反函数$y=\phi(x)$可导<br>且 $\phi ‘(y) = \frac{1}{f’(x)}$  </p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$f(x)$</th>
+<th>$f’(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\arcsin x$</td>
+<td>$\frac{1}{\sqrt{1-x^2}}$</td>
+</tr>
+<tr>
+<td>$\arccos x$</td>
+<td>$-\frac{1}{\sqrt{1-x^2}}$</td>
+</tr>
+<tr>
+<td>$\arctan x$</td>
+<td>$\frac{1}{1+x^2}$</td>
+</tr>
+<tr>
+<td>$\arcctg x$</td>
+<td>$-\frac{1}{1+x^2}$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>二阶导数</p>
+<ul>
+<li>$y_{xx}^{‘’}=-\frac{x_{yy}^{‘’}}{(x_{y}^{‘})^3}$</li>
+</ul>
+<h2 id="复合函数求导法则——链式法则"><a href="#复合函数求导法则——链式法则" class="headerlink" title="复合函数求导法则——链式法则"></a>复合函数求导法则——链式法则</h2><blockquote>
+<p>若y=f(u)可导，u=𝜙(x)可导且𝜙’(x)!=0，则y=f[𝜙(x)]可导，且dy/dx = f’[𝜙(x)]*𝜙’(x)  </p>
+</blockquote>
+<h1 id="2-3-高阶导数"><a href="#2-3-高阶导数" class="headerlink" title="2.3 高阶导数"></a>2.3 高阶导数</h1><p>$f^{(n)}(x_0)=\lim_{\Delta{x}\rightarrow{0}}\frac{f^{(n-1)}(x_0+\Delta{x})-f^{(n-1)}(x_0)}{\Delta{x}}$</p>
+<p>二阶及以上的导数称为高阶导数</p>
+<h2 id="方法一：归纳法"><a href="#方法一：归纳法" class="headerlink" title="方法一：归纳法"></a>方法一：归纳法</h2><p>逐次求导，通过前几项，找出规律</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">y = sin x</span><br><span class="line">可以归纳出 sin(x)^(n) = sin(x+(n𝛱)/2)</span><br><span class="line"></span><br><span class="line">同理 cos(x)^(n) = cos(x+(n𝛱)/2)</span><br></pre></td></tr></table></figure>
+<p><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/1.png" alt></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$f(x)$</th>
+<th>$f^{(n)}(x)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\sin{kx}$</td>
+<td>$k^n\sin{[x+\frac{(n\pi)}{2}}]$</td>
+</tr>
+<tr>
+<td>$\cos{kx}$</td>
+<td>$k^n\cos{[x+\frac{(n\pi)}{2}]}$</td>
+</tr>
+<tr>
+<td>$\frac{1}{ax+b}$</td>
+<td>$(-1)^n <em> n! </em> a^n /(ax+b)^{n+1}$</td>
+</tr>
+<tr>
+<td>$\frac{1}{x}$</td>
+<td>$(-1)^nn!x^{-(n+1)}$</td>
+</tr>
+<tr>
+<td>$\ln{x}$</td>
+<td>$(-1)^{n-1}(n-1)!x^{-n}$</td>
+</tr>
+<tr>
+<td>$\ln{(1+x)}$</td>
+<td>$(-1)^{n-1}\frac{(n-1)!}{(1+x)^n}$</td>
+</tr>
+<tr>
+<td>$(a^x)$</td>
+<td>$a^x(\ln{a})^n$</td>
+</tr>
+<tr>
+<td>$e^x$</td>
+<td>$e^x$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="方法二：公式法"><a href="#方法二：公式法" class="headerlink" title="方法二：公式法"></a>方法二：公式法</h2><p><strong>莱布尼茨公式</strong>：</p>
+<p>$(uv)^{(n)}=C^0_n u^{(n)}v+C^1_n u^{(n-1)}v^{(1)}+C^2_n u^{(n-2)}v^{(2)}+……+C^n_n uv^{(n)}$</p>
+<p>其中</p>
+<p>$C^m_n=\frac{n!}{m!\cdot(n-m)!}$</p>
+<h2 id="方法三：泰勒展开法"><a href="#方法三：泰勒展开法" class="headerlink" title="方法三：泰勒展开法"></a>方法三：泰勒展开法</h2><h1 id="2-4-隐函数和参数方程确定的函数求导"><a href="#2-4-隐函数和参数方程确定的函数求导" class="headerlink" title="2.4 隐函数和参数方程确定的函数求导"></a>2.4 隐函数和参数方程确定的函数求导</h1><h2 id="隐函数"><a href="#隐函数" class="headerlink" title="隐函数"></a>隐函数</h2><ul>
+<li>显函数：$y=f(x)$</li>
+<li>隐函数：$F(x,y)=0$ 理论上可以求出 $y=f(x)$，但不一定解得出来。这个求解的过程叫做<strong>隐函数的显式化</strong></li>
+</ul>
+<p>隐函数求 $\frac{dy}{dx}$ 方法：<strong>$y$看成$y(x)$，两边同时对$x$求导</strong></p>
+<p><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/2.png" alt></p>
+<h2 id="参数方程确定的函数求导"><a href="#参数方程确定的函数求导" class="headerlink" title="参数方程确定的函数求导"></a>参数方程确定的函数求导</h2><p>参数方程形如：</p>
+<script type="math/tex; mode=display">f(x)=\left\{
+\begin{aligned}
+x=\phi{(t)}\\ 
+y=\psi{(t)}\\
+\end{aligned}
+\right.</script><p>确定了 $y=y(x)$。若$\phi{(t)}$ 和 $\psi{(t)}$ 可导，且$\phi{(t)\neq0}$  </p>
+<p>则$\frac{dy}{dx}=\frac{\psi^{‘}{(t)}}{\phi^{‘}{(t)}}$</p>
+<p>$\frac{d^2y}{dx^2}=\frac{d(\frac{dy}{dx})}{dx}$ 同乘以$dt$ 可以推出 $\frac{d^2y}{dx^2}=\frac{d\frac{\frac{dy}{dx}}{dt}}{\phi’(t)}$</p>
+<h2 id="对数求导法"><a href="#对数求导法" class="headerlink" title="对数求导法"></a>对数求导法</h2><p>对于多项相乘、相除、开方、乘方的式子，一般先取对数再求导，可以简化计算</p>
+<ol>
+<li>$\ln{y}=\ln{f(x)}$</li>
+<li>$\frac{y’}{y}=\frac{f’(x)}{f(x)}$，则$y’=\frac{yf’(x)}{f(x)}$</li>
+</ol>
+<h2 id="幂指函数求导法"><a href="#幂指函数求导法" class="headerlink" title="幂指函数求导法"></a>幂指函数求导法</h2><p>对于幂指函数$u(x)^{v(x)}, u(x)\neq{0}$，除了对数求导法，还可以转化为指数函数再求导</p>
+<p>$[u(x)^{v(x)}]’=[e^{v(x)\ln{u(x)}}]’=e^{v(x)\ln{u(x)}}[v’(x)\ln{u(x)}+v(x)\frac{u’(x)}{u(x)}]$</p>
+<h1 id="2-5-微分"><a href="#2-5-微分" class="headerlink" title="2.5 微分"></a>2.5 微分</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>$y=f(x),x\in{D},x_0+\Delta{x}\in{D},\Delta{y}=f(x_0+\Delta{x})-f(x_0)$，如果$\Delta{y} = A\Delta{x}+o(\Delta{x})$，则称$y=f(x)$在$x=x_0$可微，将$A\Delta{x}$称为在该点的微分<br>记作$dy|_{x=x_0}=A\Delta{x}=Adx$<br>由于$\Delta{x}=1·\Delta{x}+o(\Delta{x})$，根据定义，$\Delta{x}=dx$</p>
+</blockquote>
+<p>可微的判别：</p>
+<ol>
+<li>写增量：$\Delta{y}=f(x_0+\Delta{x})-f(x_0)$</li>
+<li>写线性增量：$A\Delta{x}=f’(x_0)\Delta{x}$</li>
+<li>做极限：$\lim_{\Delta{x}\rightarrow{0}}\frac{\Delta{y}-A\Delta{x}}{\Delta{x}}$，如果该极限为0，说明可微<ol>
+<li>$\Delta{y}=dy+o(\Delta{x})$</li>
+<li>$dy|_{x=x_0}=A\Delta{x}=f’(x_0)\Delta{x}$</li>
+</ol>
+</li>
+</ol>
+<p>注解：</p>
+<ol>
+<li><strong>可导和可微等价</strong></li>
+<li>$A=f’(x_0)$</li>
+<li>若 $y=f(x)$可导，则 $dy=df(x)=f’(x)dx$</li>
+</ol>
+<p><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/zy1.png" alt></p>
+<p>一些数学意义</p>
+<ul>
+<li>若一点可微，则该点附近可以用切线段近似代替曲线段</li>
+</ul>
+<p><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/3.png" alt></p>
+<ol>
+<li>若 $y=f(x)$ 在 $x=x_0$ 可微，则 $\Delta{y}-dy=o(\Delta{x})$</li>
+</ol>
+<h2 id="一阶微分形式不变性"><a href="#一阶微分形式不变性" class="headerlink" title="一阶微分形式不变性"></a>一阶微分形式不变性</h2><p>$df[\Delta]=f’(\Delta)d\Delta$</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$f(x)$</th>
+<th>$d(f(x))$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$C$</td>
+<td>0</td>
+</tr>
+<tr>
+<td>$x^a$</td>
+<td>$ax^{a-1}dx$</td>
+</tr>
+<tr>
+<td>$a^x$</td>
+<td>$a^x\ln{a}dx$</td>
+</tr>
+<tr>
+<td>$e^x$</td>
+<td>$e^x$</td>
+</tr>
+<tr>
+<td>$\log_a{x}$</td>
+<td>$\frac{1}{x\ln{a}}dx$</td>
+</tr>
+<tr>
+<td>$\ln{\x}$</td>
+<td>$\frac{1}{x}$</td>
+</tr>
+<tr>
+<td>$\sin{x}$</td>
+<td>$\cos{x}dx$</td>
+</tr>
+<tr>
+<td>$\cos{x}$</td>
+<td>$-\sin{x}dx$</td>
+</tr>
+<tr>
+<td>$\tan{x}$</td>
+<td>$\sec^2{x}dx$</td>
+</tr>
+<tr>
+<td>$\cot{x}$</td>
+<td>$-\csc^2{x}dx$</td>
+</tr>
+<tr>
+<td>$\sec{x}$</td>
+<td>$\sec{x}\tan{x}dx$</td>
+</tr>
+<tr>
+<td>$\csc{x}$</td>
+<td>$-\csc{x}\cot{x}dx$</td>
+</tr>
+<tr>
+<td>$\arcsin{x}$</td>
+<td>$\frac{1}{\sqrt{1-x^2}}dx$</td>
+</tr>
+<tr>
+<td>$\arccos{x}$</td>
+<td>$-\frac{1}{\sqrt{1-x^2}}dx$</td>
+</tr>
+<tr>
+<td>$\arctan{x}$</td>
+<td>$\frac{1}{1+x^2}dx$</td>
+</tr>
+<tr>
+<td>$arccot {x}$</td>
+<td>$-\frac{1}{1+x^2}dx$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="四则法则"><a href="#四则法则" class="headerlink" title="四则法则"></a>四则法则</h3><ol>
+<li>$d(u \pm v)=du \pm dv$</li>
+<li>$d(uv) = udv + vdu$<ol>
+<li>注意逆用</li>
+<li><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/zy2.png" alt></li>
+<li>超过三个相乘的，一般谋求他法</li>
+</ol>
+</li>
+<li>$d(\frac{u}{v}) = \frac{vdu - udv}{v^2}$<ol>
+<li>分母恒为非负数，考题可以只给分子形式</li>
+<li><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/zy3.png" alt></li>
+</ol>
+</li>
+</ol>
+<h3 id="复合"><a href="#复合" class="headerlink" title="复合"></a>复合</h3><p>一阶微分形式不变性：$y=f(u)$, $u=g(x)$,则 $dy=f’(u)du$</p>
+<h2 id="分段函数的导数"><a href="#分段函数的导数" class="headerlink" title="分段函数的导数"></a>分段函数的导数</h2><ol>
+<li>在分段点用导数定义求导，得到两个单侧导数，根据其关系判断是否存在</li>
+<li>在非分段点用导数公式求导</li>
+</ol>
+<p>$(\ln{|x|})’=\frac{1}{x}$，可以忽略绝对值</p>
+<p>推广：$(\ln{u(x)})’=\frac{u’(x)}{u(x)}$</p>
+<h2 id="近似计算"><a href="#近似计算" class="headerlink" title="近似计算"></a>近似计算</h2><p>$f(x_0+\Delta{x})\approx f(x_0)+f’(x_0)(x-\Delta{x})$</p>
+<p>$f(x)\approx f(x_0)+f’(x_0)(x-x_0)$</p>
+<blockquote>
+<p>例题：求 sin30.5 $\sqrt{1.04}=?$</p>
+</blockquote>
+<h1 id="考点"><a href="#考点" class="headerlink" title="考点"></a>考点</h1><ul>
+<li>假设$f(x)$在$x=x_0$连续，且满足$\lim_{x\rightarrow{x_0}}\frac{f(x)}{x-x_0}=A$，则<ul>
+<li>$f(x_0)=0$</li>
+<li>$f’(x_0)=A$</li>
+</ul>
+</li>
+<li>原函数若有奇偶性，则求一次导，奇偶性互换<ul>
+<li>求导偶数次，奇偶性不变</li>
+<li>求导奇数次，寄偶性变</li>
+</ul>
+</li>
+<li>可导周期$T$函数的导函数也以$T$为周期</li>
+</ul>
+<blockquote>
+<p>例题  </p>
+<ol>
+<li>$f(x)=\prod_{i=1}^{100}(\tan{\frac{\pi x^n}{4}-n})$，求$f’(1)$  </li>
+</ol>
+</blockquote>
+<h1 id="后续内容结合"><a href="#后续内容结合" class="headerlink" title="后续内容结合"></a>后续内容结合</h1><h2 id="变限积分求导公式"><a href="#变限积分求导公式" class="headerlink" title="变限积分求导公式"></a>变限积分求导公式</h2><p>设$F(x)=\int_{\phi_1{(x)}}^{\phi_2{(x)}}f(t)dt$，其中$f(x)$在$[a,b]$上连续，可导函数$\phi_1{(x)}$和$\phi_2{(x)}$值域在$[a,b]$上，则：</p>
+<p>$F’(x)=\frac{d}{dx}[\int_{\phi_1{(x)}}^{\phi_2{(x)}}f(t)dt]=f[\phi_2{(x)}]\phi_2’(x)-f[\phi_1{(x)}]\phi_1’(x)$</p>
+<p>具体地</p>
+<p>$F’(x)=\frac{d}{dx}[\int_{a}^{x}f(t)dt]=f(x)$</p>
+<p>$F’(x)=\frac{d}{dx}[\int_{a}^{\phi{(x)}}f(t)dt]=f[\phi{(x)}]\phi ‘{(x)}$</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研高等数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -2681,14 +3241,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">考研高等数学</a>
               </li>
              
@@ -2697,11 +3249,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研线性代数</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
               </li>
             
             <div class="clearfix"></div>
@@ -2838,5 +3394,20 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

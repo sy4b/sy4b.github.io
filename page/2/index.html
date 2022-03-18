@@ -146,335 +146,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-导数与微分" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/">导数与微分</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/" class="archive-article-date">
-  	<time datetime="2022-02-24T05:30:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="2-1-导数的概念"><a href="#2-1-导数的概念" class="headerlink" title="2.1 导数的概念"></a>2.1 导数的概念</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>y=f(x) x∈D, x0∈D, x0+∆x∉D, ∆y=f(x0+∆x)-f(x0)<br>若 lim(∆x-&gt;0) ∆y/∆x 存在，称f(x)在x=x0可导，该极限称为f(x)在x=x0的导数，记作dy/dx|x=x0  </p>
-</blockquote>
-<ol>
-<li>导数的等价定义：f’(x0) = lim(∆x-&gt;0) (f(x0+∆x)-f(x0))/∆x = lim(x-&gt;x0) (f(x)-f(x0))/(x-x0)</li>
-<li>f(x)在某一点可导，则在该点出必定连续</li>
-<li>导数存在的<strong>充要条件</strong>是左导数和右导数存在并相等</li>
-<li><strong>可导一定连续 连续不一定可导</strong></li>
-</ol>
-<p>考点：函数在某一点的可导性</p>
-<ul>
-<li>先看在该点是否<strong>连续</strong>，不连续一定不可导</li>
-<li>求左右导数，看是否存在且相等</li>
-</ul>
-<h2 id="常用导数"><a href="#常用导数" class="headerlink" title="常用导数"></a>常用导数</h2><p>求导的主要对象：初等函数</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>f(x)</th>
-<th>f’(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>C（常数）</td>
-<td>0</td>
-</tr>
-<tr>
-<td>x^n</td>
-<td>n*x^(n-1)</td>
-</tr>
-<tr>
-<td>a^x（a&gt;0 &amp;&amp; a!=1）</td>
-<td>a^x * ln(a)</td>
-</tr>
-<tr>
-<td>log(a, x)（a&gt;0 &amp;&amp; a!=1）</td>
-<td>1/(x*ln(a))</td>
-</tr>
-<tr>
-<td>sin x</td>
-<td>cos x</td>
-</tr>
-<tr>
-<td>cos x</td>
-<td>-sin x</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="2-2-求导法则"><a href="#2-2-求导法则" class="headerlink" title="2.2 求导法则"></a>2.2 求导法则</h1><h2 id="四则运算法则"><a href="#四则运算法则" class="headerlink" title="四则运算法则"></a>四则运算法则</h2><blockquote>
-<p>设u(x) v(x)可导<br>(u(x)+v(x))’ = u’(x)+v’(x)<br>(u(x)-v(x))’ = u’(x)-v’(x)<br>(u(x)v(x))’ = u’(x)v(x)+u(x)v’(x)<br>v(x)!=0时，(u(x)/v(x))’ = ((u’(x)v(x)-u(x)v’(x))/(v(x)^2))<br>推广：<br>(ku)’ = ku’ k为常数<br>(uvw)’ = u’vw + uv’w + uvw’  </p>
-</blockquote>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>f(x)</th>
-<th>f’(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>tan x</td>
-<td>sec^2(x)</td>
-</tr>
-<tr>
-<td>cot x</td>
-<td>-csc^2(x)</td>
-</tr>
-<tr>
-<td>sec x</td>
-<td>sec x * tan x</td>
-</tr>
-<tr>
-<td>csc x</td>
-<td>-csc x * cot x</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="反函数求导法则"><a href="#反函数求导法则" class="headerlink" title="反函数求导法则"></a>反函数求导法则</h2><p>前提 ：y=f(x) 严格单调，才能有反函数</p>
-<blockquote>
-<p>设y=f(x)可导并且f’(x)!=0，则x=𝜙(y)可导<br>且 𝜙‘(y) = 1/f’(x)</p>
-</blockquote>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>f(x)</th>
-<th>f’(x)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>arcsin x</td>
-<td>1/((1-x^2)^0.5)</td>
-</tr>
-<tr>
-<td>arccos x</td>
-<td>-1/((1-x^2)^0.5)</td>
-</tr>
-<tr>
-<td>arctan x</td>
-<td>1/(1+x^2)</td>
-</tr>
-<tr>
-<td>arccot x</td>
-<td>-1(1+x^2)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="复合函数求导法则——链式法则"><a href="#复合函数求导法则——链式法则" class="headerlink" title="复合函数求导法则——链式法则"></a>复合函数求导法则——链式法则</h2><blockquote>
-<p>若y=f(u)可导，u=𝜙(x)可导且𝜙’(x)!=0，则y=f[𝜙(x)]可导，且dy/dx = f’[𝜙(x)]*𝜙’(x)  </p>
-</blockquote>
-<h1 id="2-3-高阶导数"><a href="#2-3-高阶导数" class="headerlink" title="2.3 高阶导数"></a>2.3 高阶导数</h1><p>二阶及以上的导数称为高阶导数</p>
-<h2 id="方法一：归纳法"><a href="#方法一：归纳法" class="headerlink" title="方法一：归纳法"></a>方法一：归纳法</h2><p>通过前几项，找出规律</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">y = sin x</span><br><span class="line">可以归纳出 sin(x)^(n) = sin(x+(n𝛱)/2)</span><br><span class="line"></span><br><span class="line">同理 cos(x)^(n) = cos(x+(n𝛱)/2)</span><br></pre></td></tr></table></figure>
-<p><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/1.png" alt></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>$f(x)$</th>
-<th>$f^{(n)}(x)$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$\sin{x}$</td>
-<td>$\sin{x+\frac{(n\pi)}{2}}$</td>
-</tr>
-<tr>
-<td>$\cos{x}$</td>
-<td>$\cos{x+\frac{(n\pi)}{2}}$</td>
-</tr>
-<tr>
-<td>1/(ax+b)</td>
-<td>(-1)^n <em> n! </em> a^n /(ax+b)^(n+1)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="方法二：公式法"><a href="#方法二：公式法" class="headerlink" title="方法二：公式法"></a>方法二：公式法</h2><p><strong>莱布尼茨公式</strong>：</p>
-<p>$(uv)^{(n)}=C^0_n u^{(n)}v+C^1_n u^{(n-1)}v^{(1)}+C^2_n u^{(n-2)}v^{(2)}+……+C^n_n uv^{(n)}$</p>
-<p>其中</p>
-<p>$C^m_n=\frac{n!}{m!\cdot(n-m)!}$</p>
-<h1 id="2-4-隐函数和参数方程确定的函数求导"><a href="#2-4-隐函数和参数方程确定的函数求导" class="headerlink" title="2.4 隐函数和参数方程确定的函数求导"></a>2.4 隐函数和参数方程确定的函数求导</h1><h2 id="隐函数"><a href="#隐函数" class="headerlink" title="隐函数"></a>隐函数</h2><ul>
-<li>显函数：$y=f(x)$</li>
-<li>隐函数：$F(x,y)=0$ 理论上可以求出 $y=f(x)$，但不一定解得出来。这个求解的过程叫做<strong>隐函数的显式化</strong></li>
-</ul>
-<p>隐函数求 $\frac{dy}{dx}$ 方法：<strong>$y看成𝜙(x)$，两边同时对$x$求导</strong></p>
-<p><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/2.png" alt></p>
-<h2 id="参数方程确定的函数求导"><a href="#参数方程确定的函数求导" class="headerlink" title="参数方程确定的函数求导"></a>参数方程确定的函数求导</h2><p>参数方程形如：</p>
-<script type="math/tex; mode=display">f(x)=\left\{
-\begin{aligned}
-x=\phi{(t)}\\ 
-y=\psi{(t)}\\
-\end{aligned}
-\right.</script><p>确定了 $y=y(x)$。若$\phi{(t)}$ 和 $\psi{(t)}$ 可导，且$\phi{(t)\neq0}$  </p>
-<p>则$\frac{dy}{dx}=\frac{\psi^{‘}{(t)}}{\phi^{‘}{(t)}}$</p>
-<p>$\frac{d^2y}{dx^2}=\frac{d(\frac{dy}{dx})}{dx}$ 同乘以$dt$ 可以推出 $\frac{d^2y}{dx^2}=\frac{d\frac{\frac{dy}{dx}}{dt}}{\phi’(t)}$</p>
-<h1 id="2-5-微分"><a href="#2-5-微分" class="headerlink" title="2.5 微分"></a>2.5 微分</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><blockquote>
-<p>$y=f(x),x\in{D},x_0+\Delta{x}\in{D},\Delta{y}=f(x_0+\Delta{x})-f(x_0)$，如果$\Delta{y} = A\Delta{x}+o(\Delta{x})$，则称$y=f(x)$在$x=x_0$可微，将$A\Delta{x}$称为在该点的微分<br>记作$dy\bigg|_{x=x_0}=A\Delta{x}=Adx$</p>
-</blockquote>
-<ol>
-<li><strong>可导和可微等价</strong></li>
-<li>$A=f’(x_0)$</li>
-<li>若 $y=f(x)$可导，则 $dy=df(x)=f’(x)dx$</li>
-</ol>
-<p>一些数学意义</p>
-<p><img src="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/3.png" alt></p>
-<ol>
-<li>若 $y=f(x)$ 在 $x=x_0$ 可微，则 $\Delta{y}-dy=o(\Delta{x})$</li>
-</ol>
-<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>$f(x)$</th>
-<th>$d(f(x))$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$C$</td>
-<td>0</td>
-</tr>
-<tr>
-<td>$x^a$</td>
-<td>$ax^{a-1}dx$</td>
-</tr>
-<tr>
-<td>$a^x$</td>
-<td>$a^x\ln{a}dx$</td>
-</tr>
-<tr>
-<td>$\log_a{x}$</td>
-<td>$\frac{1}{x\ln{a}}dx$</td>
-</tr>
-<tr>
-<td>$\sin{x}$</td>
-<td>$\cos{x}dx$</td>
-</tr>
-<tr>
-<td>$\cos{x}$</td>
-<td>$-\sin{x}dx$</td>
-</tr>
-<tr>
-<td>$\tan{x}$</td>
-<td>$\sec^2{x}dx$</td>
-</tr>
-<tr>
-<td>$\cot{x}$</td>
-<td>$-\csc^2{x}dx$</td>
-</tr>
-<tr>
-<td>$\sec{x}$</td>
-<td>$\sec{x}\tan{x}dx$</td>
-</tr>
-<tr>
-<td>$\csc{x}$</td>
-<td>$-\csc{x}\cot{x}dx$</td>
-</tr>
-<tr>
-<td>$\arcsin{x}$</td>
-<td>$\frac{1}{\sqrt{1-x^2}}dx$</td>
-</tr>
-<tr>
-<td>$\arccos{x}$</td>
-<td>$-\frac{1}{\sqrt{1-x^2}}dx$</td>
-</tr>
-<tr>
-<td>$\arctan{x}$</td>
-<td>$\frac{1}{1+x^2}dx$</td>
-</tr>
-<tr>
-<td>$arccot {x}$</td>
-<td>$-\frac{1}{1+x^2}dx$</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="四则法则"><a href="#四则法则" class="headerlink" title="四则法则"></a>四则法则</h3><ol>
-<li>$d(u \pm v)=du \pm dv$</li>
-<li>$d(uv) = udv + vdu$</li>
-<li>$(\frac{u}{v})’ = \frac{vdu - udv}{v^2}$</li>
-</ol>
-<h3 id="复合"><a href="#复合" class="headerlink" title="复合"></a>复合</h3><p>一阶微分形式不变性：$y=f(u)$, $u=g(x)$,则 $dy=f’(u)du$</p>
-<h2 id="近似计算"><a href="#近似计算" class="headerlink" title="近似计算"></a>近似计算</h2><p>$f(x_0+\Delta{x})\approx f(x_0)+f’(x_0)(x-\Delta{x})$</p>
-<p>$f(x)\approx f(x_0)+f’(x_0)(x-x_0)$</p>
-<blockquote>
-<p>例题：求 sin30.5 $\sqrt{1.04}=?$</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">考研高等数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/24/%E5%AF%BC%E6%95%B0%E4%B8%8E%E5%BE%AE%E5%88%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-leetcode-1706-球会落何处" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -856,6 +527,9 @@ y=\psi{(t)}\\
 </ul>
 </li>
 </ul>
+<h1 id><a href="#" class="headerlink" title="#"></a>#</h1><ul>
+<li>反双曲正弦</li>
+</ul>
 <h1 id="1-1-函数"><a href="#1-1-函数" class="headerlink" title="1.1 函数"></a>1.1 函数</h1><h2 id="一些定义"><a href="#一些定义" class="headerlink" title="一些定义"></a>一些定义</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>x，y为两个变量，x ∈ D，如果 x ∈ D，总存在<strong>唯一确定</strong>的y与x对应，称y为x的函数，记作 y = f(x)</p>
 <p>D 称为定义域 </p>
 <p>R = {y| y = f(x), x ∈ D} 称为函数的值域</p>
@@ -1108,11 +782,12 @@ y=\psi{(t)}\\
 <li>x ~ arctan(x)</li>
 <li>x ~ ln(1+x)</li>
 <li>x ~ e^x-1</li>
+<li>$a^x-1$~$x\ln{x}$</li>
 <li>1-cosx ~ x^2/2</li>
 <li>(1+x)^a-1 ~ ax</li>
 </ul>
 <h1 id="1-8-函数的连续性和间断点"><a href="#1-8-函数的连续性和间断点" class="headerlink" title="1.8 函数的连续性和间断点"></a>1.8 函数的连续性和间断点</h1><h2 id="f-x-在某一点连续连续"><a href="#f-x-在某一点连续连续" class="headerlink" title="f(x)在某一点连续连续"></a>f(x)在某一点连续连续</h2><blockquote>
-<p>若lim(x-&gt;a) f(x) = f(a)，则f(x)在x=a处连续<br>即 f(a-0) = f(a+0) = f(a)  </p>
+<p>若$\lim_{x\rightarrow{x_0}}f(x)=f(x_0)$</p>
 </blockquote>
 <ol>
 <li>f(a-0)=f(a)称f(x)在x=a左连续；f(a+0)=f(a)右连续</li>
@@ -1122,7 +797,7 @@ y=\psi{(t)}\\
 <p>若f(x)在[a,b]上有定义，f(x)在(a,b)内处处连续，f(a)=f(a+0),f(b)=f(b-0)，那么称f(x)在[a,b]上连续<br>记作 f(x) ∈ C[a,b]</p>
 </blockquote>
 <h2 id="间断点及分类"><a href="#间断点及分类" class="headerlink" title="间断点及分类"></a>间断点及分类</h2><blockquote>
-<p>lim(x-&gt;a) f(x) != f(a)，称f(a)在x=a间断</p>
+<p>在点$x_0$的某去心领域内有定义的前提下才讨论间断点<br>lim(x-&gt;a) f(x) != f(a)，称f(a)在x=a间断</p>
 </blockquote>
 <p>间断点的分类：</p>
 <ol>
@@ -1131,7 +806,12 @@ y=\psi{(t)}\\
 <li>跳跃间断点：f(a-0)!=f(a+0)</li>
 </ol>
 </li>
-<li>第二类间断点：f(a-0)和f(a+0)至少一个不存在</li>
+<li>第二类间断点：f(a-0)和f(a+0)至少一个不存在<ol>
+<li>无穷间断点：$\lim_{x\rightarrow{x_0}}f(x)=\infty$</li>
+<li>振荡间断点</li>
+<li>其他</li>
+</ol>
+</li>
 </ol>
 <h1 id="1-9-连续函数的运算和初等函数连续性"><a href="#1-9-连续函数的运算和初等函数连续性" class="headerlink" title="1.9 连续函数的运算和初等函数连续性"></a>1.9 连续函数的运算和初等函数连续性</h1><h2 id="连续函数的运算"><a href="#连续函数的运算" class="headerlink" title="连续函数的运算"></a>连续函数的运算</h2><h3 id="四则运算"><a href="#四则运算" class="headerlink" title="四则运算"></a>四则运算</h3><blockquote>
 <p>f(x) g(x) 在x=x0连续，则f(x)+g(x)和f(x)-g(x)和f(x)g(x)在x=x0连续<br>若g(x0)!=0, 则f(x)/g(x)在x=x0连续</p>
@@ -1150,6 +830,28 @@ y=\psi{(t)}\\
 <li>函数闭区间连续，证明开区间问题，首选零点定理</li>
 <li>函数闭区间连续，证明闭区间问题 / 函数值之和，选介值定理</li>
 </ol>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="海涅定理"><a href="#海涅定理" class="headerlink" title="海涅定理"></a>海涅定理</h2><blockquote>
+<p>设f(x)在$\hat{U}(x_0,\delta)$有定义，则<br>$\lim_{x\rightarrow{x_0}}f(x)=A$存在的充要条件是<br>对任何$\hat{U}(x_0,\delta)$内，以$x_0$为极限的数列{$x_n$}，极限$\lim_{n\rightarrow{\infty}}f(x_n)=A$存在</p>
+</blockquote>
+<ol>
+<li>从右往左推：取两个不同的数列{$x_n$}，否定函数极限的存在</li>
+<li>从左到右推：$\lim_{x\rightarrow{x_0}}f(x)=A =&gt; \lim_{n\rightarrow{\infty}}f(x_n)=A$</li>
+</ol>
+<h2 id="七种未定式极限"><a href="#七种未定式极限" class="headerlink" title="七种未定式极限"></a>七种未定式极限</h2><ol>
+<li>$\frac{0}{0}, \frac{\infty}{\infty}, 0·\infty$</li>
+<li>$\infty - \infty$</li>
+<li>$\infty^0, 0^0, 1^\infty$</li>
+</ol>
+<ul>
+<li>遇到根号，有理化</li>
+<li>等价无穷小</li>
+<li>泰勒展开</li>
+<li>取整函数相关的，用$x-1&lt;[x]\le{x}$，夹逼定理</li>
+<li>$\infty-\infty$，有分母则通分，没有则创造分母（换元$x=\frac{1}{t}$</li>
+<li>幂指函数化为$e^{v\ln{u}}$</li>
+<li>$1^{\infty}$：$\lim{u^v}=e^{\lim{v\ln{u}}}=e^{\lim{v(u-1)}}$</li>
+<li>海涅定理</li>
+</ul>
 
       
 
@@ -1906,6 +1608,93 @@ y=\psi{(t)}\\
 
 
   
+    <article id="post-leetcode-204-计数质数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/14/leetcode-204-%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/">leetcode 204. 计数质数</a>
+    </h1>
+  
+
+        
+        <a href="/2022/02/14/leetcode-204-%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2022-02-14T05:30:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>给定整数 n ，返回 所有小于非负整数 n 的质数的数量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">示例1:</span><br><span class="line">n = 10</span><br><span class="line">输出：4</span><br><span class="line">解释：小于10的质数一共有4个。分别为2 3 5 7</span><br></pre></td></tr></table></figure>
+<p>数据量：0 &lt;= n &lt;= 5*10^6</p>
+<ul>
+<li>难度：Medium</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-primes/">点这里做题</a></p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>暴力肯定超时，这里学习一下埃氏筛的做法</p>
+<p>用一个isPrime数组标记i是否为质数，如果它是的话，就把2i 3i 4i .. 都标记为非质数</p>
+<p>这里可以优化：对于一个质数x，应该从x*x开始标记它的倍数。2x 3x等这些数一定在x之前就被其他数的倍数标记</p>
+<ul>
+<li>知识点：埃氏筛</li>
+</ul>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countPrimes</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">isPrime</span><span class="params">(n, <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;n;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(isPrime[i])&#123;</span><br><span class="line">                ++ans;</span><br><span class="line">                <span class="keyword">if</span>((<span class="type">long</span> <span class="type">long</span>) i*i &lt; n)</span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> j=i*i;j&lt;n;j+=i)&#123;</span><br><span class="line">                        isPrime[j] = <span class="number">0</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/14/leetcode-204-%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -2032,14 +1821,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">考研高等数学</a>
               </li>
              
@@ -2048,11 +1829,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研线性代数</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
               </li>
             
             <div class="clearfix"></div>
@@ -2189,5 +1974,20 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

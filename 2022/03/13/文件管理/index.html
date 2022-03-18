@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>文件管理 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="4.1_1 初识文件管理文件的属性 文件名：方便用户找到文件。同一目录下不允许有重名文件 标识符：os用于区分各个文件的一种内部名称 类型：指明文件的类型 位置 存放路径：给用户使用 在外存中的地址：os使用，用户不可见   大小 创建修改时间 文件所有者 保护信息：对文件进行保护的访问控制信息  文件内部数据如何组织？ 无结构文件：例如文本文件，由二进制或字符流组成，又称流式文件 有结构文件：例">
+  <meta name="description" content="4.1_1 初识文件管理文件的概念 文件是以硬盘为载体的存储在计算机上的信息集合系统运行时，计算机以进程为载体进行资源调度和分配；而用户进行输入和输出中，以文件为基本单位  文件的属性操作系统通过文件控制块FCB来维护文件元数据  文件名：方便用户找到文件。同一目录下不允许有重名文件 标识符：os用于区分各个文件的一种内部名称 类型：指明文件的类型 位置 存放路径：给用户使用 在外存中的地址：os">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件管理">
 <meta property="og:url" content="http://example.com/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="4.1_1 初识文件管理文件的属性 文件名：方便用户找到文件。同一目录下不允许有重名文件 标识符：os用于区分各个文件的一种内部名称 类型：指明文件的类型 位置 存放路径：给用户使用 在外存中的地址：os使用，用户不可见   大小 创建修改时间 文件所有者 保护信息：对文件进行保护的访问控制信息  文件内部数据如何组织？ 无结构文件：例如文本文件，由二进制或字符流组成，又称流式文件 有结构文件：例">
+<meta property="og:description" content="4.1_1 初识文件管理文件的概念 文件是以硬盘为载体的存储在计算机上的信息集合系统运行时，计算机以进程为载体进行资源调度和分配；而用户进行输入和输出中，以文件为基本单位  文件的属性操作系统通过文件控制块FCB来维护文件元数据  文件名：方便用户找到文件。同一目录下不允许有重名文件 标识符：os用于区分各个文件的一种内部名称 类型：指明文件的类型 位置 存放路径：给用户使用 在外存中的地址：os">
 <meta property="og:locale">
 <meta property="og:image" content="http://example.com/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/1.png">
 <meta property="og:image" content="http://example.com/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/2.png">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/13.png">
 <meta property="og:image" content="http://example.com/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/14.png">
 <meta property="article:published_time" content="2022-03-13T06:16:00.000Z">
-<meta property="article:modified_time" content="2022-03-13T08:31:29.374Z">
+<meta property="article:modified_time" content="2022-03-15T07:18:03.026Z">
 <meta property="article:author" content="Valerie">
 <meta property="article:tag" content="考研操作系统">
 <meta name="twitter:card" content="summary">
@@ -184,7 +184,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="4-1-1-初识文件管理"><a href="#4-1-1-初识文件管理" class="headerlink" title="4.1_1 初识文件管理"></a>4.1_1 初识文件管理</h1><h2 id="文件的属性"><a href="#文件的属性" class="headerlink" title="文件的属性"></a>文件的属性</h2><ol>
+        <h1 id="4-1-1-初识文件管理"><a href="#4-1-1-初识文件管理" class="headerlink" title="4.1_1 初识文件管理"></a>4.1_1 初识文件管理</h1><h2 id="文件的概念"><a href="#文件的概念" class="headerlink" title="文件的概念"></a>文件的概念</h2><blockquote>
+<p>文件是以硬盘为载体的存储在计算机上的信息集合<br>系统运行时，计算机以进程为载体进行资源调度和分配；而用户进行输入和输出中，以文件为基本单位</p>
+</blockquote>
+<h2 id="文件的属性"><a href="#文件的属性" class="headerlink" title="文件的属性"></a>文件的属性</h2><p><strong>操作系统通过文件控制块FCB来维护文件元数据</strong></p>
+<ol>
 <li>文件名：方便用户找到文件。同一目录下不允许有重名文件</li>
 <li>标识符：os用于区分各个文件的一种内部名称</li>
 <li>类型：指明文件的类型</li>
@@ -195,7 +199,7 @@
 </li>
 <li>大小</li>
 <li>创建修改时间</li>
-<li>文件所有者</li>
+<li>文件创建者、所有者</li>
 <li>保护信息：对文件进行保护的访问控制信息</li>
 </ol>
 <h2 id="文件内部数据如何组织？"><a href="#文件内部数据如何组织？" class="headerlink" title="文件内部数据如何组织？"></a>文件内部数据如何组织？</h2><ul>
@@ -215,10 +219,37 @@
 <li>删除文件</li>
 <li>打开文件（读写文件前需要打开文件</li>
 <li>关闭文件（读写文件后需要关闭文件</li>
+<li>截断文件：允许文件所有属性不变，删除文件内容，长度设置为0并释放空间</li>
 </ul>
-<h2 id="从上往下看，文件应该如何存放在外存"><a href="#从上往下看，文件应该如何存放在外存" class="headerlink" title="从上往下看，文件应该如何存放在外存"></a>从上往下看，文件应该如何存放在外存</h2><h2 id="其他需要操作系统实现的文件管理功能"><a href="#其他需要操作系统实现的文件管理功能" class="headerlink" title="其他需要操作系统实现的文件管理功能"></a>其他需要操作系统实现的文件管理功能</h2><ul>
-<li>文件共享</li>
-<li>文件保护</li>
+<h2 id="从上往下看，文件应该如何存放在外存"><a href="#从上往下看，文件应该如何存放在外存" class="headerlink" title="从上往下看，文件应该如何存放在外存"></a>从上往下看，文件应该如何存放在外存</h2><h2 id="其他需要操作系统实现的文件管理功能"><a href="#其他需要操作系统实现的文件管理功能" class="headerlink" title="其他需要操作系统实现的文件管理功能"></a>其他需要操作系统实现的文件管理功能</h2><h3 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h3><h3 id="文件保护"><a href="#文件保护" class="headerlink" title="文件保护"></a>文件保护</h3><p>防止文件共享可能导致文件被破坏或被未经核准的用户修改</p>
+<p>文件保护通过口令保护、加密保护和访问控制实现。其中口令和加密是为防止文件被他人窃取或存取，访问控制用于控制用户对文件的访问方式</p>
+<h4 id="访问类型"><a href="#访问类型" class="headerlink" title="访问类型"></a>访问类型</h4><p>对文件的保护可从限制对文件的访问类型中出发。可加以控制的访问类型包括</p>
+<ol>
+<li>读文件</li>
+<li>写文件</li>
+<li>执行文件：将文件装入内存中并执行</li>
+<li>添加：将新信息添加到文件结尾部分</li>
+<li>删除：删除文件，释放空间</li>
+<li>列表清单：列出文件名和文件属性</li>
+</ol>
+<p>其他高层功能操作可以通过系统程序调用低层系统调用实现。保护可以只在低层提供</p>
+<h4 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h4><p>访问控制常用方法是根据用户身份进行控制：为每个文件和目录增加一个访问控制列表，规定每个用户名及其允许的访问类型。精简的访问列表采用</p>
+<ol>
+<li>拥有者：创建文件的用户</li>
+<li>组：一组需要共享文件且具有相似访问的用户</li>
+<li>其他：系统内所有其他用户</li>
+</ol>
+<ul>
+<li>口令：用户在创建一个文件时提供口令（附在FCB中），同时告知允许共享该文件的所有用户。用户请求访问文件时需要提供口令<ul>
+<li>优点：时间空间开销不大</li>
+<li>缺点：口令直接存在系统内部，不够安全</li>
+</ul>
+</li>
+<li>密码：用户对文件进行加密，访问时需要提供密钥。<ul>
+<li>优点：保密性强，节约空间</li>
+<li>缺点：编码和译码都需要时间</li>
+</ul>
+</li>
 </ul>
 <h1 id="4-1-2-文件的逻辑结构"><a href="#4-1-2-文件的逻辑结构" class="headerlink" title="4.1_2 文件的逻辑结构"></a>4.1_2 文件的逻辑结构</h1><ul>
 <li>逻辑结构：用户看来，文件内部的数据如何组织起来</li>
@@ -233,7 +264,10 @@
 </ul>
 <ol>
 <li>链式存储无法实现随机存取</li>
-<li><strong>顺序存储可变长记录，无法随机存取</strong></li>
+<li><strong>顺序存储可变长记录，无法随机存取</strong><ol>
+<li>原因：无法预知每条记录的长度</li>
+</ol>
+</li>
 <li>顺序存储定长记录<ol>
 <li>可实现随机存取</li>
 <li>采用顺序结构可以快速找到某关键字对应的记录</li>
@@ -257,11 +291,13 @@
 <li>为了进一步提高检索效率，可以为顺序文件建立多级索引表</li>
 </ol>
 <h1 id="4-1-3-文件目录"><a href="#4-1-3-文件目录" class="headerlink" title="4.1_3 文件目录"></a>4.1_3 文件目录</h1><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/1.png" alt></p>
-<h2 id="文件控制块"><a href="#文件控制块" class="headerlink" title="文件控制块"></a>文件控制块</h2><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/2.png" alt></p>
+<h2 id="文件控制块"><a href="#文件控制块" class="headerlink" title="文件控制块"></a>文件控制块</h2><p>文件控制块FCB是用于存放控制文件所需的各种信息的数据结构</p>
+<p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/2.png" alt></p>
 <ol>
-<li>FCB的有序集合称为“文件目录”，一个FCB就是一个文件目录项</li>
+<li><strong>FCB的有序集合称为文件目录，一个FCB就是一个文件目录项</strong></li>
+<li>一个文件目录也被视为一个文件，称为<strong>目录文件</strong></li>
 <li>FCB包含文件的基本信息、存取控制信息、使用信息</li>
-<li><strong>FCB中最重要最基本是文件名、文件存放的物理地址</strong>；FCB实现文件名和文件之间的映射，使用户程序可以实现按文件名存取</li>
+<li><strong>FCB中最重要最基本是文件名、文件存放的物理地址</strong>；FCB实现文件名和文件之间的映射，使用户程序可以<strong>实现按文件名存取</strong></li>
 </ol>
 <p>需要对目录进行的操作</p>
 <ol>
@@ -286,7 +322,8 @@
 <li>缺点：<strong>不方便实现文件共享</strong>（为此提出“无环图目录结构”</li>
 </ol>
 <h3 id="无环图目录结构"><a href="#无环图目录结构" class="headerlink" title="无环图目录结构"></a>无环图目录结构</h3><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/5.png" alt></p>
-<h2 id="索引节点-FCB的改进"><a href="#索引节点-FCB的改进" class="headerlink" title="索引节点 FCB的改进"></a>索引节点 FCB的改进</h2><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/6.png" alt></p>
+<h2 id="索引节点-FCB的改进"><a href="#索引节点-FCB的改进" class="headerlink" title="索引节点 FCB的改进"></a>索引节点 FCB的改进</h2><p>思路：查找目录的过程中，只需要用到文件名，找到后才需要调出其他信息，因此这部分信息没有必要调入内存</p>
+<p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/6.png" alt></p>
 <ul>
 <li>存放在外存的索引节点称为<strong>磁盘索引节点</strong></li>
 <li>索引节点放入内存后称为<strong>内存索引节点</strong></li>
@@ -319,6 +356,7 @@
 <p>Tips：题目没有说明的话，默认隐式链接</p>
 <h3 id="隐式链接"><a href="#隐式链接" class="headerlink" title="隐式链接"></a>隐式链接</h3><p><img src="/2022/03/13/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/10.png" alt></p>
 <ol>
+<li><strong>隐式链接的指针对用户是透明的</strong></li>
 <li>方便文件扩展，不会产生磁盘碎片</li>
 <li>只支持顺序访问，不支持随机访问，查找效率低</li>
 <li>存储指针也要消耗存储空间</li>
@@ -367,7 +405,7 @@
 </ol>
 </li>
 </ol>
-
+<h1 id="4-1-5-文件存储空间管理"><a href="#4-1-5-文件存储空间管理" class="headerlink" title="4.1_5 文件存储空间管理"></a>4.1_5 文件存储空间管理</h1>
       
 
       
@@ -638,14 +676,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">考研高等数学</a>
               </li>
              
@@ -654,11 +684,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研线性代数</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
               </li>
             
             <div class="clearfix"></div>
@@ -795,5 +829,20 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

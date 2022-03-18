@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://example.com/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/4.png">
 <meta property="og:image" content="http://example.com/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/5.png">
 <meta property="article:published_time" content="2022-02-27T11:47:01.000Z">
-<meta property="article:modified_time" content="2022-03-13T05:18:40.544Z">
+<meta property="article:modified_time" content="2022-03-18T12:12:20.457Z">
 <meta property="article:author" content="Valerie">
 <meta property="article:tag" content="考研高等数学">
 <meta name="twitter:card" content="summary">
@@ -195,7 +195,7 @@
 <li>$e^x=\frac{x^0}{0!}+\frac{x^1}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)$</li>
 <li>$(1+x)^a=1+ax+\frac{a(a-1)}{2!}x^2+o(x^2)$</li>
 </ul>
-<h1 id="3-1-微分中值定理"><a href="#3-1-微分中值定理" class="headerlink" title="3.1 微分中值定理"></a>3.1 微分中值定理</h1><h2 id="引导"><a href="#引导" class="headerlink" title="引导"></a>引导</h2><ol>
+<h1 id="3-1-微分中值定理"><a href="#3-1-微分中值定理" class="headerlink" title="3.1 微分中值定理"></a>3.1 微分中值定理</h1><h2 id="引理"><a href="#引理" class="headerlink" title="引理"></a>引理</h2><ol>
 <li>极值点<ol>
 <li>设 $y=f(x), x\in D, x_0\in D$ </li>
 <li>∃ $\delta&gt;0$, $0&lt;|x-x_0|&lt;\delta$ 时，$f(x)&gt;f(x_0)$，则称$f(x_0)$ 为极小值点</li>
@@ -211,13 +211,71 @@
         =0 \text{，可能是极值点}\\
         不存在 \text{，可能是极值}
     \end{aligned}
-    \right.</script><h2 id="罗尔定理"><a href="#罗尔定理" class="headerlink" title="罗尔定理"></a>罗尔定理</h2><ol>
+    \right.</script><h2 id="涉及函数的中值定理"><a href="#涉及函数的中值定理" class="headerlink" title="涉及函数的中值定理"></a>涉及函数的中值定理</h2><p>设$f(x)$在$[a,b]$上连续，则</p>
+<ol>
+<li>定理一：有界与最值定理<ol>
+<li>$m\leq{f(x)}\leq{M}$，其中$m、n$分别为$f(x)$在$[a,b]$上的最小值与最大值</li>
+</ol>
+</li>
+<li>定理二：介值定理<ol>
+<li>$m\leq{\mu}\leq{M}$时，存在$\zeta\in{[a,b]}$，使得$f(\zeta)=\mu$</li>
+</ol>
+</li>
+<li>定理三：平均值定理（离散的<ol>
+<li>$a&lt;x_1&lt;x_2&lt;…&lt;x_n&lt;b$时，$[x_1,x_n]$内至少存在一点$\zeta$使得$f(\zeta)=\frac{f(x_1)+f(x_2)+…+f(x_n)}{n}$</li>
+</ol>
+</li>
+<li>定理四：零点定理<ol>
+<li>当$f(a)f(b)&lt;0$时，存在$\zeta\in(a,b)$，使得$f(\zeta)=0$</li>
+</ol>
+</li>
+<li>定理十：积分中值定理（连续的平均值定理<ol>
+<li>存在$\zeta\in{[a,b]}$，使得$\int_a^bf(x)dx=f(\zeta)(b-a)$</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>如何证明积分中值定理中，$\zeta\in{(a,b)}$？（真题考过，可直接使用<br>设$F(x)=\int_a^xf(t)dt$<br>由拉格朗日中值定理  $F(b)-F(a)=F’(\zeta)(b-a), \zeta\in(a,b)$<br>证毕</p>
+</blockquote>
+<h2 id="涉及微分的中值定理"><a href="#涉及微分的中值定理" class="headerlink" title="涉及微分的中值定理"></a>涉及微分的中值定理</h2><h3 id="费马定理"><a href="#费马定理" class="headerlink" title="费马定理"></a>费马定理</h3><p>设$f(x)$在$x_0$处可导并取得极值，则$f’(x_0)=0$</p>
+<p>证明：</p>
+<p>不妨设$x=x_0$取得极大值</p>
+<p>$f’_-(x_0)=\lim_{x\rightarrow{x_0-}}\frac{f(x)-f(x_0)}{x-x_0}\geq{0}$</p>
+<p>$f’_+(x_0)=\lim_{x\rightarrow{x_0+}}\frac{f(x)-f(x_0)}{x-x_0}\leq{0}$</p>
+<p>可导需要左右导数存在且相等$f’_-(x_0)=f’_+(x_0)=0$</p>
+<h4 id="达布定理（导数零点定理"><a href="#达布定理（导数零点定理" class="headerlink" title="达布定理（导数零点定理"></a>达布定理（导数零点定理</h4><p>设$f(x)$在$[a,b]$上可导，证明$f_+’(a)f_-‘(b)&lt;0$时，存在$\zeta\in{(a,b)}$使得$f’(\zeta)=0$</p>
+<p>证明：</p>
+<p>不妨设$f_+’(a)&lt;0, f_-‘(b)&gt;0$</p>
+<p>则$f’_+(a)=\lim_{x\rightarrow{a^+}}\frac{f(x)-f(a)}{x-a}&lt;0$, 在$a$右领域内，$f(a)&lt;f(x)$</p>
+<p>$f’_-(b)=\lim_{x\rightarrow{b^-}}\frac{f(x)-f(b)}{x-b}&lt;0$, 在$a$左领域内，$f(b)&lt;f(x)$</p>
+<p>故极大值在区间内部，由费马定理，证毕</p>
+<ul>
+<li>和零点定理区分开：零点定理要求连续，达布定理不要求连续</li>
+</ul>
+<h3 id="罗尔定理"><a href="#罗尔定理" class="headerlink" title="罗尔定理"></a>罗尔定理</h3><ol>
 <li>$f(x)\in C[a,b]$</li>
 <li>$f(x)$ 在 $(a,b)$ 可导</li>
 <li>$f(a)=f(b)$</li>
 </ol>
 <p>那么，存在 $c\in (a,b), f’(c)=0$</p>
-<h2 id="拉格朗日中值定理"><a href="#拉格朗日中值定理" class="headerlink" title="拉格朗日中值定理"></a>拉格朗日中值定理</h2><ol>
+<p>推广的罗尔定理</p>
+<ol>
+<li>设$f(x)$在$(a,b)$内可导，$\lim_{x\rightarrow{a^+}}f(x)=\lim_{x\rightarrow{b^-}}f(x)=A$，则$(a,b)$内至少存在一点$\zeta$，使得$f’(\zeta)=0$</li>
+<li>设$f(x)$在$(a,b)$内可导，$\lim_{x\rightarrow{a^+}}f(x)=\lim_{x\rightarrow{b^-}}f(x)=\pm\infty$，则$(a,b)$内至少存在一点$\zeta$，使得$f’(\zeta)=0$</li>
+<li>设$f(x)$在$(a,+\infty)$内可导，$\lim_{x\rightarrow{a^+}}f(x)=\lim_{x\rightarrow{+\infty}}f(x)=A$，则$(a,+\infty)$内至少存在一点$\zeta$，使得$f’(\zeta)=0$</li>
+<li>设$f(x)$在$(-\infty,+\infty)$内可导，$\lim_{x\rightarrow{-\infty}}f(x)=\lim_{x\rightarrow{+\infty}}f(x)=\pm\infty$，则$(-\infty,+\infty)$内至少存在一点$\zeta$，使得$f’(\zeta)=0$</li>
+</ol>
+<p>罗尔定理的使用</p>
+<ol>
+<li>常用乘积求导公式$(uv)’=u’v+uv’$来构造辅助函数<ol>
+<li>$\phi{(x)}=x$，见到$f’(x)+f(x)$，构造$F(x)=f(x)e^x$</li>
+<li>$\phi{(x)}=-x$，见到$f’(x)-f(x)$，构造$F(x)=f(x)e^{-x}$</li>
+<li>$\phi{(x)}=x$，见到$f’(x)+kf(x)$，构造$F(x)=f(x)e^{kx}$</li>
+</ol>
+</li>
+<li>三个点相等，可以用三次罗尔定理，得出二阶导数为0</li>
+</ol>
+<h3 id="拉格朗日中值定理"><a href="#拉格朗日中值定理" class="headerlink" title="拉格朗日中值定理"></a>拉格朗日中值定理</h3><ol>
 <li>$f(x)\in C[a,b]$</li>
 <li>$f(x)$ 在 $(a,b)$ 可导</li>
 </ol>
@@ -232,9 +290,10 @@
 <ol>
 <li>三个点，考虑用两次拉格朗日中值定理</li>
 <li>$f(b)-f(a)$ 的形式，考虑拉格朗日</li>
+<li>$f’$和$f$的关系，考虑拉格朗日</li>
 </ol>
 <p><img src="/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/1.png" alt></p>
-<h2 id="柯西中值定理"><a href="#柯西中值定理" class="headerlink" title="柯西中值定理"></a>柯西中值定理</h2><ol>
+<h3 id="柯西中值定理"><a href="#柯西中值定理" class="headerlink" title="柯西中值定理"></a>柯西中值定理</h3><ol>
 <li>$f(x), g(x)\in C[a,b]$</li>
 <li>$f(x), g(x)$ 在 $(a,b)$ 可导</li>
 <li>$g(x)\neq 0, (a&lt;x&lt;b)$</li>
@@ -288,9 +347,13 @@
 </ul>
 <p>$f(x) = \frac{1}{1+x} = 1-x+x^2-x^3+…(-1)^nx^n+o(x^n)$</p>
 <ul>
-<li>$f(x)=\ln{x}$</li>
+<li>$f(x)=\ln{(1+x)}$</li>
 </ul>
-<p>$f(x)=\ln{x}=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+…+\frac{(-1)^{n-1}}{n}x^n+o(x^n)$</p>
+<p>$f(x)=\ln{(1+x)}=x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+…+\frac{(-1)^{n-1}}{n}x^n+o(x^n)$</p>
+<ul>
+<li>$f(x)=(1+x)^a$</li>
+</ul>
+<p>$f(x)=(1+x)^a=1+ax+\frac{a(a-1)}{2!}x^2+…+\frac{a(a-1)…(a-n+1)}{n!}x^n+o(x^n)$</p>
 <h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><ul>
 <li>$\frac{A}{B}$型极限，展开到同阶</li>
 <li>$A-B$型极限，展开到系数不相等的$x$的最低次幂为止 </li>
@@ -316,6 +379,9 @@
 <li>若 $\forall{x_1, x_2} \in{D}$ 且 $x_1\neq{x_2}$ 有， $f(\frac{x_1+x_2}{2})&lt;\frac{f(x_1)+f(x_2)}{2}$ ,称 $f(x)$ 在 $D$ 内为凹函数</li>
 <li>若 $\forall{x_1, x_2} \in{D}$ 且 $x_1\neq{x_2}$ 有， $f(\frac{x_1+x_2}{2})&gt;\frac{f(x_1)+f(x_2)}{2}$ ,称 $f(x)$ 在 $D$ 内为凸函数</li>
 </ul>
+<blockquote>
+<p>拐点：连续曲线的凹弧和凸弧的分界点称为曲线的拐点</p>
+</blockquote>
 <p><img src="/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/3.png" alt></p>
 <h3 id="判别方法"><a href="#判别方法" class="headerlink" title="判别方法"></a>判别方法</h3><p>引理</p>
 <p>若 $f’’(x)&gt;0$ ，则当 $x\neq{x_0}$, 有 $f(x)&gt;f(x_0)+f’(x_0)(x-x_0)$</p>
@@ -325,13 +391,20 @@
 <li>若 $f’’(x)&gt;0, (a&lt;x&lt;b)$，则 $y=f(x)$ 图像在 $[a,b]$ 上是凹的</li>
 <li>若 $f’’(x)&lt;0, (a&lt;x&lt;b)$，则 $y=f(x)$ 图像在 $[a,b]$ 上是凸的</li>
 </ul>
-<h1 id="3-5-极值和最值"><a href="#3-5-极值和最值" class="headerlink" title="3.5 极值和最值"></a>3.5 极值和最值</h1><h2 id="极值：极大值和极小值"><a href="#极值：极大值和极小值" class="headerlink" title="极值：极大值和极小值"></a>极值：极大值和极小值</h2><p>对于函数 $y=f(x),x\in{D}, x_0\in{D}$</p>
+<h1 id="3-5-极值和最值"><a href="#3-5-极值和最值" class="headerlink" title="3.5 极值和最值"></a>3.5 极值和最值</h1><ul>
+<li>极值点不一定是最值点；最值点也不一定是极值点</li>
+<li>如果$f(x)$在区间$I$上有最值点$x_0$，并且$x_0$不是区间$I$的端点而是内部的点，那么$x_0$必为$f(x)$的一个极值点</li>
+</ul>
+<h2 id="极值：极大值和极小值-要求双侧定义"><a href="#极值：极大值和极小值-要求双侧定义" class="headerlink" title="极值：极大值和极小值(要求双侧定义)"></a>极值：极大值和极小值(要求双侧定义)</h2><p>对于函数 $y=f(x),x\in{D}, x_0\in{D}$</p>
 <ul>
 <li>如果 $\exist {\delta}&gt;0, 0&lt;|x-x_0|&lt;\delta$ 时,有 $f(x_0)&gt;f(x)$, 称 $x_0$ 为 $f(x)$ 的一个极大值点, $f(x_0)$ 为极大值</li>
 <li>如果 $\exist {\delta}&gt;0, 0&lt;|x-x_0|&lt;\delta$ 时,有 $f(x_0)&lt;f(x)$, 称 $x_0$ 为 $f(x)$ 的一个极小值点, $f(x_0)$ 为极小值</li>
 </ul>
 <p>$x=a$ 为极值点且 $f(x)$ 可导，可以推出 $f’(a)=0$, 反之不行</p>
-<h3 id="判别方法-1"><a href="#判别方法-1" class="headerlink" title="判别方法"></a>判别方法</h3><h4 id="法1"><a href="#法1" class="headerlink" title="法1"></a>法1</h4><p>如果</p>
+<h3 id="判别方法-1"><a href="#判别方法-1" class="headerlink" title="判别方法"></a>判别方法</h3><blockquote>
+<p>费马定理<br>设$f(x)$在$x=x_0$可导，且在$x_0$取得极值，那么必有$f’(x_0)=0$</p>
+</blockquote>
+<h4 id="法1（第一充分条件"><a href="#法1（第一充分条件" class="headerlink" title="法1（第一充分条件"></a>法1（第一充分条件</h4><p>如果在$x_0$<strong>去心领域</strong>内</p>
 <script type="math/tex; mode=display">
 \left\{
     \begin{aligned}
@@ -347,6 +420,9 @@
     x>x_0时，f'(x)<0
     \end{aligned}
 \right.</script><p>则$x=x_0$为极大点</p>
+<ul>
+<li>间断点也有可能是极值点</li>
+</ul>
 <h4 id="法二（第二充分条件"><a href="#法二（第二充分条件" class="headerlink" title="法二（第二充分条件"></a>法二（第二充分条件</h4><p>设$f’(x_0) = 0$，如果</p>
 <ol>
 <li>$f’’(x)&gt;0$，$x_0$为极小点</li>
@@ -358,26 +434,50 @@
 <p>弊端：不能讨论$f’’(x_0)=0$的情况</p>
 <p><img src="/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/4.png" alt></p>
 <p><img src="/2022/02/27/%E5%BE%AE%E5%88%86%E4%B8%AD%E5%80%BC%E5%AE%9A%E7%90%86%E4%B8%8E%E5%AF%BC%E6%95%B0%E7%9A%84%E5%BA%94%E7%94%A8/5.png" alt></p>
-<h2 id="最值（最大值和最小值"><a href="#最值（最大值和最小值" class="headerlink" title="最值（最大值和最小值"></a>最值（最大值和最小值</h2><p>$f(x)\in{C[a,b]}$，找到$f’(x)=0或不存在$的所有点（驻点和不可导点），$x_1,x_2,…,x_n$</p>
+<h4 id="第三充分条件"><a href="#第三充分条件" class="headerlink" title="第三充分条件"></a>第三充分条件</h4><p>若$f(x)$在$x_0$处$n$阶可导，并且$f^{(m)}(x_0)=0,(m=1,2,…,n-1)$，$f^{(n)}(x_0)=0,(n\geq 2)$，则</p>
+<ul>
+<li>$n$为偶数并且$f^{(n)}(x_0)&lt;0$时，在$x_0$取得极大值</li>
+<li>$n$为偶数并且$f^{(n)}(x_0)&gt;0$时，在$x_0$取得极小值</li>
+</ul>
+<h2 id="最值（最大值和最小值"><a href="#最值（最大值和最小值" class="headerlink" title="最值（最大值和最小值"></a>最值（最大值和最小值</h2><ol>
+<li>求闭区间$[a,b]$上连续函数的最值<ol>
+<li>求出驻点、不可导点位置的函数值</li>
+<li>求出区间端点$f(a)$,$f(b)$</li>
+<li>比较上述所有函数值，即可得到</li>
+</ol>
+</li>
+<li>求开区间$(a,b)$上连续函数的最值或取值范围<ol>
+<li>求出区间内驻点、不可导点位置的函数值</li>
+<li>求出区间端点位置的单侧极限</li>
+<li>比较上述值，得到最值或取值范围</li>
+</ol>
+</li>
+</ol>
+<p>$f(x)\in{C[a,b]}$，找到$f’(x)=0或不存在$的所有点（驻点和不可导点），$x_1,x_2,…,x_n$</p>
 <p>最小值为$\min{f(a), f(b), f(x_1), …, f(x_n)}$</p>
 <p>最大值为$\max{f(a), f(b), f(x_1), …, f(x_n)}$</p>
 <blockquote>
 <p>例题：证明$x\in{[0,1]}$时，$\frac{1}{2^{p-1}}\leq{x^p+(1-x)^p}\leq{1}$<br>中间设为函数，求其最大最小值</p>
 </blockquote>
 <p>应用题：构造出目标函数，求解最大值 /  最小值</p>
-<h1 id="3-6-函数图像描绘"><a href="#3-6-函数图像描绘" class="headerlink" title="3.6 函数图像描绘"></a>3.6 函数图像描绘</h1><h2 id="渐近线"><a href="#渐近线" class="headerlink" title="渐近线"></a>渐近线</h2><h3 id="水平渐近线"><a href="#水平渐近线" class="headerlink" title="水平渐近线"></a>水平渐近线</h3><blockquote>
+<h1 id="3-6-函数图像描绘"><a href="#3-6-函数图像描绘" class="headerlink" title="3.6 函数图像描绘"></a>3.6 函数图像描绘</h1><h2 id="渐近线"><a href="#渐近线" class="headerlink" title="渐近线"></a>渐近线</h2><ol>
+<li>先找函数无定义点，找铅垂渐近线</li>
+<li>找水平渐近线</li>
+<li>找斜渐近线</li>
+</ol>
+<h3 id="水平渐近线"><a href="#水平渐近线" class="headerlink" title="水平渐近线"></a>水平渐近线</h3><blockquote>
 <p>曲线$L:y=f(x)$,若$lim_{x\rightarrow{\infty}}f(x)=A$，称$f(x)$有水平渐近线$y=A$</p>
 </blockquote>
 <h3 id="铅直渐近线"><a href="#铅直渐近线" class="headerlink" title="铅直渐近线"></a>铅直渐近线</h3><blockquote>
 <p>曲线$L:y=f(x)$,若$lim_{x\rightarrow{a}}f(x)={\infty}$，称$f(x)$有铅直渐近线$x=A$</p>
 </blockquote>
-<p>铅直渐近线只会出现在函数的间断点处</p>
+<p>铅直渐近线只会出现在函数的间断点处（无定义点、定义区间的端点、分段函数分段点</p>
 <h3 id="斜渐近线"><a href="#斜渐近线" class="headerlink" title="斜渐近线"></a>斜渐近线</h3><blockquote>
 <p>曲线$L:y=f(x)$,若$lim_{x\rightarrow{\infty}}\frac{f(x)}{x}=A(A\neq0,\infty), lim_{x\rightarrow{\infty}}(f(x)-Ax)=B$，称$f(x)$有斜渐近线$y=Ax+B$</p>
 </blockquote>
 <p>求解斜渐近线步骤1. 求A；2. 求B</p>
 <h2 id="作图"><a href="#作图" class="headerlink" title="作图"></a>作图</h2><ol>
-<li>$x$的定义域$D$</li>
+<li>$x$的定义域$D$，是否有奇偶性</li>
 <li>增减性，$f’(x)$</li>
 <li>凹凸性，$f’’(x)$</li>
 <li>渐近线</li>
@@ -392,6 +492,25 @@
 <li>曲率$K=|\frac{y’’}{(1+y^{‘2})^{\frac{3}{2}}}|$</li>
 <li>曲率半径$r=\frac{1}{K}$</li>
 </ol>
+<h1 id="第七讲-零点问题与微分不等式"><a href="#第七讲-零点问题与微分不等式" class="headerlink" title="第七讲 零点问题与微分不等式"></a>第七讲 零点问题与微分不等式</h1><h2 id="零点问题"><a href="#零点问题" class="headerlink" title="零点问题"></a>零点问题</h2><ul>
+<li>大题/小题：零点定理证存在性、单调性证唯一性</li>
+<li>小题：罗尔原话、实系数奇次方程至少有一个实数根</li>
+</ul>
+<h3 id="零点定理（主要用于证明根的存在性"><a href="#零点定理（主要用于证明根的存在性" class="headerlink" title="零点定理（主要用于证明根的存在性"></a>零点定理（主要用于证明根的存在性</h3><blockquote>
+<p>$f(x)$在$[a,b]$内连续，且$f(a)f(b)&lt;0$，则$f(x)=0$在$[a,b]$内至少有一个根<br>可以推广到区间端点a右极限和b左极限的情况</p>
+</blockquote>
+<h3 id="单调性（主要用于证明根的唯一性"><a href="#单调性（主要用于证明根的唯一性" class="headerlink" title="单调性（主要用于证明根的唯一性"></a>单调性（主要用于证明根的唯一性</h3><blockquote>
+<p>若$f(x)$在$[a,b]$内单调，则$f(x)=0$在$(a,b)$内至多只有一个根</p>
+</blockquote>
+<h3 id="罗尔原话（罗尔定理的推论"><a href="#罗尔原话（罗尔定理的推论" class="headerlink" title="罗尔原话（罗尔定理的推论"></a>罗尔原话（罗尔定理的推论</h3><blockquote>
+<p>若$f^{(n)}(x)=0$最多有$k$个根，则$f(x)=0$最多有$k+n$个根</p>
+</blockquote>
+<h3 id="实系数奇次方程至少有一个实数根"><a href="#实系数奇次方程至少有一个实数根" class="headerlink" title="实系数奇次方程至少有一个实数根"></a>实系数奇次方程至少有一个实数根</h3><p>$f(x)=x^{2n+1}+a_1x^{2n}+…+a_{2n+1}=0$必定有一个实数根 </p>
+<h2 id="微分不等式"><a href="#微分不等式" class="headerlink" title="微分不等式"></a>微分不等式</h2><ul>
+<li>函数性态证明不等式</li>
+<li>常数变量化证明不等式</li>
+<li>中值定理证明不等式</li>
+</ul>
 
       
 
@@ -672,14 +791,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">考研高等数学</a>
               </li>
              
@@ -688,11 +799,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研线性代数</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
               </li>
             
             <div class="clearfix"></div>
@@ -829,5 +944,20 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

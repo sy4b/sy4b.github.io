@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://example.com/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/a1.png">
 <meta property="og:image" content="http://example.com/2022/02/21/%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%81%E9%99%90/a2.png">
 <meta property="article:published_time" content="2022-02-21T14:27:00.000Z">
-<meta property="article:modified_time" content="2022-03-13T03:44:40.473Z">
+<meta property="article:modified_time" content="2022-03-14T11:25:39.611Z">
 <meta property="article:author" content="Valerie">
 <meta property="article:tag" content="考研高等数学">
 <meta name="twitter:card" content="summary">
@@ -371,6 +371,9 @@
 </ul>
 </li>
 </ul>
+<h1 id><a href="#" class="headerlink" title="#"></a>#</h1><ul>
+<li>反双曲正弦</li>
+</ul>
 <h1 id="1-1-函数"><a href="#1-1-函数" class="headerlink" title="1.1 函数"></a>1.1 函数</h1><h2 id="一些定义"><a href="#一些定义" class="headerlink" title="一些定义"></a>一些定义</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>x，y为两个变量，x ∈ D，如果 x ∈ D，总存在<strong>唯一确定</strong>的y与x对应，称y为x的函数，记作 y = f(x)</p>
 <p>D 称为定义域 </p>
 <p>R = {y| y = f(x), x ∈ D} 称为函数的值域</p>
@@ -623,11 +626,12 @@
 <li>x ~ arctan(x)</li>
 <li>x ~ ln(1+x)</li>
 <li>x ~ e^x-1</li>
+<li>$a^x-1$~$x\ln{x}$</li>
 <li>1-cosx ~ x^2/2</li>
 <li>(1+x)^a-1 ~ ax</li>
 </ul>
 <h1 id="1-8-函数的连续性和间断点"><a href="#1-8-函数的连续性和间断点" class="headerlink" title="1.8 函数的连续性和间断点"></a>1.8 函数的连续性和间断点</h1><h2 id="f-x-在某一点连续连续"><a href="#f-x-在某一点连续连续" class="headerlink" title="f(x)在某一点连续连续"></a>f(x)在某一点连续连续</h2><blockquote>
-<p>若lim(x-&gt;a) f(x) = f(a)，则f(x)在x=a处连续<br>即 f(a-0) = f(a+0) = f(a)  </p>
+<p>若$\lim_{x\rightarrow{x_0}}f(x)=f(x_0)$</p>
 </blockquote>
 <ol>
 <li>f(a-0)=f(a)称f(x)在x=a左连续；f(a+0)=f(a)右连续</li>
@@ -637,7 +641,7 @@
 <p>若f(x)在[a,b]上有定义，f(x)在(a,b)内处处连续，f(a)=f(a+0),f(b)=f(b-0)，那么称f(x)在[a,b]上连续<br>记作 f(x) ∈ C[a,b]</p>
 </blockquote>
 <h2 id="间断点及分类"><a href="#间断点及分类" class="headerlink" title="间断点及分类"></a>间断点及分类</h2><blockquote>
-<p>lim(x-&gt;a) f(x) != f(a)，称f(a)在x=a间断</p>
+<p>在点$x_0$的某去心领域内有定义的前提下才讨论间断点<br>lim(x-&gt;a) f(x) != f(a)，称f(a)在x=a间断</p>
 </blockquote>
 <p>间断点的分类：</p>
 <ol>
@@ -646,7 +650,12 @@
 <li>跳跃间断点：f(a-0)!=f(a+0)</li>
 </ol>
 </li>
-<li>第二类间断点：f(a-0)和f(a+0)至少一个不存在</li>
+<li>第二类间断点：f(a-0)和f(a+0)至少一个不存在<ol>
+<li>无穷间断点：$\lim_{x\rightarrow{x_0}}f(x)=\infty$</li>
+<li>振荡间断点</li>
+<li>其他</li>
+</ol>
+</li>
 </ol>
 <h1 id="1-9-连续函数的运算和初等函数连续性"><a href="#1-9-连续函数的运算和初等函数连续性" class="headerlink" title="1.9 连续函数的运算和初等函数连续性"></a>1.9 连续函数的运算和初等函数连续性</h1><h2 id="连续函数的运算"><a href="#连续函数的运算" class="headerlink" title="连续函数的运算"></a>连续函数的运算</h2><h3 id="四则运算"><a href="#四则运算" class="headerlink" title="四则运算"></a>四则运算</h3><blockquote>
 <p>f(x) g(x) 在x=x0连续，则f(x)+g(x)和f(x)-g(x)和f(x)g(x)在x=x0连续<br>若g(x0)!=0, 则f(x)/g(x)在x=x0连续</p>
@@ -665,6 +674,28 @@
 <li>函数闭区间连续，证明开区间问题，首选零点定理</li>
 <li>函数闭区间连续，证明闭区间问题 / 函数值之和，选介值定理</li>
 </ol>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="海涅定理"><a href="#海涅定理" class="headerlink" title="海涅定理"></a>海涅定理</h2><blockquote>
+<p>设f(x)在$\hat{U}(x_0,\delta)$有定义，则<br>$\lim_{x\rightarrow{x_0}}f(x)=A$存在的充要条件是<br>对任何$\hat{U}(x_0,\delta)$内，以$x_0$为极限的数列{$x_n$}，极限$\lim_{n\rightarrow{\infty}}f(x_n)=A$存在</p>
+</blockquote>
+<ol>
+<li>从右往左推：取两个不同的数列{$x_n$}，否定函数极限的存在</li>
+<li>从左到右推：$\lim_{x\rightarrow{x_0}}f(x)=A =&gt; \lim_{n\rightarrow{\infty}}f(x_n)=A$</li>
+</ol>
+<h2 id="七种未定式极限"><a href="#七种未定式极限" class="headerlink" title="七种未定式极限"></a>七种未定式极限</h2><ol>
+<li>$\frac{0}{0}, \frac{\infty}{\infty}, 0·\infty$</li>
+<li>$\infty - \infty$</li>
+<li>$\infty^0, 0^0, 1^\infty$</li>
+</ol>
+<ul>
+<li>遇到根号，有理化</li>
+<li>等价无穷小</li>
+<li>泰勒展开</li>
+<li>取整函数相关的，用$x-1&lt;[x]\le{x}$，夹逼定理</li>
+<li>$\infty-\infty$，有分母则通分，没有则创造分母（换元$x=\frac{1}{t}$</li>
+<li>幂指函数化为$e^{v\ln{u}}$</li>
+<li>$1^{\infty}$：$\lim{u^v}=e^{\lim{v\ln{u}}}=e^{\lim{v(u-1)}}$</li>
+<li>海涅定理</li>
+</ul>
 
       
 
@@ -945,14 +976,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">考研高等数学</a>
               </li>
              
@@ -961,11 +984,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">考研数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">考研计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">考研线性代数</a>
+                <a href="javascript:void(0)" class="js-tag color2">考研操作系统</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1102,5 +1129,20 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
